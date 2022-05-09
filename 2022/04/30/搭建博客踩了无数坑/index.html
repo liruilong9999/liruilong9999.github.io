@@ -1,0 +1,569 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Lee Ruilong">
+  <meta name="keywords" content="宇宙,卷">
+  
+    <meta name="description" content="简单记录下搭建博客">
+<meta property="og:type" content="article">
+<meta property="og:title" content="博客搭建">
+<meta property="og:url" content="http://example.com/2022/04/30/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E8%B8%A9%E4%BA%86%E6%97%A0%E6%95%B0%E5%9D%91/index.html">
+<meta property="og:site_name" content="liruilong&#39;s bk">
+<meta property="og:description" content="简单记录下搭建博客">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/image-20220430224733035.png">
+<meta property="og:image" content="http://example.com/images/image-20220430225101014.png">
+<meta property="og:image" content="http://example.com/images/image-20220430225743400.png">
+<meta property="og:image" content="http://example.com/images/image-20220430230032665.png">
+<meta property="og:image" content="http://example.com/images/image-20220430225312396.png">
+<meta property="og:image" content="http://example.com/images/image-20220430225405741.png">
+<meta property="og:image" content="http://example.com/images/image-20220430225432283.png">
+<meta property="og:image" content="http://example.com/images/image-20220430225923417.png">
+<meta property="og:image" content="http://example.com/images/image-20220430230221129.png">
+<meta property="og:image" content="http://example.com/images/image-20220430230140263.png">
+<meta property="og:image" content="http://example.com/images/image-20220430230313642.png">
+<meta property="og:image" content="http://example.com/images/image-20220430230610362.png">
+<meta property="og:image" content="http://example.com/images/image-20220430231213731.png">
+<meta property="og:image" content="http://example.com/images/image-20220430231400803.png">
+<meta property="og:image" content="http://example.com/images/image-20220430231100098.png">
+<meta property="og:image" content="http://example.com/images/image-20220430231810617.png">
+<meta property="og:image" content="http://example.com/images/image-20220430232300558.png">
+<meta property="og:image" content="http://example.com/images/image-20220430232637964.png">
+<meta property="og:image" content="http://example.com/images/image-20220430232848401.png">
+<meta property="og:image" content="http://example.com/images/image-20220430232950777.png">
+<meta property="og:image" content="http://example.com/images/image-20220430233032060.png">
+<meta property="og:image" content="http://example.com/images/image-20220430233153083.png">
+<meta property="og:image" content="http://example.com/images/image-20220430233338610.png">
+<meta property="og:image" content="http://example.com/images/image-20220430233520355.png">
+<meta property="article:published_time" content="2022-04-29T19:15:16.000Z">
+<meta property="article:modified_time" content="2022-05-03T11:21:39.034Z">
+<meta property="article:author" content="Lee Ruilong">
+<meta property="article:tag" content="学习Nodejs">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/images/image-20220430224733035.png">
+  
+  
+  <title>博客搭建 - liruilong&#39;s bk</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>无敌者的笔记</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="博客搭建">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-04-30 03:15" pubdate>
+        2022年4月30日 凌晨
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.5k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      13 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">博客搭建</h1>
+            
+            <div class="markdown-body">
+              <h2 id="0、当前系统环境"><a href="#0、当前系统环境" class="headerlink" title="0、当前系统环境"></a>0、当前系统环境</h2><p>windows 10</p>
+<h2 id="1、下载Node-js和Git"><a href="#1、下载Node-js和Git" class="headerlink" title="1、下载Node.js和Git"></a>1、下载Node.js和Git</h2><h3 id="1-1、-下载Node-js"><a href="#1-1、-下载Node-js" class="headerlink" title="1.1、 下载Node.js"></a>1.1、 下载Node.js</h3><p>下载链接，选择长期维护版本：<br><code>https://nodejs.org/zh-cn/</code></p>
+<p><img src="/../images/image-20220430224733035.png" srcset="/img/loading.gif" lazyload alt="image-20220430224733035"></p>
+<p>如果下载不了，试试这个链接：</p>
+<p><code>http://nodejs.cn/download/</code></p>
+<p><img src="/../images/image-20220430225101014.png" srcset="/img/loading.gif" lazyload alt="image-20220430225101014"></p>
+<p>安装一路next</p>
+<p>安装完后 管理员身份打开cmd，输入   <code>node -v</code>   如果有版本号代表安装成功了</p>
+<p><img src="/../images/image-20220430225743400.png" srcset="/img/loading.gif" lazyload alt="image-20220430225743400"></p>
+<p>顺便看看有没有 npm  ，输入 <code>npm -v</code>  ，看有没有版本号</p>
+<p><img src="/../images/image-20220430230032665.png" srcset="/img/loading.gif" lazyload alt="image-20220430230032665"></p>
+<h3 id="1-2、-下载Git"><a href="#1-2、-下载Git" class="headerlink" title="1.2、 下载Git"></a>1.2、 下载Git</h3><p>官网地址：</p>
+<p><code>https://git-scm.com/download/win</code></p>
+<p><img src="/../images/image-20220430225312396.png" srcset="/img/loading.gif" lazyload alt="image-20220430225312396"></p>
+<p>如果很卡用国内地址：</p>
+<p><code>https://npm.taobao.org/mirrors/git-for-windows/</code></p>
+<p>按照需要的下</p>
+<p>我的是：</p>
+<p><img src="/../images/image-20220430225405741.png" srcset="/img/loading.gif" lazyload alt="image-20220430225405741"></p>
+<p>然后</p>
+<p><img src="/../images/image-20220430225432283.png" srcset="/img/loading.gif" lazyload alt="image-20220430225432283"></p>
+<p>解压</p>
+<p>安装</p>
+<p>安装时除了改安装地址那一步，其他的我全部是 next</p>
+<p>安装完后输入   <code>git --version</code> ，有版本号就成功了</p>
+<p><img src="/../images/image-20220430225923417.png" srcset="/img/loading.gif" lazyload alt="image-20220430225923417"></p>
+<h2 id="2、换源"><a href="#2、换源" class="headerlink" title="2、换源"></a>2、换源</h2><p>也可以不改，就是影响下速度而已</p>
+<p><code>npm install -g cnpm --registry=https://registry.npm.taobao.org</code></p>
+<h2 id="3、创建文件夹Blog"><a href="#3、创建文件夹Blog" class="headerlink" title="3、创建文件夹Blog"></a>3、创建文件夹Blog</h2><p>创建一个文件夹Blog，其他操作都在这里面</p>
+<p><img src="/../images/image-20220430230221129.png" srcset="/img/loading.gif" lazyload alt="image-20220430230221129"></p>
+<p>空文件夹</p>
+<h2 id="3、安装hexo"><a href="#3、安装hexo" class="headerlink" title="3、安装hexo"></a>3、安装hexo</h2><p>管理员身份打开命令行</p>
+<p><img src="/../images/image-20220430230140263.png" srcset="/img/loading.gif" lazyload alt="image-20220430230140263"></p>
+<p>并且换路径到 Blog下</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><pre><code class="hljs cmd"><span class="hljs-function">d:</span><br><span class="hljs-function"><span class="hljs-title">cd</span> <span class="hljs-title">Blog</span></span><br></code></pre></td></tr></table></figure>
+
+
+
+<p><img src="/../images/image-20220430230313642.png" srcset="/img/loading.gif" lazyload alt="image-20220430230313642"></p>
+<p>输入<code>cnpm install -g hexo-cli</code></p>
+<p>看看安装好没有，如果有错误，基本上都能百度出来</p>
+<h2 id="4、初始化hexo"><a href="#4、初始化hexo" class="headerlink" title="4、初始化hexo"></a>4、初始化hexo</h2><p>hexo init </p>
+<h2 id="5、生成界面文件"><a href="#5、生成界面文件" class="headerlink" title="5、生成界面文件"></a>5、生成界面文件</h2><p>hexo g</p>
+<h2 id="6、搭建本地博客"><a href="#6、搭建本地博客" class="headerlink" title="6、搭建本地博客"></a>6、搭建本地博客</h2><p>hexo s</p>
+<p>默认地址  127.0.0.1:4000</p>
+<p>启动成功后， 大概这个样子</p>
+<p><img src="/../images/image-20220430230610362.png" srcset="/img/loading.gif" lazyload alt="image-20220430230610362"></p>
+<h2 id="7、搭建远程博客"><a href="#7、搭建远程博客" class="headerlink" title="7、搭建远程博客"></a>7、搭建远程博客</h2><h3 id="7-1-创建github仓库"><a href="#7-1-创建github仓库" class="headerlink" title="7.1 创建github仓库"></a>7.1 创建github仓库</h3><p>打开github，没有账号注册一个，记住自己的邮箱和用户名</p>
+<p><img src="/../images/image-20220430231213731.png" srcset="/img/loading.gif" lazyload alt="image-20220430231213731"></p>
+<p>创建仓库， 记住按照图上的方式填： <code>用户名.github.io</code> ，取名随便</p>
+<p><img src="/../images/image-20220430231400803.png" srcset="/img/loading.gif" lazyload alt="image-20220430231400803"></p>
+<h3 id="7-2-安装插件"><a href="#7-2-安装插件" class="headerlink" title="7.2 安装插件"></a>7.2 安装插件</h3><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada">npm install hexo-deployer-git <span class="hljs-comment">--save</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="7-3-配置插件"><a href="#7-3-配置插件" class="headerlink" title="7.3 配置插件"></a>7.3 配置插件</h3><p>打开 Blog 目录下的 _config.yml 文件，编辑（记事本、Sublime、VS code都行），在文件末尾补上以下内容：</p>
+<p>添加 repo和branch</p>
+<p><img src="/../images/image-20220430231100098.png" srcset="/img/loading.gif" lazyload alt="image-20220430231100098"></p>
+<p>type 去掉引号，写入git</p>
+<p>repo是下图的地址</p>
+<p>branch是下图显示的，如果显示master就填master</p>
+<p>注意<code>:</code>是英文并且后面有个空格</p>
+<p><img src="/../images/image-20220430231810617.png" srcset="/img/loading.gif" lazyload alt="image-20220430231810617"></p>
+<h3 id="7-4-配置全局用户"><a href="#7-4-配置全局用户" class="headerlink" title="7.4 配置全局用户"></a>7.4 配置全局用户</h3><p>在 Blog目录下输入命令：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs stylus">git config <span class="hljs-attr">--global</span> user<span class="hljs-selector-class">.email</span> <span class="hljs-string">&quot;1355165054@qq.com&quot;</span><br><br>git config <span class="hljs-attr">--global</span> user<span class="hljs-selector-class">.name</span> <span class="hljs-string">&quot;liruilong9999&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p><em><strong>这里的邮箱和用户名换成github注册邮箱和用户名，别把我的抄上了。。。</strong></em></p>
+<p>查看配置好了吗</p>
+<p><code>git congif --list</code></p>
+<p><img src="/../images/image-20220430232300558.png" srcset="/img/loading.gif" lazyload alt="image-20220430232300558"></p>
+<h3 id="7-5-生成密钥"><a href="#7-5-生成密钥" class="headerlink" title="7.5 生成密钥"></a>7.5 生成密钥</h3><figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs excel">ssh-keygen -<span class="hljs-built_in">t</span> rsa -C <span class="hljs-string">&quot;github邮箱&quot;</span> <br># 示例 <br><br>ssh-keygen -<span class="hljs-built_in">t</span> rsa -C <span class="hljs-string">&quot;1355165054@qq.com&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>第一次生成的话按下回车4次</p>
+<p>不是第一次遇生成到选择选 y 就行其余操作回车</p>
+<p>密钥生成到下面文件夹下了，就是选中这个</p>
+<p><img src="/../images/image-20220430232637964.png" srcset="/img/loading.gif" lazyload alt="image-20220430232637964"></p>
+<h3 id="7-6-将密钥添加到github"><a href="#7-6-将密钥添加到github" class="headerlink" title="7.6 将密钥添加到github"></a>7.6 将密钥添加到github</h3><p>打开这个id_rsa.pub文件 复制所有文本</p>
+<p>然后打开GitHub 点击setting</p>
+<p><img src="/../images/image-20220430232848401.png" srcset="/img/loading.gif" lazyload alt="image-20220430232848401"></p>
+<p><img src="/../images/image-20220430232950777.png" srcset="/img/loading.gif" lazyload alt="image-20220430232950777"></p>
+<p>新加一个</p>
+<p><img src="/../images/image-20220430233032060.png" srcset="/img/loading.gif" lazyload alt="image-20220430233032060"></p>
+<p>在命令行窗口测试能否连接github</p>
+<p><code>ssh -T git@github.com</code></p>
+<p><img src="/../images/image-20220430233153083.png" srcset="/img/loading.gif" lazyload alt="image-20220430233153083"></p>
+<h3 id="7-7-最后一步，上传"><a href="#7-7-最后一步，上传" class="headerlink" title="7.7 最后一步，上传"></a>7.7 最后一步，上传</h3><p>命令 </p>
+<p><code>hexo d</code></p>
+<p><strong>可能</strong>会出现这个界面，输入用户名密码，但是我没遇到过</p>
+<p><img src="/../images/image-20220430233338610.png" srcset="/img/loading.gif" lazyload alt="image-20220430233338610"></p>
+<p>过一段时间</p>
+<p>在浏览器上输入</p>
+<p><code>用户名.gitbun.io</code></p>
+<p><img src="/../images/image-20220430233520355.png" srcset="/img/loading.gif" lazyload alt="image-20220430233520355"></p>
+<p>最后一步遇到很多问题，但是基本上是没按照教程走或者和教程操作得不同导致的。</p>
+<p>当然还有个很大的问题是我去学习其他教程，<strong>但是不合当前版本，无法搭建成功</strong></p>
+<p>故此列出时间望大家参考此攻略是否还适用</p>
+<p>2022&#x2F;04&#x2F;30  23:37</p>
+<p>还有20分钟劳动节，卷死他们！！</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%AD%A6%E4%B9%A0Nodejs/">学习Nodejs</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/04/30/%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B&amp;%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">内存模型和C++文件操作</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/04/30/Effective-C++/">
+                        <span class="hidden-mobile">Effective C++</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+	
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
