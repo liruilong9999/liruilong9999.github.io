@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>AI训练路线</title>
+    <link href="/2023/03/20/AI%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/"/>
+    <url>/2023/03/20/AI%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/</url>
+    
+    <content type="html"><![CDATA[<ol><li>学习Python编程语言：</li></ol><ul><li>学习基本语法和数据结构</li><li>学习函数和面向对象编程</li><li>学习Python的科学计算库，例如NumPy，Pandas和Matplotlib等</li></ul><ol start="2"><li>学习数学基础知识：</li></ol><ul><li>线性代数，包括矩阵和向量的操作</li><li>概率论和统计学，包括基本的概率分布，期望和方差等</li></ul><ol start="3"><li>学习机器学习基础知识：</li></ol><ul><li>学习监督学习算法，例如线性回归，逻辑回归和决策树等</li><li>学习无监督学习算法，例如聚类和降维等</li><li>学习模型评估和选择的方法</li></ul><ol start="4"><li>学习深度学习基础知识：</li></ol><ul><li>学习神经网络的基本结构和训练方法</li><li>学习反向传播算法和优化器的原理</li><li>学习卷积神经网络和循环神经网络等常用的深度学习模型</li></ul><ol start="5"><li>实践项目：</li></ol><ul><li>使用Python和相应的机器学习和深度学习库来实现实际项目，例如图像分类，文本分类，自然语言生成等</li></ul><ol start="6"><li>学习AI应用和工具：</li></ol><ul><li>了解AI在不同领域的应用，例如计算机视觉，自然语言处理，智能推荐等</li><li>学习使用开源工具和框架，例如TensorFlow，PyTorch，Keras和Scikit-learn等</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>AI</category>
+      
+      <category>深度学习</category>
+      
+      <category>机器学习</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>python</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>QT实现IE内核浏览器</title>
     <link href="/2023/03/15/Qt%E5%AE%9E%E7%8E%B0IE%E5%86%85%E6%A0%B8%E6%B5%8F%E8%A7%88%E5%99%A8%EF%BC%88%E9%9C%80%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%87%AA%E5%B8%A6IE%EF%BC%89/"/>
     <url>/2023/03/15/Qt%E5%AE%9E%E7%8E%B0IE%E5%86%85%E6%A0%B8%E6%B5%8F%E8%A7%88%E5%99%A8%EF%BC%88%E9%9C%80%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%87%AA%E5%B8%A6IE%EF%BC%89/</url>
