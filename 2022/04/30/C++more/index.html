@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>C++ more | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="C++ more">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++ more">
+<meta property="og:url" content="http://example.com/2022/04/30/C++more/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="C++ more">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-04-29T19:15:16.000Z">
+<meta property="article:modified_time" content="2023-08-08T13:57:04.000Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="语言">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-C++more" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/04/30/C++more/" class="article-date">
+  <time class="dt-published" datetime="2022-04-29T19:15:16.000Z" itemprop="datePublished">2022-04-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/C/">C++</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      C++ more
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <center><font size = 45>C++深入</font></center>
+
+<h2 id="编译过程"><a href="#编译过程" class="headerlink" title="编译过程"></a>编译过程</h2><p>对于C++源文件，从文本到可执行文件一般需要四个过程：</p>
+<ol>
+<li><strong>预处理阶段</strong>：对源代码文件中文件包含关系（<strong>头文件</strong>）、预编译语句（<strong>宏定义</strong>）进行分析和替换，生成预编译文件。</li>
+<li><strong>编译阶段</strong>：将经过预处理后的预编译文件转换成特定汇编代码，生成汇编文件</li>
+<li><strong>汇编阶段</strong>：将编译阶段生成的汇编文件转化成机器码，生成可重定位目标文件</li>
+<li><strong>链接阶段</strong>：将多个目标文件及所需要的库连接成最终的可执行目标文件</li>
+</ol>
+<h2 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h2><h4 id="C-内存管理分配"><a href="#C-内存管理分配" class="headerlink" title="C++内存管理分配"></a>C++内存管理分配</h4><p>在C++中将内存分为5个区：栈区、堆区、自由存储区、全局&#x2F;静态存储区、常量存储区</p>
+<ol>
+<li><strong>栈</strong>：在执行函数时，<strong>函数内局部变量</strong>的存储单元都可以在栈上创建，函数执行结束时这些存储单元自动被释放。栈内存分配运算内置于处理器的指令集中，效率很高，但是分配的内存容量有限</li>
+<li><strong>堆</strong>：由 <code>new</code>分配的内存块，他们的释放编译器不去管，由我们的应用程序去控制，一般一个<code>new</code>就要对应一个 <code>delete</code>。如果程序员没有释放掉，那么在程序结束后，操作系统会自动回收。</li>
+<li><strong>程序代码区</strong>：存放函数体（类的成员函数、全局函数） 的二进制代码</li>
+<li><strong>全局&#x2F;静态存储区</strong>：全局变量和静态变量被分配到同一块内存中，在以前的C语言中，全局变量又分为初始化的和未初始化的，在C++里面没有这个区分了，他们共同占用同一块内存区</li>
+<li><strong>常量存储区</strong>：存放的是常量，不允许修改</li>
+</ol>
+<h4 id="程序在内存中的分区"><a href="#程序在内存中的分区" class="headerlink" title="程序在内存中的分区"></a>程序在内存中的分区</h4><ol>
+<li>**BSS段(bss segment)**：通常是指用来存放程序中未初始化的全局变量的一块内存区域， 为0也为未初始化。</li>
+<li>**数据段(data segment)**：通常是指用来存放程序中已初始化的全局变量的一块内存区域。</li>
+<li>**代码段(code segment&#x2F;text segment)**：代码段（通常是指用来存放程序执行代码的一块内存区域。这部分区域的大小在程序运行前就已经确定，并且内存区域通常属于只读, 某些架构也允许代码段为可写，即允许修改程序。在代码段中，也有可能包含一些只读的常数变量，例如字符串常量等。</li>
+<li><strong>堆（heap）</strong>：堆是用于存放进程运行中被动态分配的内存段，它的大小并不固定，可动态扩张或缩减。当进程调用malloc等函数分配内存时，新分配的内存就被动态添加到堆上（堆被扩张）；当利用free等函数释放内存时，被释放的内存从堆中被剔除（堆被缩减）。</li>
+<li>**栈(stack)**：栈又称堆栈，用户存放程序临时创建的局部变量。在函数被调用时，其参数也会被压入发起调用的进程栈中，并且待到调用结束后，函数的返回值也会被存放回栈中。由于栈的后进先出特点，所以栈特别方便用来保存&#x2F;恢复调用现场。</li>
+</ol>
+<h4 id="堆与栈的区别"><a href="#堆与栈的区别" class="headerlink" title="堆与栈的区别"></a>堆与栈的区别</h4><ol>
+<li><strong>管理方式：</strong>栈是由编译器自动管理；堆分配释放工作由程序员控制，容易产生memory leak。</li>
+<li><strong>空间大小：</strong>一般来讲在 32 位系统下，堆内存可以达到4G的空间，堆内存几乎是没有什么限制的。栈有一定的空间大小的</li>
+<li><strong>碎片问题：</strong>堆中频繁的<code>new/delete</code>势必会造成内存空间的不连续，从而造成大量的碎片。栈是先进后出的队列，不可能有内存块从栈中间弹出</li>
+<li><strong>生长方向：</strong>堆的生长方向是向上的，向着内存地址增加的方向；栈的生长方向是向下的，向着内存地址减小的方向增长。</li>
+<li><strong>分配方式：</strong>堆都是动态分配的，没有静态分配的堆。栈有2种分配方式：静态分配和动态分配。静态分配是编译器完成的，比如局部变量的分配。动态分配由 malloc 函数进行分配，但是栈的动态分配和堆是不同的，他的动态分配是由编译器进行释放，无需我们手工实现。</li>
+<li><strong>分配效率：</strong>栈是机器系统提供的数据结构，计算机会在底层对栈提供支持：分配专门的寄存器存放栈的地址，压栈出栈都有专门的指令执行，这就决定了栈的效率比较高。堆则是 C&#x2F;C++ 函数库提供的，它的机制是很复杂的，例如为了分配一块内存，库函数会按照一定的算法（具体的算法可以参考数据结构&#x2F;操作系统）在堆内存中搜索可用的足够大小的空间，如果没有足够大小的空间（可能是由于内存碎片太多），就有可能调用系统功能去增加程序数据段的内存空间，这样就有机会分到足够大小的内存，然后进行返回。显然，堆的效率比栈要低得多。</li>
+</ol>
+<h4 id="内存泄露（memory-leak）"><a href="#内存泄露（memory-leak）" class="headerlink" title="内存泄露（memory leak）"></a>内存泄露（memory leak）</h4><p>内存泄漏是指由于疏忽或错误造成了程序未能释放掉不再使用的内存的情况。内存泄漏并非指内存在物理上的消失，而是应用程序分配某段内存后，由于设计错误，失去了对该段内存的控制，因而造成了内存的浪费。</p>
+<h5 id="内存泄漏的分类："><a href="#内存泄漏的分类：" class="headerlink" title="内存泄漏的分类："></a>内存泄漏的分类：</h5><ol>
+<li><strong>堆内存泄漏</strong> (Heap leak)：对内存指的是程序运行中根据需要分配通过<code>malloc,realloc new</code>等从堆中分配的一块内存，再是完成后必须通过调用对应的 <code>free</code>或者<code>delete</code> 删掉。如果程序的设计的错误导致这部分内存没有被释放，那么此后这块内存将不会被使用，就会产生<code>Heap Leak</code>.</li>
+<li><strong>系统资源泄露</strong>(Resource Leak)：主要指程序使用系统分配的资源比如<code>Bitmap,handle ,SOCKET</code>等没有使用相应的函数释放掉，导致系统资源的浪费，严重可导致系统效能降低，系统运行不稳定。</li>
+<li><strong>没有将基类的析构函数定义为虚函数</strong>：当基类指针指向子类对象时，如果基类的析构函数不是<code>virtual</code>，那么子类的析构函数将不会被调用，子类的资源没有正确是释放，因此造成内存泄露。</li>
+</ol>
+<h5 id="判断内存泄露"><a href="#判断内存泄露" class="headerlink" title="判断内存泄露"></a>判断内存泄露</h5><ol>
+<li>可以使用linux环境下的内存泄漏检查工具Valgrind，mtrace</li>
+<li>写代码时可以添加内存申请和释放的统计功能，统计当前申请和释放的内存是否一致，</li>
+</ol>
+<h4 id="段错误"><a href="#段错误" class="headerlink" title="段错误"></a>段错误</h4><p>段错误通常<strong>发生在访问非法内存地址</strong>的时候，具体来说分为以下几种情况：</p>
+<ol>
+<li>使用野指针</li>
+<li>试图修改字符串常量的内容</li>
+</ol>
+<h4 id="malloc"><a href="#malloc" class="headerlink" title="malloc"></a>malloc</h4><p><code>malloc</code>函数用于动态分配内存</p>
+<h5 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h5><ol>
+<li><strong>内存申请</strong>：<code>malloc</code>其采用内存池的方式，先申请大块内存作为堆区，然后将堆区分为多个内存块，以块作为内存管理的基本单位。当用户申请内存时，直接从堆区分配一块合适的空闲块。</li>
+<li><strong>链式管理</strong>：<code>malloc</code>采用隐式链表结构将堆区分成连续的、大小不一的块，包含已分配块和未分配块；同时malloc采用显示链表结构来管理所有的空闲块，即使用一个双向链表将空闲块连接起来，每一个空闲块记录了一个连续的、未分配的地址。</li>
+<li><strong>分配合并</strong>：当进行内存分配时，<code>malloc</code>会通过隐式链表遍历所有的空闲块，选择满足要求的块进行分配；当进行内存合并时，<code>malloc</code>采用边界标记法，根据每个块的前后块是否已经分配来决定是否进行块合并。</li>
+</ol>
+<h5 id="系统调用"><a href="#系统调用" class="headerlink" title="系统调用"></a>系统调用</h5><p><code>malloc</code>在申请内存时，一般会通过brk或者mmap系统调用进行申请。其中当申请内存小于128K时，会使用系统函数brk在堆区中分配；而当申请内存大于128K时，会使用系统函数mmap在映射区分配</p>
+<h2 id="网络编程——NIO"><a href="#网络编程——NIO" class="headerlink" title="网络编程——NIO"></a>网络编程——NIO</h2><h4 id="Socket连接"><a href="#Socket连接" class="headerlink" title="Socket连接"></a>Socket连接</h4><p><strong>socket</strong>：顾名思义就是套接字的意思，用于描述地址和端口，是一个通信链的句柄。应用程序通过socket向网络发出请求或者回应。</p>
+<p><strong>服务端</strong>：建立socket，声明自身的port和IP，并绑定到socket，使用listen监听，然后不断用accept去查看是否有连接。如果有，捕获socket，并通过recv获取消息的内容，通信完成后调用closeSocket关闭这个对应accept到的socket。如果不需要等待任何客户端连接，那么用closeSocket直接关闭自身的socket。</p>
+<p><strong>客户端</strong>：建立socket，通过端口号和地址确定目标服务器，使用Connect连接到服务器，send发送消息，等待处理，通信完成后调用closeSocket关闭socket。</p>
+<h4 id="传统多线程模型"><a href="#传统多线程模型" class="headerlink" title="传统多线程模型"></a>传统多线程模型</h4><ol>
+<li><strong>原始型</strong>：每个请求都将导致服务器阻塞。即服务器用一个while循环，不断监听端口是否有新的套接字连接，如果有，那么就调用一个处理函数处理，那么后面的请求只能被阻塞。导致无法并发，效率太低，服务器的吞吐量太低</li>
+<li><strong>多线程并发模型</strong>：对于每一个请求都分发给一个线程，每个线程中都独自处理上面的流程。但是创建线程是需要比较高的系统资源的，如果连接数太高，系统无法承受，而且线程的反复创建-销毁也需要代价</li>
+<li><strong>多线程并发模型连接池</strong>：使用一个连接池来管理上述的线程，避免反复创建和销毁</li>
+</ol>
+<h4 id="IO多路复用"><a href="#IO多路复用" class="headerlink" title="IO多路复用"></a>IO多路复用</h4><p>IO复用模型在阻塞IO模型上多了一个<code>select</code>函数，<code>select</code>函数有一个参数是文件描述符集合，意思就是对这些的文件描述符进行循环监听，当某个文件描述符就绪的时候，就对这个文件描述符进行处理。在单线程模型中，可以采用I&#x2F;O复用来提高单线程处理多个请求的能力，然后再采用事件驱动模型，基于异步回调来处理事件</p>
+<h5 id="原理-1"><a href="#原理-1" class="headerlink" title="原理"></a>原理</h5><p>IO多路复用就是我们说的<code>select，poll，epoll。select/epoll</code>的好处就在于单个进程就可以同时处理多个网络连接的IO。它的基本原理就是<code>select，poll，epoll</code>这些函数会不断的轮询所负责的所有<code>socket</code>。也就是说，I&#x2F;O 多路复用的特点是通过一种机制一个进程能同时等待多个文件描述符，而这些文件描述符（套接字描述符）其中的任意一个进入读就绪状态，<code>select()</code>函数就可以返回。</p>
+<h5 id="调用"><a href="#调用" class="headerlink" title="调用"></a>调用</h5><ol>
+<li><p><code>select</code></p>
+<p><code>select</code>：是最初解决IO阻塞问题的方法。用结构体<code>fd_set</code>来告诉内核监听多个文件描述符，该结构体被称为描述符集。由数组来维持哪些描述符被置位了。对结构体的操作封装在三个宏定义中。通过轮寻来查找是否有描述符要被处理。</p>
+<p><strong>问题</strong>：</p>
+<ul>
+<li>内置数组的形式使得<code>select</code>的最大文件数与<code>FD_SIZE</code>受限</li>
+<li>每次调用<code>select</code>前都要重新初始化描述符集，将fd从用户态拷贝到内核态，每次调用<code>select</code>后，都需要将fd从内核态拷贝到用户态；</li>
+<li>轮寻排查当文件描述符个数很多时，效率很低；</li>
+</ul>
+</li>
+<li><p><code>poll</code></p>
+<p><code>poll</code>通过一个<strong>可变长度的数组</strong>解决了<code>select</code>文件描述符受限的问题。<strong>数组中元素是结构体</strong>，该结构体保存描述符的信息，每增加一个文件描述符就向数组中加入一个结构体，结构体只需要拷贝一次到内核态。<code>poll</code>解决了<code>select</code>重复初始化的问题，但是轮寻排查的问题未能解决。</p>
+</li>
+<li><p><code>epoll</code></p>
+<p>轮寻排查所有文件描述符的效率不高，使服务器并发能力受限。因此，<code>epoll</code>采用只返回状态发生变化的文件描述符，便解决了轮寻的瓶颈。<code>epoll</code>对文件描述符的操作有两种模式：<code>LT</code>和<code>ET</code></p>
+<p><strong>模式</strong></p>
+<ul>
+<li><p><code>LT</code>模式，默认模式</p>
+<p><code>LT(level triggered)</code>是缺省的工作方式，并且同时支持<code>block</code>和<code>no-block socket</code>。在这种做法中，内核告诉你一个文件描述符是否就绪了，然后你可以对这个就绪的fd进行IO操作。如果你不作任何操作，内核还是会继续通知你的。</p>
+</li>
+<li><p><code>ET</code>模式</p>
+<p><code>ET(edge-triggered)</code>是高速工作方式<code>only-once</code>，只支持<code>no-block socket</code>。在这种模式下，当描述符从未就绪变为就绪时，内核通过<code>epoll</code>告诉你。然后它会假设你知道文件描述符已经就绪，并且不会为那个文件描述符发送更多的就绪通知，直到你做了某些操作导致那个文件描述符不再为就绪状态</p>
+</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/04/30/C++more/" data-id="cm2euh8cc0004r0uo5634gtui" data-title="C++ more" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%AD%E8%A8%80/" rel="tag">语言</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/04/30/C++11-characterastic/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          C11 新特性
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/04/30/C++base/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">C++ base</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AI/">AI</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/AI/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/AI/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/C/Qt/">Qt</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/C/Qt/Internet/">Internet</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/C-%E3%80%81Qt/">C++、Qt</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/C-%E3%80%81fstream/">C++、fstream</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Cpu/">Cpu</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/html/">html</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF-JavaScript/">前端 JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9F%BA%E7%A1%80%E4%B9%90%E7%90%86/">基础乐理</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E4%B8%AD%E7%BA%A7%E8%AF%81%E4%B9%A6%E8%80%83%E8%AF%95/">软件中级证书考试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CPU%E6%9E%B6%E6%9E%84%E4%B8%8E%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">CPU架构与操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Effective-C/" rel="tag">Effective C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScrip/" rel="tag">JavaScrip</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/QT/" rel="tag">QT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/QT%E5%AE%9E%E7%8E%B0IE%E5%86%85%E6%A0%B8%E6%B5%8F%E8%A7%88%E5%99%A8/" rel="tag">QT实现IE内核浏览器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VirtualApp-%E6%A1%8C%E9%9D%A2%E4%BA%91%E5%8C%96%E6%8A%80%E6%9C%AF/" rel="tag">VirtualApp-桌面云化技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ftp/" rel="tag">ftp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/" rel="tag">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/" rel="tag">http</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/libcurl-%E5%BA%93/" rel="tag">libcurl 库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80%E4%B9%90%E7%90%86/" rel="tag">基础乐理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%8D%E4%B9%A0C-%E3%80%81%E5%81%9A%E5%81%9A%E7%BB%83%E4%B9%A0/" rel="tag">复习C++、做做练习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" rel="tag">多线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0Nodejs/" rel="tag">学习Nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0STL/" rel="tag">学习STL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%AD%E8%A8%80/" rel="tag">语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%AD%E8%A8%80-%E5%86%85%E5%AD%98%E6%98%A0%E5%B0%84-%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" rel="tag">语言 内存映射 文件操作</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E4%B8%AD%E7%BA%A7%E8%AF%81%E4%B9%A6%E8%80%83%E8%AF%95/" rel="tag">软件中级证书考试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CPU%E6%9E%B6%E6%9E%84%E4%B8%8E%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">CPU架构与操作系统</a> <a href="/tags/Effective-C/" style="font-size: 10px;">Effective C++</a> <a href="/tags/JavaScrip/" style="font-size: 10px;">JavaScrip</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/QT/" style="font-size: 10px;">QT</a> <a href="/tags/QT%E5%AE%9E%E7%8E%B0IE%E5%86%85%E6%A0%B8%E6%B5%8F%E8%A7%88%E5%99%A8/" style="font-size: 10px;">QT实现IE内核浏览器</a> <a href="/tags/VirtualApp-%E6%A1%8C%E9%9D%A2%E4%BA%91%E5%8C%96%E6%8A%80%E6%9C%AF/" style="font-size: 10px;">VirtualApp-桌面云化技术</a> <a href="/tags/ftp/" style="font-size: 10px;">ftp</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/libcurl-%E5%BA%93/" style="font-size: 10px;">libcurl 库</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E5%9F%BA%E7%A1%80%E4%B9%90%E7%90%86/" style="font-size: 10px;">基础乐理</a> <a href="/tags/%E5%A4%8D%E4%B9%A0C-%E3%80%81%E5%81%9A%E5%81%9A%E7%BB%83%E4%B9%A0/" style="font-size: 15px;">复习C++、做做练习</a> <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 10px;">多线程</a> <a href="/tags/%E5%AD%A6%E4%B9%A0Nodejs/" style="font-size: 10px;">学习Nodejs</a> <a href="/tags/%E5%AD%A6%E4%B9%A0STL/" style="font-size: 10px;">学习STL</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E8%AF%AD%E8%A8%80/" style="font-size: 20px;">语言</a> <a href="/tags/%E8%AF%AD%E8%A8%80-%E5%86%85%E5%AD%98%E6%98%A0%E5%B0%84-%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" style="font-size: 10px;">语言 内存映射 文件操作</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E4%B8%AD%E7%BA%A7%E8%AF%81%E4%B9%A6%E8%80%83%E8%AF%95/" style="font-size: 10px;">软件中级证书考试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/04/30/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>
+          </li>
+        
+          <li>
+            <a href="/2023/08/08/C11%E7%89%B9%E6%80%A7/">C11 新特性详细学习</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/09/%E6%9F%A5%E8%AF%A2Word%E5%85%B3%E9%94%AE%E5%AD%97/">查询word关键字</a>
+          </li>
+        
+          <li>
+            <a href="/2023/03/20/AI%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/">AI训练路线</a>
+          </li>
+        
+          <li>
+            <a href="/2023/03/15/Qt%E5%AE%9E%E7%8E%B0IE%E5%86%85%E6%A0%B8%E6%B5%8F%E8%A7%88%E5%99%A8%EF%BC%88%E9%9C%80%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%87%AA%E5%B8%A6IE%EF%BC%89/">QT实现IE内核浏览器</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

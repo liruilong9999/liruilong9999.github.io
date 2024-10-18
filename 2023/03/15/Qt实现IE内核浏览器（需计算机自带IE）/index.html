@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>QT实现IE内核浏览器 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="QT实现IE内核浏览器">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QT实现IE内核浏览器">
+<meta property="og:url" content="http://example.com/2023/03/15/Qt%E5%AE%9E%E7%8E%B0IE%E5%86%85%E6%A0%B8%E6%B5%8F%E8%A7%88%E5%99%A8%EF%BC%88%E9%9C%80%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%87%AA%E5%B8%A6IE%EF%BC%89/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="QT实现IE内核浏览器">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-03-15T13:15:16.000Z">
+<meta property="article:modified_time" content="2023-08-08T13:57:04.000Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="语言">
+<meta property="article:tag" content="QT实现IE内核浏览器">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Qt实现IE内核浏览器（需计算机自带IE）" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/03/15/Qt%E5%AE%9E%E7%8E%B0IE%E5%86%85%E6%A0%B8%E6%B5%8F%E8%A7%88%E5%99%A8%EF%BC%88%E9%9C%80%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%87%AA%E5%B8%A6IE%EF%BC%89/" class="article-date">
+  <time class="dt-published" datetime="2023-03-15T13:15:16.000Z" itemprop="datePublished">2023-03-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/C/">C++</a>►<a class="article-category-link" href="/categories/C/Qt/">Qt</a>►<a class="article-category-link" href="/categories/C/Qt/Internet/">Internet</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      QT实现IE内核浏览器
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <center><font size = 45>QT实现IE浏览器</font></center>
+
+<p><strong>Qt5.14 &#x2F; Qt5.11</strong></p>
+<p><strong>包含模块</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">QT += axcontainer</span><br></pre></td></tr></table></figure>
+
+
+
+<p>**头文件 **  Dialog.h</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">#ifndef DIALOG_H</span><br><span class="line">#define DIALOG_H</span><br><span class="line"></span><br><span class="line">#include &lt;QDialog&gt;</span><br><span class="line">#include &lt;QLineEdit&gt;</span><br><span class="line">#include &lt;ActiveQt/QAxWidget&gt;</span><br><span class="line"></span><br><span class="line">namespace Ui &#123;</span><br><span class="line">class Dialog;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Dialog : public QDialog</span><br><span class="line">&#123;</span><br><span class="line">  Q_OBJECT</span><br><span class="line"></span><br><span class="line">public:</span><br><span class="line">  explicit Dialog(QWidget *parent = 0);</span><br><span class="line">  ~Dialog();</span><br><span class="line"></span><br><span class="line">private slots:</span><br><span class="line">  void loadNavigate();</span><br><span class="line">  void GetDebugTool();</span><br><span class="line">private:</span><br><span class="line">  Ui::Dialog *ui;</span><br><span class="line">  QLineEdit *lineUrl;</span><br><span class="line">  QAxWidget* webWidget;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">#endif // DIALOG_H</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>**源文件 ** Dialog.cpp</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">#include &quot;Dialog.h&quot;</span><br><span class="line">#include &quot;ui_Dialog.h&quot;</span><br><span class="line">#include &lt;QVBoxLayout&gt;</span><br><span class="line">#include &lt;QFile&gt;</span><br><span class="line">#include &lt;QTextStream&gt;</span><br><span class="line">#include &lt;QAxObject&gt;</span><br><span class="line"></span><br><span class="line">Dialog::Dialog(QWidget *parent) :</span><br><span class="line">  QDialog(parent),</span><br><span class="line">  ui(new Ui::Dialog)</span><br><span class="line">&#123;</span><br><span class="line">  ui-&gt;setupUi(this);</span><br><span class="line"></span><br><span class="line">  lineUrl = new QLineEdit;</span><br><span class="line">  lineUrl-&gt;setText(&quot;https://liruilong9999.github.io/&quot;);</span><br><span class="line">  connect(lineUrl,SIGNAL(returnPressed()),this,SLOT(loadNavigate()));</span><br><span class="line"></span><br><span class="line">  webWidget = new QAxWidget;</span><br><span class="line">  //设置ActiveX控件为IEMicrosoft Web Browser</span><br><span class="line">  //设置ActiveX控件的id，最有效的方式就是使用UUID</span><br><span class="line">  //此处的&#123;8856F961-340A-11D0-A96B-00C04FD705A2&#125;就是Microsoft Web Browser控件的UUID</span><br><span class="line">  webWidget-&gt;setControl(QString::fromUtf8(&quot;&#123;8856F961-340A-11D0-A96B-00C04FD705A2&#125;&quot;));</span><br><span class="line">  webWidget-&gt;setObjectName(QString::fromUtf8(&quot;webWidget&quot;));//设置控件的名称</span><br><span class="line">  webWidget-&gt;setFocusPolicy(Qt::StrongFocus);//设置控件接收键盘焦点的方式：鼠标单击、Tab键</span><br><span class="line">  webWidget-&gt;setProperty(&quot;DisplayAlerts&quot;,false); //不显示任何警告信息。</span><br><span class="line">  webWidget-&gt;setProperty(&quot;DisplayScrollBars&quot;,true); // 显示滚动条</span><br><span class="line"></span><br><span class="line">  QVBoxLayout *mainLayout = new QVBoxLayout;</span><br><span class="line">  mainLayout-&gt;addWidget(lineUrl);</span><br><span class="line">  mainLayout-&gt;addWidget(webWidget);</span><br><span class="line">  setLayout(mainLayout);</span><br><span class="line"></span><br><span class="line">  setWindowState(Qt::WindowMaximized);//最大化</span><br><span class="line"></span><br><span class="line">//  QString DOC = webWidget-&gt;generateDocumentation();</span><br><span class="line">//  QFile outFile(&quot;com_function.html&quot;);</span><br><span class="line">//  outFile.open(QIODevice ::ReadWrite|QIODevice ::Text);</span><br><span class="line">//  QTextStream TS(&amp;outFile);</span><br><span class="line">//  TS&lt;&lt;DOC&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">  setWindowTitle(&quot;浏览器&quot;);</span><br><span class="line">  this-&gt;setWindowFlags(Qt::Dialog | Qt::WindowMinMaxButtonsHint | Qt::WindowCloseButtonHint);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Dialog::~Dialog()</span><br><span class="line">&#123;</span><br><span class="line">  delete ui;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void Dialog::loadNavigate()</span><br><span class="line">&#123;</span><br><span class="line">  QString sUrl = lineUrl-&gt;text().trimmed();</span><br><span class="line">  QVariantList params =&#123;sUrl,0,&quot;&quot;,&quot;&quot;,&quot;&quot;&#125;;</span><br><span class="line">  webWidget-&gt;dynamicCall(&quot;Navigate2(QString, QVariant&amp;, QVariant&amp;, QVariant&amp;, QVariant&amp;)&quot;, params);</span><br><span class="line"> // GetDebugTool();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void Dialog::GetDebugTool()</span><br><span class="line">&#123;</span><br><span class="line">    QAxObject *browser = new QAxObject();</span><br><span class="line">    browser-&gt;querySubObject(&quot;Document&quot;);</span><br><span class="line">    browser-&gt;dynamicCall(&quot;parentWindow().open(&#x27;&#x27;,&#x27;_blank&#x27;,&#x27;width=800,height=600&#x27;)&quot;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/03/15/Qt%E5%AE%9E%E7%8E%B0IE%E5%86%85%E6%A0%B8%E6%B5%8F%E8%A7%88%E5%99%A8%EF%BC%88%E9%9C%80%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%87%AA%E5%B8%A6IE%EF%BC%89/" data-id="cm2euh8ci000xr0uogp5513so" data-title="QT实现IE内核浏览器" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/QT%E5%AE%9E%E7%8E%B0IE%E5%86%85%E6%A0%B8%E6%B5%8F%E8%A7%88%E5%99%A8/" rel="tag">QT实现IE内核浏览器</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%AD%E8%A8%80/" rel="tag">语言</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/03/20/AI%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          AI训练路线
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/03/11/HTML/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">HTML学习笔记</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AI/">AI</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/AI/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/AI/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/C/Qt/">Qt</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/C/Qt/Internet/">Internet</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/C-%E3%80%81Qt/">C++、Qt</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/C-%E3%80%81fstream/">C++、fstream</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Cpu/">Cpu</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/html/">html</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF-JavaScript/">前端 JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9F%BA%E7%A1%80%E4%B9%90%E7%90%86/">基础乐理</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E4%B8%AD%E7%BA%A7%E8%AF%81%E4%B9%A6%E8%80%83%E8%AF%95/">软件中级证书考试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CPU%E6%9E%B6%E6%9E%84%E4%B8%8E%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">CPU架构与操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Effective-C/" rel="tag">Effective C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScrip/" rel="tag">JavaScrip</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/QT/" rel="tag">QT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/QT%E5%AE%9E%E7%8E%B0IE%E5%86%85%E6%A0%B8%E6%B5%8F%E8%A7%88%E5%99%A8/" rel="tag">QT实现IE内核浏览器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VirtualApp-%E6%A1%8C%E9%9D%A2%E4%BA%91%E5%8C%96%E6%8A%80%E6%9C%AF/" rel="tag">VirtualApp-桌面云化技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ftp/" rel="tag">ftp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/" rel="tag">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/" rel="tag">http</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/libcurl-%E5%BA%93/" rel="tag">libcurl 库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80%E4%B9%90%E7%90%86/" rel="tag">基础乐理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%8D%E4%B9%A0C-%E3%80%81%E5%81%9A%E5%81%9A%E7%BB%83%E4%B9%A0/" rel="tag">复习C++、做做练习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" rel="tag">多线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0Nodejs/" rel="tag">学习Nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0STL/" rel="tag">学习STL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%AD%E8%A8%80/" rel="tag">语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%AD%E8%A8%80-%E5%86%85%E5%AD%98%E6%98%A0%E5%B0%84-%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" rel="tag">语言 内存映射 文件操作</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E4%B8%AD%E7%BA%A7%E8%AF%81%E4%B9%A6%E8%80%83%E8%AF%95/" rel="tag">软件中级证书考试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CPU%E6%9E%B6%E6%9E%84%E4%B8%8E%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">CPU架构与操作系统</a> <a href="/tags/Effective-C/" style="font-size: 10px;">Effective C++</a> <a href="/tags/JavaScrip/" style="font-size: 10px;">JavaScrip</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/QT/" style="font-size: 10px;">QT</a> <a href="/tags/QT%E5%AE%9E%E7%8E%B0IE%E5%86%85%E6%A0%B8%E6%B5%8F%E8%A7%88%E5%99%A8/" style="font-size: 10px;">QT实现IE内核浏览器</a> <a href="/tags/VirtualApp-%E6%A1%8C%E9%9D%A2%E4%BA%91%E5%8C%96%E6%8A%80%E6%9C%AF/" style="font-size: 10px;">VirtualApp-桌面云化技术</a> <a href="/tags/ftp/" style="font-size: 10px;">ftp</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/libcurl-%E5%BA%93/" style="font-size: 10px;">libcurl 库</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E5%9F%BA%E7%A1%80%E4%B9%90%E7%90%86/" style="font-size: 10px;">基础乐理</a> <a href="/tags/%E5%A4%8D%E4%B9%A0C-%E3%80%81%E5%81%9A%E5%81%9A%E7%BB%83%E4%B9%A0/" style="font-size: 15px;">复习C++、做做练习</a> <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 10px;">多线程</a> <a href="/tags/%E5%AD%A6%E4%B9%A0Nodejs/" style="font-size: 10px;">学习Nodejs</a> <a href="/tags/%E5%AD%A6%E4%B9%A0STL/" style="font-size: 10px;">学习STL</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E8%AF%AD%E8%A8%80/" style="font-size: 20px;">语言</a> <a href="/tags/%E8%AF%AD%E8%A8%80-%E5%86%85%E5%AD%98%E6%98%A0%E5%B0%84-%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" style="font-size: 10px;">语言 内存映射 文件操作</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E4%B8%AD%E7%BA%A7%E8%AF%81%E4%B9%A6%E8%80%83%E8%AF%95/" style="font-size: 10px;">软件中级证书考试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/04/30/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>
+          </li>
+        
+          <li>
+            <a href="/2023/08/08/C11%E7%89%B9%E6%80%A7/">C11 新特性详细学习</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/09/%E6%9F%A5%E8%AF%A2Word%E5%85%B3%E9%94%AE%E5%AD%97/">查询word关键字</a>
+          </li>
+        
+          <li>
+            <a href="/2023/03/20/AI%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/">AI训练路线</a>
+          </li>
+        
+          <li>
+            <a href="/2023/03/15/Qt%E5%AE%9E%E7%8E%B0IE%E5%86%85%E6%A0%B8%E6%B5%8F%E8%A7%88%E5%99%A8%EF%BC%88%E9%9C%80%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%87%AA%E5%B8%A6IE%EF%BC%89/">QT实现IE内核浏览器</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
