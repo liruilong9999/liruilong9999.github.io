@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>QT编译记录</title>
+    <link href="/2024/12/17/QT%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E8%AE%B0%E5%BD%95/"/>
+    <url>/2024/12/17/QT%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E8%AE%B0%E5%BD%95/</url>
+    
+    <content type="html"><![CDATA[<h1 id="QT-源码编译"><a href="#QT-源码编译" class="headerlink" title="QT 源码编译"></a>QT 源码编译</h1><h2 id="1-window编译"><a href="#1-window编译" class="headerlink" title="1. window编译"></a>1. window编译</h2><h3 id="1-1-vs2017"><a href="#1-1-vs2017" class="headerlink" title="1.1 vs2017"></a>1.1 vs2017</h3><h4 id="1-1-1-环境准备"><a href="#1-1-1-环境准备" class="headerlink" title="1.1.1 环境准备"></a>1.1.1 环境准备</h4><ul><li>python环境</li><li>vs2017</li><li>qt源码</li></ul><h4 id="1-1-2-编译过程"><a href="#1-1-2-编译过程" class="headerlink" title="1.1.2 编译过程"></a>1.1.2 编译过程</h4><ol><li>创建工程目录build和安装目录install</li><li>管理员权限打开vs交叉编译窗口</li></ol><p><img src="/../images/image-20241217201619402.png" alt="image-20241217201619402">  </p><ol start="3"><li>切换到build目录, 生成工程</li></ol><p>..\configure -prefix “D:\code\qtsrc\install” -debug-and-release -opensource -confirm-license -mp</p><ol start="4"><li>nmake</li><li>nmake install</li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>C++</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>QT</tag>
+      
+      <tag>QtCreator</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>dockers安装使用</title>
     <link href="/2024/12/01/docker%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/"/>
     <url>/2024/12/01/docker%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/</url>
