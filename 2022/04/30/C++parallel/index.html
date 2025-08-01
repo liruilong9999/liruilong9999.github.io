@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://liruilong9999.github.io/2022/04/30/images/image-20200819214836498.png">
 <meta property="og:image" content="https://liruilong9999.github.io/2022/04/30/images/image-20200819215555351.png">
 <meta property="article:published_time" content="2022-04-29T19:15:16.000Z">
-<meta property="article:modified_time" content="2024-11-11T06:28:17.246Z">
+<meta property="article:modified_time" content="2025-08-01T09:27:58.863Z">
 <meta property="article:author" content="liruilong">
 <meta property="article:tag" content="语言">
 <meta name="twitter:card" content="summary_large_image">
@@ -383,7 +383,7 @@
 <h5 id="windows-h"><a href="#windows-h" class="headerlink" title="windows.h"></a><code>windows.h</code></h5><p>在windows上的多线程支持要包含<code>windows.h</code></p>
 <h5 id="std-thread"><a href="#std-thread" class="headerlink" title="std::thread"></a><code>std::thread</code></h5><p>原先使用多线程只能用系统的API，无法解决跨平台问题。从C++11开始语言层面上的多线程，标准库里已经包含了对线程的支持，<code>std::thread</code>是C++11标准库中的多线程的支持库C++11 新标准中引入了五个头文件来支持多线程编程</p>
 <p>它们分别是 <code>&lt;thread&gt;, &lt;mutex&gt;, &lt;condition_variable&gt;</code> 和 <code>&lt;future&gt; &lt;atomic&gt;,</code>。</p>
-<img src="../images/image-20200814171948633.png" srcset="/img/loading.gif" lazyload alt="image-20200814171948633" style="zoom: 67%;" />
+<img src="../images/image-20200814171948633.png" srcset="/img/loading.gif" lazyload/>
 
 <ol>
 <li><code>&lt;thread&gt;</code>：该头文件主要声明了 <code>std::thread</code> <strong>线程类</strong>，另外 <code>std::this_thread</code> 命名空间也在该头文件中。</li>
@@ -565,14 +565,14 @@
 <li><strong>静态内存模型</strong>：主要是类(或结构)对象在内存中的布局。也就是类(或结构)成员在内存中是如何存放的。C++11有一些定义及工具用来对内存布局进行操作，更复杂的类(或结构)对象的内存布局请参考Stanley B.Lippman的《深度探索C++对象模型》。</li>
 <li><strong>动态内存模型</strong>：是从行为方面来看，多个线程对同一个对象同时读写时所做的约束，该模型理解起来要复杂一些，涉及了内存、Cache、CPU各个层次的交互，尤其是在多核系统中为了保证多线程环境下执行的正确性，需要对读写事件加以严格限制。std::memory_order就是这用来做这事的，它实际上是程序员、编译器以及CPU之间的契约，遵守契约后大家各自优化，从而可能提高程序性能。</li>
 </ol>
-<h4 id="为什么需要内存模型"><a href="#为什么需要内存模型" class="headerlink" title="为什么需要内存模型"></a>为什么需要内存模型</h4><img src="../images/image-20200819214836498.png" srcset="/img/loading.gif" lazyload alt="image-20200819214836498" style="zoom: 67%;" />
+<h4 id="为什么需要内存模型"><a href="#为什么需要内存模型" class="headerlink" title="为什么需要内存模型"></a>为什么需要内存模型</h4><img src="../images/image-20200819214836498.png" srcset="/img/loading.gif" lazyload/>
 
 <p>多核情况下为了获取更高的性能，会对语句进行执行顺序上的优化(类似CPU乱序)。避免方案当然是<code>std::mutex</code>，但是当程序对代码执行效率要求很高，<code>std::mutex</code>不满足时，就需要<code>std::atomic</code>，但<code>std::atomic</code>无法发现错误</p>
 <h4 id="C-11的内存模型"><a href="#C-11的内存模型" class="headerlink" title="C++11的内存模型"></a>C++11的内存模型</h4><p>在正式介绍memory_order之前，我们先来看两个概念：synchronized-with和happends-before。</p>
 <ul>
 <li><p>行为：<strong>synchronized-with</strong></p>
 <p>这是std::atomic生效的前提之一。假设X是一个atomic变量。如果线程A写了变量X, 线程B读了变量X，那么我们就说线程A、B间存在synchronized-with关系。C++11默认的原子操作(memory_order_seq_cst)就是synchronized-with的，保证了对X的读和写是互斥的，不会同时发生。</p>
-<img src="../images/image-20200819215555351.png" srcset="/img/loading.gif" lazyload alt="image-20200819215555351" style="zoom:67%;" />
+<img src="../images/image-20200819215555351.png" srcset="/img/loading.gif" lazyload/>
 </li>
 <li><p>结果：<strong>happens-before</strong></p>
 <p> happens-before指明了后发生的动作会看到先发生的动作的结果。还是上图，当线程B读取X时，读到的一定是写入后的X值，而不会是其它情况。happends-before具有<em>传递性</em>。如果A happens-before B，B happens-before C，那么A happends-before C</p>
