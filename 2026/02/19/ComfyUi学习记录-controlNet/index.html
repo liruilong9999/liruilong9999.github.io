@@ -1,0 +1,784 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="liruilong">
+  <meta name="keywords" content="study">
+  
+    <meta name="description" content="Documentation IndexFetch the complete documentation index at: https:&#x2F;&#x2F;docs.comfy.org&#x2F;llms.txtUse this file to discover all available pages before exploring further.  ComfyUI ControlNet 使用示例 本篇将引导了解基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="非酋的博客">
+<meta property="og:url" content="https://liruilong9999.github.io/2026/02/19/ComfyUi%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-controlNet/index.html">
+<meta property="og:site_name" content="非酋的博客">
+<meta property="og:description" content="Documentation IndexFetch the complete documentation index at: https:&#x2F;&#x2F;docs.comfy.org&#x2F;llms.txtUse this file to discover all available pages before exploring further.  ComfyUI ControlNet 使用示例 本篇将引导了解基础">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mintcdn.com/dripart/TwfNQ2dEaWQA7tIL/images/tutorial/controlnet/generated_with_random_seed.jpg?fit=max&auto=format&n=TwfNQ2dEaWQA7tIL&q=85&s=81acd50958fd1df511237b3ba90b1b06">
+<meta property="og:image" content="https://mintcdn.com/dripart/TwfNQ2dEaWQA7tIL/images/tutorial/controlnet/scribble_example.jpg?fit=max&auto=format&n=TwfNQ2dEaWQA7tIL&q=85&s=36c37d9cadfaabb3690404f8828143a7">
+<meta property="og:image" content="https://raw.githubusercontent.com/Comfy-Org/example_workflows/main/controlnet/scribble_controlnet.png">
+<meta property="og:image" content="https://github.com/Fannovel16/comfyui_controlnet_aux/blob/main/examples/CNAuxBanner.jpg?raw=true">
+<meta property="og:image" content="https://raw.githubusercontent.com/Comfy-Org/example_workflows/main/controlnet/scribble_controlnet.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Comfy-Org/example_workflows/main/controlnet/scribble_input.png">
+<meta property="og:image" content="https://mintcdn.com/dripart/TwfNQ2dEaWQA7tIL/images/tutorial/controlnet/flow_diagram_scribble.png?fit=max&auto=format&n=TwfNQ2dEaWQA7tIL&q=85&s=d26abbfd1993f28b88efcf6231246945">
+<meta property="og:image" content="https://mintcdn.com/dripart/Rig0_LOInmwVbVSB/images/comfy_core/loaders/load_controlnet_model.jpg?fit=max&auto=format&n=Rig0_LOInmwVbVSB&q=85&s=c3a99d9bd08baaedb7a4d426cc930880">
+<meta property="og:image" content="https://mintcdn.com/dripart/Rig0_LOInmwVbVSB/images/comfy_core/conditioning/controlnet/apply_controlnet.jpg?fit=max&auto=format&n=Rig0_LOInmwVbVSB&q=85&s=de9e90df2dcfe5cc7020a8c9cdb40a65">
+<meta property="og:image" content="https://mintcdn.com/dripart/OltlUSVBSNcJsDMs/images/tutorial/controlnet/apply_controlnet_chain_link.jpg?fit=max&auto=format&n=OltlUSVBSNcJsDMs&q=85&s=6fc3e75414f05e6c62062b4b746dc855">
+<meta property="og:image" content="https://mintcdn.com/dripart/Rig0_LOInmwVbVSB/images/comfy_core/conditioning/controlnet/apply_controlnet_old.jpg?fit=max&auto=format&n=Rig0_LOInmwVbVSB&q=85&s=eaf2f8df7456df845f7408495d19b9e8">
+<meta property="article:published_time" content="2026-02-19T12:04:47.950Z">
+<meta property="article:modified_time" content="2026-02-19T12:38:43.193Z">
+<meta property="article:author" content="liruilong">
+<meta property="article:tag" content="study">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mintcdn.com/dripart/TwfNQ2dEaWQA7tIL/images/tutorial/controlnet/generated_with_random_seed.jpg?fit=max&auto=format&n=TwfNQ2dEaWQA7tIL&q=85&s=81acd50958fd1df511237b3ba90b1b06">
+  
+  
+  
+  <title>非酋的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"liruilong9999.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>别看这里</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text=""></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-02-19 20:04" pubdate>
+          星期四, 二月 19日 2026, 8:04 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          1.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          12 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header"></h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<h2 id="Documentation-Index"><a href="#Documentation-Index" class="headerlink" title="Documentation Index"></a>Documentation Index</h2><p>Fetch the complete documentation index at: <a target="_blank" rel="noopener" href="https://docs.comfy.org/llms.txt">https://docs.comfy.org/llms.txt</a><br>Use this file to discover all available pages before exploring further.</p>
+</blockquote>
+<h1 id="ComfyUI-ControlNet-使用示例"><a href="#ComfyUI-ControlNet-使用示例" class="headerlink" title="ComfyUI ControlNet 使用示例"></a>ComfyUI ControlNet 使用示例</h1><blockquote>
+<p>本篇将引导了解基础的 ControlNet 概念，并在 ComfyUI 中完成对应的图像生成</p>
+</blockquote>
+<p>在 AI 图像生成过程中，要精确控制图像生成并不是一键容易的事情，通常需要通过许多次的图像生成才可能生成满意的图像，但随着 <strong>ControlNet</strong> 的出现，这个问题得到了很好的解决。</p>
+<p>ControlNet 是一种基于扩散模型（如 Stable Diffusion）的条件控制生成模型，最早由<a target="_blank" rel="noopener" href="https://lllyasviel.github.io/">Lvmin Zhang</a>与 Maneesh Agrawala 等人于 2023 年提出<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2302.05543">Adding Conditional Control to Text-to-Image Diffusion Models</a></p>
+<p>ControlNet 模型通过引入多模态输入条件（如边缘检测图、深度图、姿势关键点等），显著提升了图像生成的可控性和细节还原能力。<br>使得我们可以进一步开始控制图像的风格、细节、人物姿势、画面结构等等，这些限定条件让图像生成变得更加可控，在绘图过程中也可以同时使用多个 ControlNet 模型，以达到更好的效果。</p>
+<p>在没有 ControlNet 之前，我们每次只能让模型生成图像，直到生成我们满意的图像，充满了随机性。</p>
+<img src="https://mintcdn.com/dripart/TwfNQ2dEaWQA7tIL/images/tutorial/controlnet/generated_with_random_seed.jpg?fit=max&auto=format&n=TwfNQ2dEaWQA7tIL&q=85&s=81acd50958fd1df511237b3ba90b1b06" srcset="/img/loading.gif" lazyload alt="ComfyUI 随机种子生成的图片" data-og-width="1024" width="1024" data-og-height="1024" height="1024" data-path="images/tutorial/controlnet/generated_with_random_seed.jpg" data-optimize="true" data-opv="3" srcset="https://mintcdn.com/dripart/TwfNQ2dEaWQA7tIL/images/tutorial/controlnet/generated_with_random_seed.jpg?w=280&fit=max&auto=format&n=TwfNQ2dEaWQA7tIL&q=85&s=ecea01007c3a2d375a0ea70846fcefa0 280w, https://mintcdn.com/dripart/TwfNQ2dEaWQA7tIL/images/tutorial/controlnet/generated_with_random_seed.jpg?w=560&fit=max&auto=format&n=TwfNQ2dEaWQA7tIL&q=85&s=7225cef825a3c4ff365c741a360ddc0a 560w, https://mintcdn.com/dripart/TwfNQ2dEaWQA7tIL/images/tutorial/controlnet/generated_with_random_seed.jpg?w=840&fit=max&auto=format&n=TwfNQ2dEaWQA7tIL&q=85&s=1bbe42f0369bfa8d9891671b41979534 840w, https://mintcdn.com/dripart/TwfNQ2dEaWQA7tIL/images/tutorial/controlnet/generated_with_random_seed.jpg?w=1100&fit=max&auto=format&n=TwfNQ2dEaWQA7tIL&q=85&s=eee86e1fe36b8fe048e43a510e531bcf 1100w, https://mintcdn.com/dripart/TwfNQ2dEaWQA7tIL/images/tutorial/controlnet/generated_with_random_seed.jpg?w=1650&fit=max&auto=format&n=TwfNQ2dEaWQA7tIL&q=85&s=7d1a369b55b8fcfdd9b1b465e3346c53 1650w, https://mintcdn.com/dripart/TwfNQ2dEaWQA7tIL/images/tutorial/controlnet/generated_with_random_seed.jpg?w=2500&fit=max&auto=format&n=TwfNQ2dEaWQA7tIL&q=85&s=5a64bd353fbadff7b85acc589e19f8ed 2500w" />
+
+<p>但随着 ControlNet 的出现，我们可以通过引入额外的条件，来控制图像的生成，比如我们可以使用一张简单的涂鸦，来控制图像的生成，就可以生成差不多类似的图片。</p>
+<img src="https://mintcdn.com/dripart/TwfNQ2dEaWQA7tIL/images/tutorial/controlnet/scribble_example.jpg?fit=max&auto=format&n=TwfNQ2dEaWQA7tIL&q=85&s=36c37d9cadfaabb3690404f8828143a7" srcset="/img/loading.gif" lazyload alt="ComfyUI 涂鸦控制图像生成" data-og-width="1024" width="1024" data-og-height="512" height="512" data-path="images/tutorial/controlnet/scribble_example.jpg" data-optimize="true" data-opv="3" srcset="https://mintcdn.com/dripart/TwfNQ2dEaWQA7tIL/images/tutorial/controlnet/scribble_example.jpg?w=280&fit=max&auto=format&n=TwfNQ2dEaWQA7tIL&q=85&s=c442f3baa2efb48d21d7b037ce97acf1 280w, https://mintcdn.com/dripart/TwfNQ2dEaWQA7tIL/images/tutorial/controlnet/scribble_example.jpg?w=560&fit=max&auto=format&n=TwfNQ2dEaWQA7tIL&q=85&s=a024658d6d9270ce18185ccaf6fe820b 560w, https://mintcdn.com/dripart/TwfNQ2dEaWQA7tIL/images/tutorial/controlnet/scribble_example.jpg?w=840&fit=max&auto=format&n=TwfNQ2dEaWQA7tIL&q=85&s=ab4ce66b96385a6f6c07346f39a67f4c 840w, https://mintcdn.com/dripart/TwfNQ2dEaWQA7tIL/images/tutorial/controlnet/scribble_example.jpg?w=1100&fit=max&auto=format&n=TwfNQ2dEaWQA7tIL&q=85&s=9a2e79c32dfcdb73342e36682e147520 1100w, https://mintcdn.com/dripart/TwfNQ2dEaWQA7tIL/images/tutorial/controlnet/scribble_example.jpg?w=1650&fit=max&auto=format&n=TwfNQ2dEaWQA7tIL&q=85&s=c03cc09cfcef43cb12dd0d90d8d57026 1650w, https://mintcdn.com/dripart/TwfNQ2dEaWQA7tIL/images/tutorial/controlnet/scribble_example.jpg?w=2500&fit=max&auto=format&n=TwfNQ2dEaWQA7tIL&q=85&s=c8ae34966713cae3564c467f7ab5e0fe 2500w" />
+
+<p>在本示例中，我们将引导你完成在 <a target="_blank" rel="noopener" href="https://github.com/comfyanonymous/ComfyUI">ComfyUI</a> 中 ControlNet 模型的安装与使用, 并完成一个涂鸦控制图像生成的示例。</p>
+<p><img src="https://raw.githubusercontent.com/Comfy-Org/example_workflows/main/controlnet/scribble_controlnet.png" srcset="/img/loading.gif" lazyload alt="ComfyUI ControlNet 工作流"></p>
+<Tip>
+  ControlNet V1.1 其它类型的 ControlNet 模型的工作流也与都与本篇示例相同，你只需要根据需要选择对应的模型和上传对应的参考图即可。
+</Tip>
+
+<h2 id="ControlNet-图片预处理相关说明"><a href="#ControlNet-图片预处理相关说明" class="headerlink" title="ControlNet 图片预处理相关说明"></a>ControlNet 图片预处理相关说明</h2><p>不同类型的 ControlNet 模型，通常需要使用不同类型的参考图：</p>
+<p><img src="https://github.com/Fannovel16/comfyui_controlnet_aux/blob/main/examples/CNAuxBanner.jpg?raw=true" srcset="/img/loading.gif" lazyload alt="参考图"></p>
+<blockquote>
+<p>图源：<a target="_blank" rel="noopener" href="https://github.com/Fannovel16/comfyui_controlnet_aux">ComfyUI ControlNet aux</a></p>
+</blockquote>
+<p>由于目前 <strong>Comfy Core</strong> 节点中，不包含所有类型的 <strong>预处理器</strong> 类型，但在本文档的实际示例中，我们都将提供已经经过处理后的图片，<br>但在实际使用过程中，你可能需要借助一些自定义节点来对图片进行预处理，以满足不同 ControlNet 模型的需求，下面是一些相关的插件</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/Kosinkadink/ComfyUI-Advanced-ControlNet">ComfyUI-Advanced-ControlNet</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/Fannovel16/comfyui_controlnet_aux">ComfyUI ControlNet aux</a></li>
+</ul>
+<h2 id="ComfyUI-ControlNet-工作流示例讲解"><a href="#ComfyUI-ControlNet-工作流示例讲解" class="headerlink" title="ComfyUI ControlNet 工作流示例讲解"></a>ComfyUI ControlNet 工作流示例讲解</h2><h3 id="1-ControlNet-工作流素材"><a href="#1-ControlNet-工作流素材" class="headerlink" title="1. ControlNet 工作流素材"></a>1. ControlNet 工作流素材</h3><p>请下载下面的工作流图片,并拖入 ComfyUI 以加载工作流</p>
+<p><img src="https://raw.githubusercontent.com/Comfy-Org/example_workflows/main/controlnet/scribble_controlnet.png" srcset="/img/loading.gif" lazyload alt="ComfyUI 工作流 - ControlNet"></p>
+<Tip>
+  Metadata 中包含工作流 json 的图片可直接拖入 ComfyUI 或使用菜单 `Workflows` -> `Open（ctrl+o）` 来加载对应的工作流。
+  该图片已包含对应模型的下载链接，直接拖入 ComfyUI 将会自动提示下载。
+</Tip>
+
+<p>请下载下面的图片，我们将会将它作为输入</p>
+<p><img src="https://raw.githubusercontent.com/Comfy-Org/example_workflows/main/controlnet/scribble_input.png" srcset="/img/loading.gif" lazyload alt="ComfyUI 涂鸦图片"></p>
+<h3 id="2-手动模型安装"><a href="#2-手动模型安装" class="headerlink" title="2.  手动模型安装"></a>2.  手动模型安装</h3><Note>
+  如果你网络无法顺利完成对应模型的自动下载，请尝试手动下载下面的模型，并放置到指定目录中
+</Note>
+
+<ul>
+<li><a target="_blank" rel="noopener" href="https://civitai.com/api/download/models/731340?type=Model&format=SafeTensor&size=full&fp=fp16">dreamCreationVirtual3DECommerce_v10.safetensors</a></li>
+<li><a target="_blank" rel="noopener" href="https://huggingface.co/stabilityai/sd-vae-ft-mse-original/resolve/main/vae-ft-mse-840000-ema-pruned.safetensors?download=true">vae-ft-mse-840000-ema-pruned.safetensors</a></li>
+<li><a target="_blank" rel="noopener" href="https://huggingface.co/comfyanonymous/ControlNet-v1-1_fp16_safetensors/resolve/main/control_v11p_sd15_scribble_fp16.safetensors?download=true">control_v11p_sd15_scribble_fp16.safetensors</a></li>
+</ul>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs nix">ComfyUI<span class="hljs-symbol">/</span><br>├── models<span class="hljs-symbol">/</span><br>│   ├── checkpoints<span class="hljs-symbol">/</span><br>│   │   └── dreamCreationVirtual3DECommerce_v10.safetensors<br>│   ├── vae<span class="hljs-symbol">/</span><br>│   │   └── vae-ft-mse-<span class="hljs-number">84000</span>0-ema-pruned.safetensors<br>│   └── controlnet<span class="hljs-symbol">/</span><br>│       └── control_v11p_sd15_scribble_fp16.safetensors<br></code></pre></td></tr></table></figure>
+
+<Note>
+  本示例中 vae 模型也可以使用 dreamCreationVirtual3DECommerce\_v10.safetensors 模型中的 vae 模型，这里我们遵循模型作者建议使用单独的 vae 模型。
+</Note>
+
+<h3 id="3-按步骤完成工作流的运行"><a href="#3-按步骤完成工作流的运行" class="headerlink" title="3. 按步骤完成工作流的运行"></a>3. 按步骤完成工作流的运行</h3><img src="https://mintcdn.com/dripart/TwfNQ2dEaWQA7tIL/images/tutorial/controlnet/flow_diagram_scribble.png?fit=max&auto=format&n=TwfNQ2dEaWQA7tIL&q=85&s=d26abbfd1993f28b88efcf6231246945" srcset="/img/loading.gif" lazyload alt="ComfyUI 工作流 - ControlNet 流程图" data-og-width="2000" width="2000" data-og-height="1086" height="1086" data-path="images/tutorial/controlnet/flow_diagram_scribble.png" data-optimize="true" data-opv="3" srcset="https://mintcdn.com/dripart/TwfNQ2dEaWQA7tIL/images/tutorial/controlnet/flow_diagram_scribble.png?w=280&fit=max&auto=format&n=TwfNQ2dEaWQA7tIL&q=85&s=08969e36a1eda27b8d60fb77cb41afee 280w, https://mintcdn.com/dripart/TwfNQ2dEaWQA7tIL/images/tutorial/controlnet/flow_diagram_scribble.png?w=560&fit=max&auto=format&n=TwfNQ2dEaWQA7tIL&q=85&s=94b8fabbcd1f910e52bf9834d3ac5678 560w, https://mintcdn.com/dripart/TwfNQ2dEaWQA7tIL/images/tutorial/controlnet/flow_diagram_scribble.png?w=840&fit=max&auto=format&n=TwfNQ2dEaWQA7tIL&q=85&s=0e809d2f8d501e7e308408d46a6a8588 840w, https://mintcdn.com/dripart/TwfNQ2dEaWQA7tIL/images/tutorial/controlnet/flow_diagram_scribble.png?w=1100&fit=max&auto=format&n=TwfNQ2dEaWQA7tIL&q=85&s=6fea2381caed335cac0b7073ef9366e0 1100w, https://mintcdn.com/dripart/TwfNQ2dEaWQA7tIL/images/tutorial/controlnet/flow_diagram_scribble.png?w=1650&fit=max&auto=format&n=TwfNQ2dEaWQA7tIL&q=85&s=2d8133f58fc8c11cacf2ed11e8c181bd 1650w, https://mintcdn.com/dripart/TwfNQ2dEaWQA7tIL/images/tutorial/controlnet/flow_diagram_scribble.png?w=2500&fit=max&auto=format&n=TwfNQ2dEaWQA7tIL&q=85&s=a1c8aec6bfe0316295dcf600b09cebe2 2500w" />
+
+<ol>
+<li>确保<code>Load Checkpoint</code>可以加载 <strong>dreamCreationVirtual3DECommerce_v10.safetensors</strong></li>
+<li>确保<code>Load VAE</code>可以加载 <strong>vae-ft-mse-840000-ema-pruned.safetensors</strong></li>
+<li>在<code>Load Image</code>中点击<code>Upload</code> 上传之前提供的输入图片</li>
+<li>确保<code>Load ControlNet</code>可以加载 <strong>control_v11p_sd15_scribble_fp16.safetensors</strong></li>
+<li>点击 <code>Queue</code> 按钮，或者使用快捷键 <code>Ctrl(cmd) + Enter(回车)</code> 来执行图片的生成</li>
+</ol>
+<h2 id="相关节点讲解"><a href="#相关节点讲解" class="headerlink" title="相关节点讲解"></a>相关节点讲解</h2><h3 id="Load-ControlNet-节点讲解"><a href="#Load-ControlNet-节点讲解" class="headerlink" title="Load ControlNet 节点讲解"></a>Load ControlNet 节点讲解</h3><img src="https://mintcdn.com/dripart/Rig0_LOInmwVbVSB/images/comfy_core/loaders/load_controlnet_model.jpg?fit=max&auto=format&n=Rig0_LOInmwVbVSB&q=85&s=c3a99d9bd08baaedb7a4d426cc930880" srcset="/img/loading.gif" lazyload alt="load controlnet" data-og-width="807" width="807" data-og-height="294" height="294" data-path="images/comfy_core/loaders/load_controlnet_model.jpg" data-optimize="true" data-opv="3" srcset="https://mintcdn.com/dripart/Rig0_LOInmwVbVSB/images/comfy_core/loaders/load_controlnet_model.jpg?w=280&fit=max&auto=format&n=Rig0_LOInmwVbVSB&q=85&s=1d65dc81220e679eb2f17860ffe92562 280w, https://mintcdn.com/dripart/Rig0_LOInmwVbVSB/images/comfy_core/loaders/load_controlnet_model.jpg?w=560&fit=max&auto=format&n=Rig0_LOInmwVbVSB&q=85&s=3d499a7fab5e9656b3043440bb259906 560w, https://mintcdn.com/dripart/Rig0_LOInmwVbVSB/images/comfy_core/loaders/load_controlnet_model.jpg?w=840&fit=max&auto=format&n=Rig0_LOInmwVbVSB&q=85&s=54654343fb221fc3ae377467f2c799a6 840w, https://mintcdn.com/dripart/Rig0_LOInmwVbVSB/images/comfy_core/loaders/load_controlnet_model.jpg?w=1100&fit=max&auto=format&n=Rig0_LOInmwVbVSB&q=85&s=e363dc10dfa46d6f2e26e94018ef47ba 1100w, https://mintcdn.com/dripart/Rig0_LOInmwVbVSB/images/comfy_core/loaders/load_controlnet_model.jpg?w=1650&fit=max&auto=format&n=Rig0_LOInmwVbVSB&q=85&s=4c90104f34b30cc2e7943bc047639345 1650w, https://mintcdn.com/dripart/Rig0_LOInmwVbVSB/images/comfy_core/loaders/load_controlnet_model.jpg?w=2500&fit=max&auto=format&n=Rig0_LOInmwVbVSB&q=85&s=eaa65efbc295ed4f2bd3a8885acc02d0 2500w" />
+
+<p>位于<code>ComfyUI\models\controlnet</code> 的模型会被 ComfyUI 检测到，并在这个节点中识别并加载</p>
+<h3 id="Apply-ControlNet-节点讲解"><a href="#Apply-ControlNet-节点讲解" class="headerlink" title="Apply ControlNet 节点讲解"></a>Apply ControlNet 节点讲解</h3><img src="https://mintcdn.com/dripart/Rig0_LOInmwVbVSB/images/comfy_core/conditioning/controlnet/apply_controlnet.jpg?fit=max&auto=format&n=Rig0_LOInmwVbVSB&q=85&s=de9e90df2dcfe5cc7020a8c9cdb40a65" srcset="/img/loading.gif" lazyload alt="apply controlnet " data-og-width="778" width="778" data-og-height="547" height="547" data-path="images/comfy_core/conditioning/controlnet/apply_controlnet.jpg" data-optimize="true" data-opv="3" srcset="https://mintcdn.com/dripart/Rig0_LOInmwVbVSB/images/comfy_core/conditioning/controlnet/apply_controlnet.jpg?w=280&fit=max&auto=format&n=Rig0_LOInmwVbVSB&q=85&s=d2589a80afb77a1dd0d7fa12ae34142c 280w, https://mintcdn.com/dripart/Rig0_LOInmwVbVSB/images/comfy_core/conditioning/controlnet/apply_controlnet.jpg?w=560&fit=max&auto=format&n=Rig0_LOInmwVbVSB&q=85&s=25ed3a4735b06b267519ac4313bcbaca 560w, https://mintcdn.com/dripart/Rig0_LOInmwVbVSB/images/comfy_core/conditioning/controlnet/apply_controlnet.jpg?w=840&fit=max&auto=format&n=Rig0_LOInmwVbVSB&q=85&s=0b18dfc1c8fdd26f07a00c4d5e422f16 840w, https://mintcdn.com/dripart/Rig0_LOInmwVbVSB/images/comfy_core/conditioning/controlnet/apply_controlnet.jpg?w=1100&fit=max&auto=format&n=Rig0_LOInmwVbVSB&q=85&s=984444ad3f286a57a48cad3e9d30cb59 1100w, https://mintcdn.com/dripart/Rig0_LOInmwVbVSB/images/comfy_core/conditioning/controlnet/apply_controlnet.jpg?w=1650&fit=max&auto=format&n=Rig0_LOInmwVbVSB&q=85&s=adbb7c39e09866c7c85fc9bbb59c9ebc 1650w, https://mintcdn.com/dripart/Rig0_LOInmwVbVSB/images/comfy_core/conditioning/controlnet/apply_controlnet.jpg?w=2500&fit=max&auto=format&n=Rig0_LOInmwVbVSB&q=85&s=c1257bb2026d9ef99421d5474e1dea23 2500w" />
+
+<p>这个节点接受 <code>load controlnet</code> 加载的 ControlNet 模型，并根据输入的图片，生成对应的控制条件。</p>
+<p><strong>输入类型</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>positive</code></td>
+<td>正向条件</td>
+</tr>
+<tr>
+<td><code>negative</code></td>
+<td>负向条件</td>
+</tr>
+<tr>
+<td><code>control_net</code></td>
+<td>要应用的controlNet模型</td>
+</tr>
+<tr>
+<td><code>image</code></td>
+<td>用于 controlNet 应用参考的预处理器处理图片</td>
+</tr>
+<tr>
+<td><code>vae</code></td>
+<td>Vae模型输入</td>
+</tr>
+<tr>
+<td><code>strength</code></td>
+<td>应用 ControlNet 的强度，越大则 ControlNet 对生成图像的影响越大</td>
+</tr>
+<tr>
+<td><code>start_percent</code></td>
+<td>确定开始应用controlNet的百分比，比如取值0.2，意味着ControlNet的引导将在扩散过程完成20%时开始影响图像生成</td>
+</tr>
+<tr>
+<td><code>end_percent</code></td>
+<td>确定结束应用controlNet的百分比，比如取值0.8，意味着ControlNet的引导将在扩散过程完成80%时停止影响图像生成</td>
+</tr>
+</tbody></table>
+<p><strong>输出类型</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>positive</code></td>
+<td>应用了 ControlNet 处理后的正向条件数据</td>
+</tr>
+<tr>
+<td><code>negative</code></td>
+<td>应用了 ControlNet 处理后的负向条件数据</td>
+</tr>
+</tbody></table>
+<p>你可以使用链式链接来应用多个 ControlNet 模型，如下图所示，你也可以参考 <a href="/zh-CN/tutorials/controlnet/mixing-controlnets">混合 ControlNet 模型</a> 部分的指南来了解更多关于混合 ControlNet 模型的使用<br><img src="https://mintcdn.com/dripart/OltlUSVBSNcJsDMs/images/tutorial/controlnet/apply_controlnet_chain_link.jpg?fit=max&auto=format&n=OltlUSVBSNcJsDMs&q=85&s=6fc3e75414f05e6c62062b4b746dc855" srcset="/img/loading.gif" lazyload alt="apply controlnet chain link" data-og-width="1500" width="1500" data-og-height="1050" height="1050" data-path="images/tutorial/controlnet/apply_controlnet_chain_link.jpg" data-optimize="true" data-opv="3" srcset="https://mintcdn.com/dripart/OltlUSVBSNcJsDMs/images/tutorial/controlnet/apply_controlnet_chain_link.jpg?w=280&fit=max&auto=format&n=OltlUSVBSNcJsDMs&q=85&s=da6928840e7317cf4c0cc56cddd3bef9 280w, https://mintcdn.com/dripart/OltlUSVBSNcJsDMs/images/tutorial/controlnet/apply_controlnet_chain_link.jpg?w=560&fit=max&auto=format&n=OltlUSVBSNcJsDMs&q=85&s=be2b48a1a8c3f852ffbc1e0e7fa06f54 560w, https://mintcdn.com/dripart/OltlUSVBSNcJsDMs/images/tutorial/controlnet/apply_controlnet_chain_link.jpg?w=840&fit=max&auto=format&n=OltlUSVBSNcJsDMs&q=85&s=8488372f56c5d9e7a4f95574094bcd25 840w, https://mintcdn.com/dripart/OltlUSVBSNcJsDMs/images/tutorial/controlnet/apply_controlnet_chain_link.jpg?w=1100&fit=max&auto=format&n=OltlUSVBSNcJsDMs&q=85&s=3893bbb66fd156f76713a5d51623cd12 1100w, https://mintcdn.com/dripart/OltlUSVBSNcJsDMs/images/tutorial/controlnet/apply_controlnet_chain_link.jpg?w=1650&fit=max&auto=format&n=OltlUSVBSNcJsDMs&q=85&s=aab42fb6856dc99be46f00bb333e8a6f 1650w, https://mintcdn.com/dripart/OltlUSVBSNcJsDMs/images/tutorial/controlnet/apply_controlnet_chain_link.jpg?w=2500&fit=max&auto=format&n=OltlUSVBSNcJsDMs&q=85&s=c8dee2a84c69fc57166788cae6387f17 2500w" /></p>
+<Note>
+  你也许会在有些早期的工作流中看到如下的`Apply ControlNet(Old)` 节点，这个节点是早期 ControlNet 的节点，目前已弃用状态，默认在搜索和节点列表不可见
+  <img src="https://mintcdn.com/dripart/Rig0_LOInmwVbVSB/images/comfy_core/conditioning/controlnet/apply_controlnet_old.jpg?fit=max&auto=format&n=Rig0_LOInmwVbVSB&q=85&s=eaf2f8df7456df845f7408495d19b9e8" srcset="/img/loading.gif" lazyload alt="apply controlnet old" data-og-width="778" width="778" data-og-height="370" height="370" data-path="images/comfy_core/conditioning/controlnet/apply_controlnet_old.jpg" data-optimize="true" data-opv="3" srcset="https://mintcdn.com/dripart/Rig0_LOInmwVbVSB/images/comfy_core/conditioning/controlnet/apply_controlnet_old.jpg?w=280&fit=max&auto=format&n=Rig0_LOInmwVbVSB&q=85&s=d1b70261b17b6e3b46c4ed91e1be1fd4 280w, https://mintcdn.com/dripart/Rig0_LOInmwVbVSB/images/comfy_core/conditioning/controlnet/apply_controlnet_old.jpg?w=560&fit=max&auto=format&n=Rig0_LOInmwVbVSB&q=85&s=9f81de62d9574bcb8b0519488cdc4195 560w, https://mintcdn.com/dripart/Rig0_LOInmwVbVSB/images/comfy_core/conditioning/controlnet/apply_controlnet_old.jpg?w=840&fit=max&auto=format&n=Rig0_LOInmwVbVSB&q=85&s=b0878d93dea28563986e3a1e2c77450b 840w, https://mintcdn.com/dripart/Rig0_LOInmwVbVSB/images/comfy_core/conditioning/controlnet/apply_controlnet_old.jpg?w=1100&fit=max&auto=format&n=Rig0_LOInmwVbVSB&q=85&s=a5d3fdd9887f00d55fc68161fbed2ca6 1100w, https://mintcdn.com/dripart/Rig0_LOInmwVbVSB/images/comfy_core/conditioning/controlnet/apply_controlnet_old.jpg?w=1650&fit=max&auto=format&n=Rig0_LOInmwVbVSB&q=85&s=e34942778977bc4a0898c09123123b26 1650w, https://mintcdn.com/dripart/Rig0_LOInmwVbVSB/images/comfy_core/conditioning/controlnet/apply_controlnet_old.jpg?w=2500&fit=max&auto=format&n=Rig0_LOInmwVbVSB&q=85&s=11a8f3eb731d988689ce245a0a327d8d 2500w" />
+  如需启用，请在**设置**--> **comfy** --> **Node** 中，启用`Show deprecated nodes in search` 选项，推荐使用新节点
+</Note>
+
+<h2 id="开始你的尝试"><a href="#开始你的尝试" class="headerlink" title="开始你的尝试"></a>开始你的尝试</h2><ol>
+<li>试着制作类似的涂鸦图片，甚至自己手绘，并使用 ControlNet 模型生成图像，体验 ControlNet 带来的乐趣</li>
+<li>调整 Apply ControlNet 节点的 <code>Control Strength</code> 参数，来控制 ControlNet 模型对生成图像的影响</li>
+<li>访问 <a target="_blank" rel="noopener" href="https://huggingface.co/comfyanonymous/ControlNet-v1-1_fp16_safetensors/tree/main">ControlNet-v1-1_fp16_safetensors</a>  仓库下载其它类型的 ControlNet 模型，并尝试使用它们生成图像</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div></div>
+      <div>https://liruilong9999.github.io/2026/02/19/ComfyUi学习记录-controlNet/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>liruilong</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年2月19日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/02/19/hello-world/" title="Hello World">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Hello World</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/11/07/docker%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/" title="docker安装">
+                        <span class="hidden-mobile">docker安装</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
