@@ -19,27 +19,27 @@
   <meta name="author" content="liruilong">
   <meta name="keywords" content="study">
   
-    <meta name="description" content="Documentation IndexFetch the complete documentation index at: https:&#x2F;&#x2F;docs.comfy.org&#x2F;llms.txtUse this file to discover all available pages before exploring further.  ComfyUI Pose ControlNet 使用示例 本篇将引">
+    <meta name="description" content="C11 新特性详细学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="非酋的博客">
+<meta property="og:title" content="ComfyUI Pose ControlNet">
 <meta property="og:url" content="https://liruilong9999.github.io/2026/02/19/ComfyUI%20Pose%20ControlNet/index.html">
 <meta property="og:site_name" content="非酋的博客">
-<meta property="og:description" content="Documentation IndexFetch the complete documentation index at: https:&#x2F;&#x2F;docs.comfy.org&#x2F;llms.txtUse this file to discover all available pages before exploring further.  ComfyUI Pose ControlNet 使用示例 本篇将引">
+<meta property="og:description" content="C11 新特性详细学习">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://mintcdn.com/dripart/TwfNQ2dEaWQA7tIL/images/tutorial/controlnet/openpose_example.jpg?fit=max&auto=format&n=TwfNQ2dEaWQA7tIL&q=85&s=bf85624e63f724a95635801aea0af8d5">
 <meta property="og:image" content="https://raw.githubusercontent.com/Comfy-Org/example_workflows/main/controlnet/pose_controlnet_2_pass.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Comfy-Org/example_workflows/main/controlnet/pose_controlnet_2_pass_input.png">
 <meta property="og:image" content="https://mintcdn.com/dripart/TwfNQ2dEaWQA7tIL/images/tutorial/controlnet/flow_diagram_pose_controlnet_2_pass.jpg?fit=max&auto=format&n=TwfNQ2dEaWQA7tIL&q=85&s=f953cc0188bb242b6f03389d295bf551">
-<meta property="article:published_time" content="2026-02-19T12:40:35.745Z">
-<meta property="article:modified_time" content="2026-02-19T12:40:43.100Z">
+<meta property="article:published_time" content="2026-02-19T12:43:16.000Z">
+<meta property="article:modified_time" content="2026-02-19T12:44:25.135Z">
 <meta property="article:author" content="liruilong">
-<meta property="article:tag" content="study">
+<meta property="article:tag" content="ComfyUI">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://mintcdn.com/dripart/TwfNQ2dEaWQA7tIL/images/tutorial/controlnet/openpose_example.jpg?fit=max&auto=format&n=TwfNQ2dEaWQA7tIL&q=85&s=bf85624e63f724a95635801aea0af8d5">
   
   
   
-  <title>非酋的博客</title>
+  <title>ComfyUI Pose ControlNet - 非酋的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -205,7 +205,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text=""></span>
+            <span id="subtitle" data-typed-text="ComfyUI Pose ControlNet"></span>
           
         </div>
 
@@ -216,8 +216,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-02-19 20:40" pubdate>
-          星期四, 二月 19日 2026, 8:40 晚上
+        <time datetime="2026-02-19 20:43" pubdate>
+          星期四, 二月 19日 2026, 8:43 晚上
         </time>
       </span>
     
@@ -287,15 +287,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header"></h1>
+            <h1 id="seo-header">ComfyUI Pose ControlNet</h1>
             
             
               <div class="markdown-body">
                 
-                <blockquote>
-<h2 id="Documentation-Index"><a href="#Documentation-Index" class="headerlink" title="Documentation Index"></a>Documentation Index</h2><p>Fetch the complete documentation index at: <a target="_blank" rel="noopener" href="https://docs.comfy.org/llms.txt">https://docs.comfy.org/llms.txt</a><br>Use this file to discover all available pages before exploring further.</p>
-</blockquote>
-<h1 id="ComfyUI-Pose-ControlNet-使用示例"><a href="#ComfyUI-Pose-ControlNet-使用示例" class="headerlink" title="ComfyUI Pose ControlNet 使用示例"></a>ComfyUI Pose ControlNet 使用示例</h1><blockquote>
+                <h1 id="ComfyUI-Pose-ControlNet-使用示例"><a href="#ComfyUI-Pose-ControlNet-使用示例" class="headerlink" title="ComfyUI Pose ControlNet 使用示例"></a>ComfyUI Pose ControlNet 使用示例</h1><blockquote>
 <p>本篇将引导了解基础的 Pose ControlNet，并通过二次图生图的方式，在 ComfyUI 中完成大尺寸的图像生成</p>
 </blockquote>
 <h2 id="OpenPose-简介"><a href="#OpenPose-简介" class="headerlink" title="OpenPose 简介"></a>OpenPose 简介</h2><p><a target="_blank" rel="noopener" href="https://github.com/CMU-Perceptual-Computing-Lab/openpose">OpenPose</a> 是由卡耐基梅隆大学（CMU）开发的开源实时多人姿态估计系统，是计算机视觉领域的重要技术突破。该系统能够同时检测图像中多个人的：</p>
@@ -376,6 +373,34 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/ComfyUI/" class="category-chain-item">ComfyUI</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/ComfyUI/" class="print-no-link">#ComfyUI</a>
+      
+    </div>
   
 </div>
 
@@ -385,7 +410,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div></div>
+      <div>ComfyUI Pose ControlNet</div>
       <div>https://liruilong9999.github.io/2026/02/19/ComfyUI Pose ControlNet/</div>
     </div>
     <div class="license-meta">
@@ -430,9 +455,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2026/02/19/ComfyUI%20Depth%20ControlNet/" title="">
+                      <a href="/2026/02/19/ComfyUI%20Depth%20T2I%20Adapter/" title="ComfyUI Depth T2I Adapter">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile"></span>
+                        <span class="hidden-mobile">ComfyUI Depth T2I Adapter</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -440,8 +465,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2026/02/19/ComfyUI%20ControlNet/" title="">
-                        <span class="hidden-mobile"></span>
+                      <a href="/2024/11/07/docker%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/" title="docker安装">
+                        <span class="hidden-mobile">docker安装</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

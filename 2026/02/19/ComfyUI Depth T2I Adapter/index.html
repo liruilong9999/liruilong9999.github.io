@@ -19,27 +19,27 @@
   <meta name="author" content="liruilong">
   <meta name="keywords" content="study">
   
-    <meta name="description" content="Documentation IndexFetch the complete documentation index at: https:&#x2F;&#x2F;docs.comfy.org&#x2F;llms.txtUse this file to discover all available pages before exploring further.  ComfyUI Depth T2I Adapter 使用示例 本篇">
+    <meta name="description" content="C11 新特性详细学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="非酋的博客">
+<meta property="og:title" content="ComfyUI Depth T2I Adapter">
 <meta property="og:url" content="https://liruilong9999.github.io/2026/02/19/ComfyUI%20Depth%20T2I%20Adapter/index.html">
 <meta property="og:site_name" content="非酋的博客">
-<meta property="og:description" content="Documentation IndexFetch the complete documentation index at: https:&#x2F;&#x2F;docs.comfy.org&#x2F;llms.txtUse this file to discover all available pages before exploring further.  ComfyUI Depth T2I Adapter 使用示例 本篇">
+<meta property="og:description" content="C11 新特性详细学习">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/Comfy-Org/example_workflows/main/controlnet/depth-t2i-adapter.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Comfy-Org/example_workflows/main/controlnet/depth-t2i-adapter.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Comfy-Org/example_workflows/main/controlnet/depth-t2i-adapter_input.png">
 <meta property="og:image" content="https://mintcdn.com/dripart/TwfNQ2dEaWQA7tIL/images/tutorial/controlnet/flow_diagram_depth_ti2_adapter.jpg?fit=max&auto=format&n=TwfNQ2dEaWQA7tIL&q=85&s=3aeec924326e1bda6ff5d1eb390f6d4c">
-<meta property="article:published_time" content="2026-02-19T12:41:57.038Z">
-<meta property="article:modified_time" content="2026-02-19T12:42:07.996Z">
+<meta property="article:published_time" content="2026-02-19T12:43:16.000Z">
+<meta property="article:modified_time" content="2026-02-19T12:44:36.235Z">
 <meta property="article:author" content="liruilong">
-<meta property="article:tag" content="study">
+<meta property="article:tag" content="ComfyUI">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/Comfy-Org/example_workflows/main/controlnet/depth-t2i-adapter.png">
   
   
   
-  <title>非酋的博客</title>
+  <title>ComfyUI Depth T2I Adapter - 非酋的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -205,7 +205,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text=""></span>
+            <span id="subtitle" data-typed-text="ComfyUI Depth T2I Adapter"></span>
           
         </div>
 
@@ -216,8 +216,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-02-19 20:41" pubdate>
-          星期四, 二月 19日 2026, 8:41 晚上
+        <time datetime="2026-02-19 20:43" pubdate>
+          星期四, 二月 19日 2026, 8:43 晚上
         </time>
       </span>
     
@@ -229,7 +229,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          1.2k 字
+          1.1k 字
         
       </span>
     
@@ -287,15 +287,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header"></h1>
+            <h1 id="seo-header">ComfyUI Depth T2I Adapter</h1>
             
             
               <div class="markdown-body">
                 
-                <blockquote>
-<h2 id="Documentation-Index"><a href="#Documentation-Index" class="headerlink" title="Documentation Index"></a>Documentation Index</h2><p>Fetch the complete documentation index at: <a target="_blank" rel="noopener" href="https://docs.comfy.org/llms.txt">https://docs.comfy.org/llms.txt</a><br>Use this file to discover all available pages before exploring further.</p>
-</blockquote>
-<h1 id="ComfyUI-Depth-T2I-Adapter-使用示例"><a href="#ComfyUI-Depth-T2I-Adapter-使用示例" class="headerlink" title="ComfyUI Depth T2I Adapter 使用示例"></a>ComfyUI Depth T2I Adapter 使用示例</h1><blockquote>
+                <h1 id="ComfyUI-Depth-T2I-Adapter-使用示例"><a href="#ComfyUI-Depth-T2I-Adapter-使用示例" class="headerlink" title="ComfyUI Depth T2I Adapter 使用示例"></a>ComfyUI Depth T2I Adapter 使用示例</h1><blockquote>
 <p>本篇将引导了解基础的 Depth T2I Adapter ，并在 ComfyUI 中完成对应的图像生成</p>
 </blockquote>
 <h2 id="T2I-Adapter-介绍"><a href="#T2I-Adapter-介绍" class="headerlink" title="T2I Adapter 介绍"></a>T2I Adapter 介绍</h2><p><a target="_blank" rel="noopener" href="https://huggingface.co/TencentARC/T2I-Adapter">T2I-Adapter</a> 是由 ​<a target="_blank" rel="noopener" href="https://github.com/TencentARC">腾讯ARC实验室</a> 开发的轻量级适配器，用于增强文本到图像生成模型（如Stable Diffusion）的结构、颜色和风格控制能力。<br>它通过外部条件（如边缘检测图、深度图、草图或颜色参考图）与模型内部特征对齐，实现高精度控制，无需修改原模型结构。其参数仅约77M（体积约300MB），推理速度比 <a target="_blank" rel="noopener" href="https://github.com/lllyasviel/ControlNet-v1-1-nightly">ControlNet</a> 快约3倍，支持多条件组合（如草图+颜色网格）。应用场景包括线稿转图像、色彩风格迁移、多元素场景生成等。</p>
@@ -373,6 +370,34 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/ComfyUI/" class="category-chain-item">ComfyUI</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/ComfyUI/" class="print-no-link">#ComfyUI</a>
+      
+    </div>
   
 </div>
 
@@ -382,7 +407,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div></div>
+      <div>ComfyUI Depth T2I Adapter</div>
       <div>https://liruilong9999.github.io/2026/02/19/ComfyUI Depth T2I Adapter/</div>
     </div>
     <div class="license-meta">
@@ -427,12 +452,18 @@
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/2026/02/19/ComfyUI%20Depth%20ControlNet/" title="ComfyUI Depth ControlNet">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">ComfyUI Depth ControlNet</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2026/02/19/ComfyUI%20Depth%20ControlNet/" title="">
-                        <span class="hidden-mobile"></span>
+                      <a href="/2026/02/19/ComfyUI%20Pose%20ControlNet/" title="ComfyUI Pose ControlNet">
+                        <span class="hidden-mobile">ComfyUI Pose ControlNet</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
