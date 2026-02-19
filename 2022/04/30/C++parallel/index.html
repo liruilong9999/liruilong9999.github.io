@@ -1,0 +1,1055 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="liruilong">
+  <meta name="keywords" content="study">
+  
+    <meta name="description" content="C++ 并发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++ 并发">
+<meta property="og:url" content="https://liruilong9999.github.io/2022/04/30/C++parallel/index.html">
+<meta property="og:site_name" content="非酋的博客">
+<meta property="og:description" content="C++ 并发">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://liruilong9999.github.io/2022/04/30/images/image-20200814171948633.png">
+<meta property="og:image" content="https://liruilong9999.github.io/2022/04/30/images/image-20200819214836498.png">
+<meta property="og:image" content="https://liruilong9999.github.io/2022/04/30/images/image-20200819215555351.png">
+<meta property="article:published_time" content="2022-04-29T19:15:16.000Z">
+<meta property="article:modified_time" content="2025-08-01T15:54:52.744Z">
+<meta property="article:author" content="liruilong">
+<meta property="article:tag" content="语言">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://liruilong9999.github.io/2022/04/30/images/image-20200814171948633.png">
+  
+  
+  
+  <title>C++ 并发 - 非酋的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"liruilong9999.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>别看这里</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="C++ 并发"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-04-30 03:15" pubdate>
+          星期六, 四月 30日 2022, 3:15 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          8.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          68 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">C++ 并发</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <center><font size = 45>C++并发</font></center>
+
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ol>
+<li><p><strong>并发</strong>：同一时间段，多个任务都在执行 (单位时间内不一定同时执行)，宏观上同时执行</p>
+</li>
+<li><p><strong>并行</strong>：单位时间内，多个任务同时执行</p>
+</li>
+<li><p><strong>进程</strong></p>
+<p>进程是程序的一次执行过程，是系统运行程序的基本单位，因此进程是动态的。系统运行一个程序即是一个进程从创建，运行到消亡的过程。</p>
+</li>
+<li><p><strong>线程</strong></p>
+<p>线程与进程相似，但线程是一个比进程更小的执行单位。一个进程在其执行的过程中可以产生多个线程。与进程不同的是同类的多个线程共享进程的资源</p>
+</li>
+<li><p><strong>上下文切换</strong></p>
+<p>CPU 采取的策略是为每个线程分配时间片并轮转的形式。当一个线程的时间片用完的时候就会重新处于就绪状态让给其他线程使用，这个过程就属于一次上下文切换。概括来说就是：当前任务在执行完 CPU 时间片切换到另一个任务之前会先保存自己的状态，以便下次再切换回这个任务时，可以再加载这个任务的状态。<strong>任务从保存到再加载的过程就是一次上下文切换</strong>。</p>
+</li>
+<li><p><strong>同步</strong></p>
+<p>发出一个功能调用时，在没有得到结果之前，该调用就不返回。也就是必须一件一件事做，等前一件做完了才能做下一件事.</p>
+</li>
+<li><p><strong>异步</strong></p>
+<p>异步的概念和同步相对。当一个异步过程调用发出后，调用者不能立刻得到结果。实际处理这个调用的部件在完成后，通过状态、通知和回调来通知调用者</p>
+</li>
+<li><p><strong>阻塞</strong> ：阻塞调用是指调用结果返回之前，当前线程会被挂起。调用线程只有在得到结果之后才会返回。</p>
+</li>
+<li><p><strong>非阻塞</strong>：非阻塞调用指在不能立刻得到结果之前，该调用不会阻塞当前线程。</p>
+</li>
+<li><p><strong>死锁</strong>：一组进程如果都获得了部分资源，还想要得到其他进程所占有的资源，最终所有的进程将陷入死锁。</p>
+</li>
+<li><p><strong>饥饿</strong>：一个进程由于其他进程总是优先于它而被无限期拖延。</p>
+</li>
+<li><p><strong>临界资源</strong>：是一次仅允许一个进程使用的共享资源。</p>
+</li>
+</ol>
+<h5 id="线程与进程的区别"><a href="#线程与进程的区别" class="headerlink" title="线程与进程的区别"></a>线程与进程的区别</h5><p>线程是进程划分成的更小的运行单位。线程和进程最大的不同在于基本上各进程是独立的，而各线程则不一定，因为同一进程中的线程极有可能会相互影响。线程执行开销小，但不利于资源的管理和保护；而进程正相反</p>
+<h5 id="锁机制"><a href="#锁机制" class="headerlink" title="锁机制"></a>锁机制</h5><ol>
+<li><p><strong>悲观锁</strong>，<strong>悲观锁认为自己在使用数据的时候一定有别的线程来修改数据，因此在获取数据的时候会先加锁</strong>，确保数据不会被别的线程修改</p>
+</li>
+<li><p><strong>乐观锁</strong> ，**乐观锁认为自己在使用数据时不会有别的线程修改数据，所以不会添加锁，**只是在更新数据的时候去判断之前有没有别的线程更新了这个数据，<strong>最常采用的是CAS算法</strong></p>
+</li>
+<li><p><strong>CAS</strong>（Compare And Swap）</p>
+<p>CAS的原理是拿期望的值和原本的一个值作比较，如果相同则更新成新的值。即每次修改时都需要拿期望值去比较</p>
+</li>
+</ol>
+<h5 id="阻塞非阻塞同步异步的区别"><a href="#阻塞非阻塞同步异步的区别" class="headerlink" title="阻塞非阻塞同步异步的区别"></a>阻塞非阻塞同步异步的区别</h5><p>同步和异步关注的是消息通信机制，而阻塞和非阻塞关注的是程序在等待调用结果（消息，返回值）时的状态</p>
+<h2 id="进程的互斥、同步、通信"><a href="#进程的互斥、同步、通信" class="headerlink" title="进程的互斥、同步、通信"></a>进程的互斥、同步、通信</h2><h4 id="互斥——竞争关系"><a href="#互斥——竞争关系" class="headerlink" title="互斥——竞争关系"></a>互斥——竞争关系</h4><p>系统中的多个进程之间彼此无关，它们并不知道其他进程的存在，并且也不受其他进程执行的影响。由于这些进程共用了一套计算机系统资源，因而， 必然要出现多个进程竞争资源的问题。当多个进程竞争共享硬设备、存储器、处理器 和文件等资源时，操作系统必须协调好进程对资源的争用。<br>进程的互斥（mutual exclusion ）是解决进程间竞争关系( 间接制约关系) 的手段。 进程互斥指若干个进程要使用同一共享资源时，任何时刻最多允许一个进程去使用，其他要使用该资源的进程必须等待，直到占有资源的进程释放该资源。</p>
+<h4 id="同步——协作关系"><a href="#同步——协作关系" class="headerlink" title="同步——协作关系"></a>同步——协作关系</h4><p>某些进程为完成同一任务需要分工协作，由于合作的每一个进程都是独立地以不可预知的速度推进，这就需要相互协作的进程在某些协调点上协 调各自的工作。当合作进程中的一个到达协调点后，在尚未得到其伙伴进程发来的消息或信号之前应阻塞自己，直到其他合作进程发来协调信号或消息后方被唤醒并继续执行。这种协作进程之间相互等待对方消息或信号的协调关系称为进程同步。</p>
+<h4 id="通信"><a href="#通信" class="headerlink" title="通信"></a>通信</h4><p>进程竞争资源时要实施互斥，互斥是一种特殊的同步，实质上需要解决好进程同步问题，进程同步是一种进程通信，通过修改信号量，进程之间可建立起联系，相互协调运行和协同工作。但是信号量与PV操作只能传递信号，没有传递数据的能力。有些情况下进程之间交换的信息量虽很少，例如，仅仅交换某个状态信息，但很多情况下进程之间需要交换大批数据，例如，传送一批信息或整个文件，这可以通过一种新的通信机制来完成，<strong>进程之间互相交换信息的工作称之为进程通信IPC （InterProcess Communication）（主要是指大量数据的交换）。</strong></p>
+<h4 id="进程间的通信方式"><a href="#进程间的通信方式" class="headerlink" title="进程间的通信方式"></a>进程间的通信方式</h4><ol>
+<li><strong>管道&#x2F;匿名管道(Pipes)</strong> ：用于具有亲缘关系的父子进程间或者兄弟进程之间的通信。</li>
+<li><strong>有名管道(Names Pipes)</strong> : 匿名管道由于没有名字，只能用于亲缘关系的进程间通信。为了克服这个缺点，提出了有名管道。有名管道严格遵循先进先出(first in first out)。有名管道以磁盘文件的方式存在，可以实现本机任意两个进程通信。</li>
+<li><strong>信号(Signal)</strong> ：信号是一种比较复杂的通信方式，用于通知接收进程某个事件已经发生；</li>
+<li><strong>消息队列(Message Queuing)</strong> ：消息队列是消息的链表,具有特定的格式,存放在内存中并由消息队列标识符标识。管道和消息队列的通信数据都是先进先出的原则。与管道（无名管道：只存在于内存中的文件；命名管道：存在于实际的磁盘介质或者文件系统）不同的是消息队列存放在内核中，只有在内核重启(即，操作系统重启)或者显示地删除一个消息队列时，该消息队列才会被真正的删除。消息队列可以实现消息的随机查询,消息不一定要以先进先出的次序读取,也可以按消息的类型读取.比 FIFO 更有优势。消息队列克服了信号承载信息量少，管道只能承载无格式字 节流以及缓冲区大小受限等缺。</li>
+<li><strong>信号量(Semaphores)</strong> ：信号量是一个计数器，用于多进程对共享数据的访问，信号量的意图在于进程间同步。这种通信方式主要用于解决与同步相关的问题并避免竞争条件。</li>
+<li><strong>共享内存(Shared memory)</strong> ：使得多个进程可以访问同一块内存空间，不同进程可以及时看到对方进程中对共享内存中数据的更新。这种方式需要依靠某种同步操作，如互斥锁和信号量等。可以说这是最有用的进程间通信方式。</li>
+<li><strong>套接字(Sockets)</strong> : 此方法主要用于在客户端和服务器之间通过网络进行通信。套接字是支持 TCP&#x2F;IP 的网络通信的基本操作单元，可以看做是不同主机之间的进程进行双向通信的端点，简单的说就是通信的两方的一种约定，用套接字中的相关函数来完成通信过程。</li>
+</ol>
+<h4 id="线程间的同步的方式"><a href="#线程间的同步的方式" class="headerlink" title="线程间的同步的方式"></a>线程间的同步的方式</h4><ol>
+<li><strong>互斥量(Mutex)</strong>：采用互斥对象机制，只有拥有互斥对象的线程才有访问公共资源的权限。因为互斥对象只有一个，所以可以保证公共资源不会被多个线程同时访问。比如 Java 中的 synchronized 关键词和各种 Lock 都是这种机制。</li>
+<li><strong>信号量(Semphares)</strong> ：它允许同一时刻多个线程访问同一资源，但是需要控制同一时刻访问此资源的最大线程数量</li>
+<li><strong>事件(Event)</strong> :Wait&#x2F;Notify：通过通知操作的方式来保持多线程同步，还可以方便的实现多线程优先级的比较操</li>
+</ol>
+<h2 id="线程的状态"><a href="#线程的状态" class="headerlink" title="线程的状态"></a>线程的状态</h2><h4 id="多线程问题"><a href="#多线程问题" class="headerlink" title="多线程问题"></a>多线程问题</h4><p>并发编程的目的就是为了能提高程序的执行效率提高程序运行速度，但是并发编程并不总是能提高程序运行速度的，而且并发编程可能会遇到很多问题，比如：<strong>内存泄漏、死锁、线程不安全</strong>等等。</p>
+<h4 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h4><ol>
+<li>新建状态：创建了一个线程之后,该线程就处于新建状态</li>
+<li>就绪状态：启动方法之后,该线程处于就绪状态</li>
+<li>运行状态 ：处于就绪状态的线程获得了CPU资源，开始运行</li>
+<li>阻塞状态：线程主动放弃CPU资源 </li>
+<li>线程死亡：线程结束</li>
+</ol>
+<h4 id="线程死锁"><a href="#线程死锁" class="headerlink" title="线程死锁"></a>线程死锁</h4><p>线程死锁描述的是这样一种情况：多个线程同时被阻塞，它们中的一个或者全部都在等待某个资源被释放。由于线程被无限期地阻塞，因此程序不可能正常终止。如下图所示，线程 A 持有资源 2，线程 B 持有资源 1，他们同时都想申请对方的资源，所以这两个线程就会互相等待而进入死锁状态。</p>
+<p><strong>死锁必须具备以下四个条件</strong>：</p>
+<ol>
+<li>互斥条件：该资源任意一个时刻只由一个线程占用。</li>
+<li>请求与保持条件：一个进程因请求资源而阻塞时，对已获得的资源保持不放。</li>
+<li>不剥夺条件：线程已获得的资源在末使用完之前不能被其他线程强行剥夺，只有自己使用完毕后才释放资源。</li>
+<li>循环等待条件：若干进程之间形成一种头尾相接的循环等待资源关系</li>
+</ol>
+<h4 id="避免线程死锁"><a href="#避免线程死锁" class="headerlink" title="避免线程死锁"></a>避免线程死锁</h4><p>我上面说了产生死锁的四个必要条件，为了避免死锁，我们只要破坏产生死锁的四个条件中的其中一个就可以了。现在我们来挨个分析一下：</p>
+<ol>
+<li><p><strong>破坏互斥条件</strong> ：这个条件我们没有办法破坏，因为我们用锁本来就是想让他们互斥的（临界资源需要互斥访问）。</p>
+</li>
+<li><p><strong>破坏请求与保持条件</strong> ：一次性申请所有的资源。</p>
+</li>
+<li><p><strong>破坏不剥夺条件</strong> ：占用部分资源的线程进一步申请其他资源时，如果申请不到，可以主动释放它占有的资源。</p>
+</li>
+<li><p><strong>破坏循环等待条件</strong> ：靠按序申请资源来预防。按某一顺序申请资源，释放资源则反序释放。破坏循环等待条件。</p>
+</li>
+</ol>
+<h2 id="多线程相关"><a href="#多线程相关" class="headerlink" title="多线程相关"></a>多线程相关</h2><h5 id="pthread-h"><a href="#pthread-h" class="headerlink" title="pthread.h"></a><code>pthread.h</code></h5><p><code>pthread.h</code>是标准库，C++11没有添加多线程之前的在Linux上用的多线程库</p>
+<h5 id="windows-h"><a href="#windows-h" class="headerlink" title="windows.h"></a><code>windows.h</code></h5><p>在windows上的多线程支持要包含<code>windows.h</code></p>
+<h5 id="std-thread"><a href="#std-thread" class="headerlink" title="std::thread"></a><code>std::thread</code></h5><p>原先使用多线程只能用系统的API，无法解决跨平台问题。从C++11开始语言层面上的多线程，标准库里已经包含了对线程的支持，<code>std::thread</code>是C++11标准库中的多线程的支持库C++11 新标准中引入了五个头文件来支持多线程编程</p>
+<p>它们分别是 <code>&lt;thread&gt;, &lt;mutex&gt;, &lt;condition_variable&gt;</code> 和 <code>&lt;future&gt; &lt;atomic&gt;,</code>。</p>
+<img src="../images/image-20200814171948633.png" srcset="/img/loading.gif" lazyload/>
+
+<ol>
+<li><code>&lt;thread&gt;</code>：该头文件主要声明了 <code>std::thread</code> <strong>线程类</strong>，另外 <code>std::this_thread</code> 命名空间也在该头文件中。</li>
+<li><code>&lt;future&gt;</code>：<strong>异步类相关</strong>，该头文件主要声明了 <code>std::promise</code>, <code>std::package_task</code> 两个 Provider 类，以及 <code>std::future</code> 和 <code>std::shared_future</code> 两个 Future 类，另外还有一些与之相关的类型和函数，<code>std::async()</code> 函数就声明在此头文件中。</li>
+<li><code>&lt;mutex&gt;</code>：该头文件主要声明了<strong>与互斥量(Mutex)相关的类</strong>，包括 <code>std::mutex_*</code> 一系列类，<code>std::lock_guard</code>, <code>std::unique_lock</code>, 以及其他的类型和函数，主要用于线程同步</li>
+<li><code>&lt;condition_variable&gt;</code>：该头文件主要声明了<strong>与条件变量相关的类</strong>，包括 <code>std::condition_variable</code> 和 <code>std::condition_variable_any</code>。</li>
+<li><code>&lt;atomic&gt;</code>：该头文主要声明了两个类, <code>std::atomic</code> 和 <code>std::atomic_flag</code>，另外还声明了一套 C 风格的原子类型和与 C 兼容的<strong>原子操作的函数</strong>。</li>
+</ol>
+<h2 id="thread-线程"><a href="#thread-线程" class="headerlink" title="thread 线程"></a>thread 线程</h2><p><code>std::thread</code> <strong>代表了一个线程对象，</strong> 在 <code>&lt;thread&gt;</code> 头文件中声明。<code>&lt;thread&gt;</code> 头文件主要声明了 <code>std::thread</code> 类，声明了 <code>swap</code>，<code>get_id</code>，<code>yield</code>，<code>sleep_until</code> 以及 <code>sleep_for</code> 等辅助函数</p>
+<table>
+<thead>
+<tr>
+<th>构造函数</th>
+<th>声明</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>默认构造函数</td>
+<td>thread() noexcept;</td>
+<td>创建一个空的 <code>std::thread</code> 执行对象</td>
+</tr>
+<tr>
+<td>初始化构造函数</td>
+<td>template &lt;class Fn, class… Args&gt; explicit thread(Fn&amp;&amp; <strong>fn</strong>, Args&amp;&amp;… <strong>args</strong>);</td>
+<td>创建一个 <code>std::thread</code> 对象，该 <code>std::thread</code> 对象可被 <code>joinable</code>，新产生的线程会调用 <code>fn</code> 函数，该函数的参数由 <code>args</code> 给出。</td>
+</tr>
+<tr>
+<td>拷贝构造函数 [deleted]</td>
+<td>thread(const thread&amp;) &#x3D; delete;</td>
+<td>被禁用，意味着 <code>std::thread</code> 对象不可拷贝构造。</td>
+</tr>
+<tr>
+<td><code>Move</code> 构造函数</td>
+<td>thread(thread&amp;&amp; x) noexcept;</td>
+<td><code>move </code>构造函数，调用成功之后 <code>x</code> 不代表任何 <code>std::thread</code> 执行对象。详情见右值引用、<code>std::move</code></td>
+</tr>
+</tbody></table>
+<h4 id="成员函数"><a href="#成员函数" class="headerlink" title="成员函数"></a>成员函数</h4><ol>
+<li><p><code>std::thread  joinable()</code>函数，用于检测线程是否有效。相同线程不能被<code>join()</code>和<code>detach()</code>两次</p>
+<p><code>joinable</code>：代表该线程是可执行线程。</p>
+<p><code>not-joinable </code>：通常一下几种情况会导致线程成为<code>not-joinable</code></p>
+<ul>
+<li>由<code>thread</code>的缺省构造函数构造而成(<code>thread()</code>没有参数)</li>
+<li>该<code>thread</code>被<code>move</code>过（包括<code>move</code>构造和<code>move</code>赋值）</li>
+<li>该线程调用过<code>join</code>或者<code>detach</code></li>
+</ul>
+</li>
+<li><p><code>join</code>：创建线程执行线程函数，调用该函数会阻塞当前线程，直到线程执行完<code>join</code>才返回。主线程等待子线程</p>
+</li>
+<li><p><code>detach</code>: 将当前线程对象所代表的执行实例与该线程对象分离，使得线程的执行可以单独进行。<code>detach</code>调用之后，目标线程就成为了守护线程，驻留后台运行，与之关联的<code>std::thread</code>对象失去对目标线程的关联，无法再通过<code>std::thread</code>对象取得该线程的控制权。主线程不等子线程</p>
+</li>
+<li><p><code>get_id</code>：得到当前线程ID</p>
+</li>
+<li><p><code>swap</code>: 交换两个线程对象所代表的底层句柄。</p>
+</li>
+</ol>
+<h4 id="std-this-thread-函数"><a href="#std-this-thread-函数" class="headerlink" title="std::this_thread 函数"></a><code>std::this_thread</code> 函数</h4><ol>
+<li><code>get_id</code>：得到当前线程ID</li>
+<li><code>yield</code>: 当前线程放弃执行，操作系统调度另一线程继续执行。</li>
+<li><code>sleep</code>：<code>sleep_until</code> 以及 <code>sleep_for</code> 线程休眠至某个指定的时刻或某个时间片段，该线程才被重新唤醒。</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;utility&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;thread&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;chrono&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;functional&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;atomic&gt;</span></span><br> <br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">f1</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; ++i) &#123;<br>        std::cout &lt;&lt; <span class="hljs-string">&quot;Thread &quot;</span> &lt;&lt; n &lt;&lt; <span class="hljs-string">&quot; executing\n&quot;</span>;<br>        std::this_thread::<span class="hljs-built_in">sleep_for</span>(std::chrono::<span class="hljs-built_in">milliseconds</span>(<span class="hljs-number">10</span>));<br>    &#125;<br>&#125;<br> <br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">f2</span><span class="hljs-params">(<span class="hljs-type">int</span>&amp; n)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; ++i) &#123;<br>        std::cout &lt;&lt; <span class="hljs-string">&quot;Thread 2 executing\n&quot;</span>;<br>        ++n;<br>        std::this_thread::<span class="hljs-built_in">sleep_for</span>(std::chrono::<span class="hljs-built_in">milliseconds</span>(<span class="hljs-number">10</span>));<br>    &#125;<br>&#125;<br> <br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-type">int</span> n = <span class="hljs-number">0</span>;<br>    std::thread t1; <span class="hljs-comment">// t1 is not a thread</span><br>    <span class="hljs-function">std::thread <span class="hljs-title">t2</span><span class="hljs-params">(f1, n + <span class="hljs-number">1</span>)</span></span>; <span class="hljs-comment">// pass by value</span><br>    <span class="hljs-function">std::thread <span class="hljs-title">t3</span><span class="hljs-params">(f2, std::ref(n))</span></span>; <span class="hljs-comment">// pass by reference</span><br>    <span class="hljs-function">std::thread <span class="hljs-title">t4</span><span class="hljs-params">(std::move(t3))</span></span>; <span class="hljs-comment">// t4 is now running f2(). t3 is no longer a thread</span><br>    t<span class="hljs-number">2.</span><span class="hljs-built_in">join</span>();<br>    t<span class="hljs-number">4.</span><span class="hljs-built_in">join</span>();<br>    std::cout &lt;&lt; <span class="hljs-string">&quot;Final value of n is &quot;</span> &lt;&lt; n &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="Mutex-互斥量"><a href="#Mutex-互斥量" class="headerlink" title="Mutex 互斥量"></a>Mutex 互斥量</h2><h4 id="互斥量与信号量"><a href="#互斥量与信号量" class="headerlink" title="互斥量与信号量"></a>互斥量与信号量</h4><ol>
+<li><p><strong>互斥量</strong></p>
+<p><code>Mutex</code> <strong>又称互斥量</strong>也称之为互斥锁，用来保证在任一时刻只能有一个线程访问该对象，每个线程在对资源操作前都尝试先加锁，成功加锁才能操作，操作结束后解锁，C++11 中与<code>Mutex</code><strong>相关的类（包括锁类型）和函数</strong>都声明在 <code>&lt;mutex&gt;</code> 头文件中</p>
+</li>
+<li><p><strong>信号量</strong></p>
+<p><strong>互斥量用于线程的互斥</strong>，<strong>信号量用于线程的同步。<strong>信号量是指在互斥的基础上（大多数情况），通过其它机制实现访问者对资源的有序访问。在大多数情况下，同步已经实现了互斥，特别是所有写入资源的情况必定是互斥的。少数情况是指可以允许多个访问者同时访问资源，因此</strong>互斥量值只能为0&#x2F;1，信号量值可以为非负整数</strong></p>
+</li>
+</ol>
+<h4 id="Mutex-系列类"><a href="#Mutex-系列类" class="headerlink" title="Mutex 系列类"></a>Mutex 系列类</h4><ol>
+<li><p><code>std::mutex</code></p>
+<p>**最基本的 Mutex 类，**该类提供了最基本的上锁和解锁操作。同时，基本的互斥量不允许某个线程在已获得互斥量的情况下重复对该互斥量进行上锁操作，所以重复上锁将会导致死锁（结果通常未定义的）</p>
+</li>
+<li><p><code>std::recursive_mutex</code></p>
+<p><strong>递归 Mutex 类</strong>，与 <code>std::mutex</code> 功能基本相同，但是允许互斥量的拥有者（通常是某个线程）重复对该互斥量进行上锁操作而不会产生死锁，但必须保证上锁和解锁的次数相同</p>
+</li>
+<li><p><code>std::time_mutex</code></p>
+<p>**定时 Mutex 类，**与 <code>std::mutex</code> 功能基本相同，但是提供了两个额外的定时上锁操作，<code>try_lock_for</code> 和 <code>try_lock_until</code>，即某个线程在规定的时间内对互斥量进行上锁操作，如果在规定的时间内获得了锁则返回 <code>true</code>, 超时则返回 <code>false</code>，在本章后面的内容中我会介绍<code>try_lock_for</code> 和 <code>try_lock_until</code>两个上锁函数之间细微的差异</p>
+</li>
+<li><p><code>std::recursive_timed_mutex</code></p>
+<p><strong>定时递归 Mutex 类</strong>，既提供了重复上锁功能，又提供了定时上锁的特性（即在规定的时间内没有获得锁则返回 <code>false</code>），相当于 <code>std::recursive_mutex</code> 和 <code>std::time_mutex</code> 的组合</p>
+</li>
+</ol>
+<h4 id="Lock-类"><a href="#Lock-类" class="headerlink" title="Lock 类"></a>Lock 类</h4><p>C++11 标准中定义了两种与互斥量相关的 RAII（资源获取即初始化）技术。</p>
+<p>RAII原理：如果希望保持对某个重要资源的跟踪，那么创建一个对象，并将资源生命周期与对象的生命周期相关联。最简单的RAII形式是创建这样一个对象：构造函数中获取一份资源，析构函数中则释放资源</p>
+<ol>
+<li><p><code>std::lock_guard</code></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c++">std::mutex mtx;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">foo</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-function">std::lock_guard&lt;std::mutex&gt; <span class="hljs-title">lck</span><span class="hljs-params">(mtx)</span></span>;<br>    ...<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>与 Mutex RAII 相关，方便线程对互斥量上锁。即在某个 <code>lock_guard</code> 对象的声明周期内，它所管理的锁对象会一直保持上锁状态；而 <code>lock_guard</code> 的生命周期结束之后，它所管理的锁对象会被解锁。<code>lock_guard</code> 对象的声明周期内，它所管理的锁对象会一直保持上锁状态；而 <code>lock_guard</code>的生命周期结束之后，它所管理的锁对象会被解锁，类似于智能指针，这也就是RAII</p>
+</li>
+<li><p><code>std::unique_lock</code></p>
+<p>对象以独占所有权的方式管理 <code>mutex</code> 对象的上锁和解锁操作，所谓独占所有权，就是没有其他的 <code>unique_lock</code> 对象同时拥有某个 <code>mutex</code> 对象的所有权。与 Mutex RAII 相关，方便线程对互斥量上锁，但提供了更好的上锁和解锁控制。提供更多的函数因此更加灵活</p>
+<ul>
+<li>上锁&#x2F;解锁操作：<code>lock</code>，<code>try_lock</code>，<code>try_lock_for</code>，<code>try_lock_until</code> 和 <code>unlock</code></li>
+<li>修改操作：移动赋值(<code>move assignment</code>)(前面已经介绍过了)，交换(<code>swap</code>)（与另一个 <code>std::unique_lock</code> 对象交换它们所管理的 <code>Mutex</code> 对象的所有权），释放(<code>release</code>)（返回指向它所管理的 Mutex 对象的指针，并释放所有权）</li>
+<li>获取属性操作：<code>owns_lock</code>（返回当前 <code>std::unique_lock</code> 对象是否获得了锁）、<code>operator bool()</code>（与 <code>owns_lock</code> 功能相同，返回当前 <code>std::unique_lock</code> 对象是否获得了锁）、<code>mutex</code>（返回当前 <code>std::unique_lock</code> 对象所管理的 <code>Mutex</code> 对象的指针）。</li>
+</ul>
+</li>
+</ol>
+<h4 id="锁类型相关的Tag类"><a href="#锁类型相关的Tag类" class="headerlink" title="锁类型相关的Tag类"></a>锁类型相关的Tag类</h4><ol>
+<li><code>std::adopt_lock_t</code>，一个空的标记类，定义如下：<code>struct adopt_lock_t {};</code>，该类型的常量对象<code>adopt_lock</code>（<code>adopt_lock</code> 是一个常量对象，定义如下：<code>constexpr adopt_lock_t adopt_lock {};</code>，<code>constexpr</code> 是 C++11 中的新关键字） 通常作为参数传入给 <code>unique_lock</code> 或 <code>lock_guard</code> 的构造函数。</li>
+<li><code>std::defer_lock_t</code>，一个空的标记类，定义如下：<code>struct defer_lock_t {};</code>，该类型的常量对象<code>defer_lock</code>（<code>defer_lock</code> 是一个常量对象，定义如下：<code>constexpr defer_lock_t defer_lock {};</code>） 通常作为参数传入给<code>unique_lock</code> 或 <code>lock_guard</code> 的构造函数。</li>
+<li><code>std::try_to_lock_t</code>，一个空的标记类，定义如下：<code>struct try_to_lock_t {};</code>，该类型的常量对象<code>try_to_lock</code>（<code>try_to_lock</code> 是一个常量对象，定义如下：<code>constexpr try_to_lock_t try_to_lock {};</code>） 通常作为参数传入给<code>unique_lock</code> 或 <code>lock_guard</code> 的构造函数。。</li>
+</ol>
+<h4 id="成员函数-1"><a href="#成员函数-1" class="headerlink" title="成员函数"></a>成员函数</h4><ol>
+<li><code>std::try_lock</code>，尝试同时对多个互斥量上锁。线程调用也会出现<code>lock</code>的三种情况</li>
+<li><code>std::lock</code>，同时对多个互斥量上锁。调用线程将锁住该互斥量。线程调用该函数会发生下面 3 种情况：<ul>
+<li>如果该互斥量当前没有被锁住，则调用线程将该互斥量锁住，直到调用 unlock之前，该线程一直拥有该锁。</li>
+<li>如果当前互斥量被其他线程锁住，则当前的调用线程被阻塞住</li>
+<li>如果当前互斥量被当前调用线程锁住，则会产生死锁(deadlock)</li>
+</ul>
+</li>
+<li><code>unlock</code>， 解锁，释放对互斥量的所有权。</li>
+<li><code>std::call_once</code>，如果多个线程需要同时调用某个函数，<code>call_once</code> 可以保证多个线程对该函数只调用一次</li>
+</ol>
+<h2 id="Condition-条件变量"><a href="#Condition-条件变量" class="headerlink" title="Condition 条件变量"></a>Condition 条件变量</h2><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p><strong>条件变量是线程的另外一种同步机制</strong>，这些同步对象为线程提供了会合的场所，即线程交互时的一个线程给另外的一个或者多个线程发送消息，我们指定在条件变量这个地方发生，一个线程用于修改这个变量使其满足其它线程继续往下执行的条件，其它线程则接收条件已经发生改变的信号。C++11利用条件变量 <code>std::condition_variable</code> 进行线程同步的应用实例，<code>Linux</code> 下使用 <code>pthread</code> 库中的 <code>pthread_cond_*()</code> 函数提供了与条件变量相关的功能</p>
+<p>当 <code>std::condition_variable</code> 对象的某个 <code>wait</code> 函数被调用的时候，它使用 <code>std::unique_lock</code>(封装 <code>std::mutex</code>) 来锁住当前线程。当前线程会一直被阻塞，直到另外一个线程在相同的 <code>std::condition_variable</code> 对象上调用了 <code>notification</code> 函数来唤醒当前线程</p>
+<h4 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h4><ol>
+<li><p><code>wait()</code>函数</p>
+<ul>
+<li><p><code>void wait (unique_lock&lt;mutex&gt;&amp; lck);</code></p>
+<p>当前线程调用 <code>wait()</code> 后将被阻塞(此时当前线程应该获得了锁（<code>lck</code>）, 直到另外某个线程调用 <code>notify_*</code> 唤醒了当前线程，在线程被阻塞时，该函数会自动调用 <code>lck.unlock()</code> 释放锁，使得其他被阻塞在锁竞争上的线程得以继续执行。</p>
+</li>
+<li><p><code>template &lt;class Predicate&gt; void wait (unique_lock&lt;mutex&gt;&amp; lck, Predicate pred);</code></p>
+<p>设置了 <code>Predicate</code>，只有当 <code>pred</code> 条件为 <code>false</code> 时调用 <code>wait()</code> 才会阻塞当前线程，并且在收到其他线程的通知后只有当 <code>pred</code> 为 <code>true</code> 时才会被解除阻塞。</p>
+</li>
+</ul>
+</li>
+<li><p><code>std::condition_variable::notify_one()</code></p>
+<p>唤醒某个等待(<code>wait</code>)线程。如果当前没有等待线程，则该函数什么也不做，如果同时存在多个等待线程，则唤醒某个线程是不确定的</p>
+</li>
+<li><p><code>std::condition_variable::notify_all()</code> </p>
+<p>唤醒所有的等待(<code>wait</code>)线程。如果当前没有等待线程，则该函数什么也不做</p>
+</li>
+<li><p><code>std::notify_all_at_thread_exit</code></p>
+<p>当调用该函数的线程退出时，所有在 cond 条件变量上等待的线程都会收到通知</p>
+</li>
+<li><p>唤醒所有的等待(<code>wait</code>)线程。如果当前没有等待线程，则该函数什么也不做</p>
+</li>
+</ol>
+<h2 id="Future-异步"><a href="#Future-异步" class="headerlink" title="Future 异步"></a>Future 异步</h2><p>异步的概念和同步相对。当一个异步过程调用发出后，调用者不能立刻得到结果。实际处理这个调用的部件在完成后，通过状态、通知和回调来通知调用者。与C++ 11异步任务相关的类主要在<code>&lt;future&gt;</code>头文件中，此外 <code>std::async</code> 也可以作为异步任务的提供者，不过 <code>std::async</code> 并不是类，而是函数</p>
+<h4 id="主要类和函数"><a href="#主要类和函数" class="headerlink" title="主要类和函数"></a>主要类和函数</h4><ol>
+<li>Providers 类：<code>std::promise</code>, <code>std::package_task</code></li>
+<li>Futures 类：<code>std::future</code>, <code>std::shared_future</code>.</li>
+<li>Providers 函数：<code>std::async()</code></li>
+<li>其他类型：<code>std::future_error</code>, <code>std::future_errc</code>, <code>std::future_status</code>, <code>std::launch</code>.</li>
+</ol>
+<h4 id="异步任务提供者（Providers"><a href="#异步任务提供者（Providers" class="headerlink" title="异步任务提供者（Providers)"></a>异步任务提供者（Providers)</h4><ol>
+<li><p><code>std::promise</code>：它可以在某一时刻设置共享状态的值，它可以在某一时刻设置共享状态的值。</p>
+<p><code>std::promise</code> 对象可以保存某一类型 T 的值，该值可被 future 对象读取（可能在另外一个线程中），因此 promise 也提供了一种线程同步的手段，在 promise 对象构造时可以和一个共享状态（通常是std::future）相关联，并可以在相关联的共享状态(<code>std::future</code>)上保存一个类型为 T 的值。</p>
+</li>
+<li><p><code>std::package_task</code>：它在某一时刻通过调用被包装的任务来设置共享状态的值</p>
+<p><code>std::packaged_task</code> 包装一个可调用的对象，并且允许异步获取该可调用对象产生的结果</p>
+</li>
+<li><p><code>std::async()</code> ：是一个函数</p>
+</li>
+</ol>
+<h4 id="Future类"><a href="#Future类" class="headerlink" title="Future类"></a>Future类</h4><p><code>std::future </code>用来获取异步任务的结果，对象可以异步返回共享状态的值。因此可以把它当成一种简单的线程间同步的手段。一个有效(<code>valid</code>)的 <code>std::future</code> 对象通常由三种 Provider 创建，并和某个共享状态相关类</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">print_int</span><span class="hljs-params">(std::future&lt;<span class="hljs-type">int</span>&gt;&amp; fut)</span> </span>&#123;<br>    <span class="hljs-type">int</span> x = fut.<span class="hljs-built_in">get</span>(); <span class="hljs-comment">// 获取共享状态的值.</span><br>    std::cout &lt;&lt; <span class="hljs-string">&quot;value: &quot;</span> &lt;&lt; x &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>; <span class="hljs-comment">// 打印 value: 10.</span><br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span> <span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    std::promise&lt;<span class="hljs-type">int</span>&gt; prom; <span class="hljs-comment">// 生成一个 std::promise&lt;int&gt; 对象.</span><br>    std::future&lt;<span class="hljs-type">int</span>&gt; fut = prom.<span class="hljs-built_in">get_future</span>(); <span class="hljs-comment">// 和 future 关联.</span><br>    <span class="hljs-function">std::thread <span class="hljs-title">t</span><span class="hljs-params">(print_int, std::ref(fut))</span></span>; <span class="hljs-comment">// 将 future 交给另外一个线程t.</span><br>    prom.<span class="hljs-built_in">set_value</span>(<span class="hljs-number">10</span>); <span class="hljs-comment">// 设置共享状态的值, 此处和线程t保持同步.</span><br>    t.<span class="hljs-built_in">join</span>();<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="Atomic-原子类型"><a href="#Atomic-原子类型" class="headerlink" title="Atomic 原子类型"></a>Atomic 原子类型</h2><p>原子类型对象的主要特点就是从不同线程访问不会导致数据竞争，意味着多个线程访问同一个资源时，有且仅有一个线程能对资源进行操作。通常情况下原子操作可以通过互斥的访问方式来保证</p>
+<ol>
+<li><p><code>std::atomic_flag</code></p>
+<p><code>atomic_flag</code> 一种简单的原子布尔类型，只支持两种操作，<code>test_and_set</code> 和 <code>clear</code>。</p>
+</li>
+<li><p><code>std::atomic</code></p>
+<p>满足其他需求(如 <code>store</code>, <code>load</code>, <code>exchange</code>, <code>compare_exchange</code></p>
+</li>
+</ol>
+<h2 id="内存模型"><a href="#内存模型" class="headerlink" title="内存模型"></a>内存模型</h2><h4 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h4><ol>
+<li><strong>静态内存模型</strong>：主要是类(或结构)对象在内存中的布局。也就是类(或结构)成员在内存中是如何存放的。C++11有一些定义及工具用来对内存布局进行操作，更复杂的类(或结构)对象的内存布局请参考Stanley B.Lippman的《深度探索C++对象模型》。</li>
+<li><strong>动态内存模型</strong>：是从行为方面来看，多个线程对同一个对象同时读写时所做的约束，该模型理解起来要复杂一些，涉及了内存、Cache、CPU各个层次的交互，尤其是在多核系统中为了保证多线程环境下执行的正确性，需要对读写事件加以严格限制。std::memory_order就是这用来做这事的，它实际上是程序员、编译器以及CPU之间的契约，遵守契约后大家各自优化，从而可能提高程序性能。</li>
+</ol>
+<h4 id="为什么需要内存模型"><a href="#为什么需要内存模型" class="headerlink" title="为什么需要内存模型"></a>为什么需要内存模型</h4><img src="../images/image-20200819214836498.png" srcset="/img/loading.gif" lazyload/>
+
+<p>多核情况下为了获取更高的性能，会对语句进行执行顺序上的优化(类似CPU乱序)。避免方案当然是<code>std::mutex</code>，但是当程序对代码执行效率要求很高，<code>std::mutex</code>不满足时，就需要<code>std::atomic</code>，但<code>std::atomic</code>无法发现错误</p>
+<h4 id="C-11的内存模型"><a href="#C-11的内存模型" class="headerlink" title="C++11的内存模型"></a>C++11的内存模型</h4><p>在正式介绍memory_order之前，我们先来看两个概念：synchronized-with和happends-before。</p>
+<ul>
+<li><p>行为：<strong>synchronized-with</strong></p>
+<p>这是std::atomic生效的前提之一。假设X是一个atomic变量。如果线程A写了变量X, 线程B读了变量X，那么我们就说线程A、B间存在synchronized-with关系。C++11默认的原子操作(memory_order_seq_cst)就是synchronized-with的，保证了对X的读和写是互斥的，不会同时发生。</p>
+<img src="../images/image-20200819215555351.png" srcset="/img/loading.gif" lazyload/>
+</li>
+<li><p>结果：<strong>happens-before</strong></p>
+<p> happens-before指明了后发生的动作会看到先发生的动作的结果。还是上图，当线程B读取X时，读到的一定是写入后的X值，而不会是其它情况。happends-before具有<em>传递性</em>。如果A happens-before B，B happens-before C，那么A happends-before C</p>
+</li>
+<li><p><strong>4种内存模型</strong></p>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>内存模型</th>
+<th>memory_order值</th>
+<th><strong>备注</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>宽松</td>
+<td>memory_order_relaxed</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>释放-获取</td>
+<td>memory_order_acquire<br/>memory_order_release<br/>memory_order_acq_rel</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>释放-消费</td>
+<td>memory_order_consume</td>
+<td>C++20起</td>
+</tr>
+<tr>
+<td>4</td>
+<td>顺序一致</td>
+<td>memory_order_seq_cst</td>
+<td></td>
+</tr>
+</tbody></table>
+<ol>
+<li><p><strong>宽松</strong></p>
+<p>在原子变量上采用relaxed ordering的操作不参与synchronized-with关系。Relaxed ordering的限定范围是同线程，在同一线程内对<strong>同一原子变量</strong>的访问不可以被重排，仍保持happens-before关系，但这与别的线程无关(不同线程间的同一原子变量的操作没有happens-before关系)。Relaxed ordering适用于<strong>只要求原子操作，不需要其它同步保障</strong>的情况。该操作典型的应用场景是程序计数器：</p>
+</li>
+<li><p><strong>释放-获取</strong></p>
+<p>Release-acquire中没有全序关系，但它提供了一些同步方法。在这种序列模型下，原子操作对应的内存操作为：</p>
+<table>
+<thead>
+<tr>
+<th align="center">序号</th>
+<th align="center">原子操作</th>
+<th>对应的内存操作</th>
+<th>memory_order枚举值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">load</td>
+<td>acquire</td>
+<td>memory_order_acquire</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">store</td>
+<td>release</td>
+<td>memory_order_release</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">fetch_add exchange</td>
+<td>acquire 或 release 或 两者都是</td>
+<td>memory_order_acquire memory_order_release memory_order_acq_rel</td>
+</tr>
+<tr>
+<td align="center">…</td>
+<td align="center">…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody></table>
+<p>Release-acquire中同步是成对出现的，仅建立在释放和获取同一原子对象的线程之间。其它线程有可能看到不一样的内存访问顺序。在我们常用的x86系统(强顺序系统)上，释放-获取顺序对于多数操作是自动进行的，无需为此同步模式添加额外的CPU指令。但在弱顺序系统(如ARM)上，必须使用特别的CPU加载或内存栅栏指令。</p>
+<p>Release-acquire有一个特点：线程A中所有发生在release x之前的写操作(包括非原子或宽松原子)，对在线程B acquire x之后都可见。本来A、B间读写操作顺序不定。这么一同步，在x这个点前后，A、B线程之间有了个顺序关系，称作inter-thread happens-before。</p>
+<p>一个释放-获取同步的例子是<code>std::mutex</code>：线程A释放锁而线程B获得它时，发生于线程A环境的临界区(释放之前)中的所有内存写入操作，对于线程B(获得之后)均可见。</p>
+</li>
+<li><p><strong>释放-消费</strong></p>
+<p>释放-消费顺序的规范正在修订中，C++标准暂不鼓励使用memory_order_consume。此处不过多介绍</p>
+</li>
+<li><p><strong>顺序一致</strong></p>
+<p>顺序一致性原子操作是全序的，可以看作是释放-获取操作的加强版，它与释放-获取顺序相同的方式排序内存(在一个线程中先发生于存储的任何结果都变成进行加载的线程中的可见副效应)的同时，还对所有内存操作建立单独全序。它意味着将程序看做是一个简单的序列。如果对于一个原子变量的所有操作都是顺序一致的，那么多线程程序的行为就像是这些操作都以一种特定顺序被单线程程序执行。</p>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="并发数据结构"><a href="#并发数据结构" class="headerlink" title="并发数据结构"></a>并发数据结构</h2><p>理解底层数据结构 ，理解底层机制是，加锁还是写CAS，锁的粒度是什么，还是写时拷贝</p>
+<ol>
+<li><code>concurrentqueue</code></li>
+</ol>
+<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><h4 id="生产者消费者模型"><a href="#生产者消费者模型" class="headerlink" title="生产者消费者模型"></a>生产者消费者模型</h4><ol>
+<li><p>单对单</p>
+</li>
+<li><p>单对多</p>
+</li>
+<li><p>多对单</p>
+</li>
+<li><p>多对多</p>
+</li>
+</ol>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p>C++11多线程-内存模型：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/7d237771dc94">https://www.jianshu.com/p/7d237771dc94</a></p>
+<p>Cplusplus-Concurrency-In-Practice：<a target="_blank" rel="noopener" href="https://github.com/forhappy/Cplusplus-Concurrency-In-Practice">https://github.com/forhappy/Cplusplus-Concurrency-In-Practice</a></p>
+<p>C++并发编程-博客园：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/huty/p/8516997.html">https://www.cnblogs.com/huty/p/8516997.html</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/C/" class="category-chain-item">C++</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%AF%AD%E8%A8%80/" class="print-no-link">#语言</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>C++ 并发</div>
+      <div>https://liruilong9999.github.io/2022/04/30/C++parallel/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>liruilong</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年4月30日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/04/30/C++more/" title="C++ more">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">C++ more</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/04/30/C++%E5%9F%BA%E7%A1%80/" title="C++基础">
+                        <span class="hidden-mobile">C++基础</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

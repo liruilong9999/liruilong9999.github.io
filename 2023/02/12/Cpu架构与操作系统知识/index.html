@@ -1,0 +1,815 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="liruilong">
+  <meta name="keywords" content="study">
+  
+    <meta name="description" content="CPU架构与操作系统">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CPU架构与操作系统">
+<meta property="og:url" content="https://liruilong9999.github.io/2023/02/12/Cpu%E6%9E%B6%E6%9E%84%E4%B8%8E%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86/index.html">
+<meta property="og:site_name" content="非酋的博客">
+<meta property="og:description" content="CPU架构与操作系统">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-02-11T19:15:16.000Z">
+<meta property="article:modified_time" content="2025-08-01T15:54:52.744Z">
+<meta property="article:author" content="liruilong">
+<meta property="article:tag" content="CPU架构与操作系统">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>CPU架构与操作系统 - 非酋的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"liruilong9999.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>别看这里</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="CPU架构与操作系统"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-02-12 03:15" pubdate>
+          星期日, 二月 12日 2023, 3:15 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          4.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          41 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">CPU架构与操作系统</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="CPU架构与操作系统"><a href="#CPU架构与操作系统" class="headerlink" title="CPU架构与操作系统"></a>CPU架构与操作系统</h1><h2 id="一、CPU架构"><a href="#一、CPU架构" class="headerlink" title="一、CPU架构"></a>一、CPU架构</h2><p>架构以指令集区分</p>
+<h3 id="1-指令集"><a href="#1-指令集" class="headerlink" title="1 指令集"></a>1 指令集</h3><p>计算机指令就是指挥机器工作的指示和命令，程序就是一系列按一定顺序排列的指令，执行程序的过程就是计算机的工作过程。指令集，就是CPU中用来计算和控制计算机系统的一套指令的集合，而每一种新型的CPU在设计时就规定了一系列与其他硬件电路相配合的指令系统。而指令集的先进与否，也关系到CPU的性能发挥，它也是CPU性能体现的一个重要标志。指令的强弱也是CPU的重要指标，指令集是提高微处理器效率的最有效的工具之一。从现阶段的主流体系结构讲，指令集可分为复杂指令集和精简指令集两部分。</p>
+<h4 id="1-1-CISC-复杂指令集"><a href="#1-1-CISC-复杂指令集" class="headerlink" title="1.1 CISC(复杂指令集)"></a>1.1 CISC(复杂指令集)</h4><p>复杂指令集，也称为CISC指令集，英文名是CISC，(ComplexInstruction Set Computina的缩写)。在CISC微处理器中，程序的各条指令是按顺序串行执行的，每条指令中的各个操作也是按顺序串行执行的。顺序执行的优点是控制简单，但计算机各部分的利用率不高，执行速度慢。其实它是英特尔生产的x86系列(也就是IA-32架构)CPU及其兼容CPU，如AMD、VIA的。即使是现在新起的X86-64(也被称 AMD64)都是属于CISC的范畴。</p>
+<p><strong>X86 架构</strong><br>Intel x86是英特尔公司于1978年推出的16位微处理器。<br>x86泛指一系列基于Intel 8086且向后兼容的中央处理器指令集架构。<br>Intel在早期以80x86这样的数字格式来命名处理器，包括Intel 8086、80186、80286、80386（i386, 从16位时代带入了32位时代）以及80486，由于以“86”作为结尾，因此其架构被称为“x86”。由于数字并不能作为注册商标，因此Intel及其竞争者均在新一代处理器使用可注册的名称，如奔腾（Pentium）、酷睿（Core）、锐龙（Ryzen，AMD推出）。<br>x86的32位架构一般又被称作IA-32，全名为“Intel Architecture, 32-bit”。</p>
+<p><strong>AMD64</strong><br>AMD64，或“x64”，是一种64位元的电脑处理器架构。它是基于现有32位元的x86架构，由AMD公司所开发。之后也被Intel采用，被其称为“Intel 64”。一般也被称作“x86-64”、“x64”。<br>值得注意的是，Intel也推出过IA-64架构，虽然名字上与“IA-32”相似，但两者完全不兼容，并不属于x86指令集架构家族。</p>
+<p>复杂指令集的每个小指令可以执行一些较低级的硬件操作，指令数目多而复杂，每条指令的执行长度不同。因为指令执行较为复杂，所以每条指令的执行时间较长，但每个单条指令可以处理的工作较为丰富。常见的使用CISC指令集的CPU有AMD、Intel、VIA等x86架构的CPU。<br>由于AMD、Intel、VIA所开发出来的x86架构CPU被大量使用于个人电脑（Personal Computer），因此，个人电脑常被称为x86架构电脑。<br>在2003年以前由Inter所开发的x86架构CPU由8位升级到16、32位，后来AMD依此架构修改新一代的CPU为64为，为了区别两者的差异，因此64位的个人电脑CPU又被统称为x86-64架构。</p>
+<h4 id="1-2-RISC-精简指令集"><a href="#1-2-RISC-精简指令集" class="headerlink" title="1.2 RISC(精简指令集)"></a>1.2 RISC(精简指令集)</h4><p>精简指令集计算机(RISC:Reduced Instruction Set ComputingRISC)是一种执行较少类型计算机指令的微处理器，起源干80年代的 MIPS主机(即RISC机)，RISC机中采用的微处理器统称RISC处理器。这样一来，它能够以更快的速度执行操作(每秒执行更多百万条指令即MIPS)。因为计算机执行每个指令类型都需要额外的品体管和电路元件，计算机指令集越大就会使微处理器更复杂，执行操作也会更慢纽约约克镇IBM研究中心的lohn Cocke证明，计笪机中约20%的指令承担了80%的工作，千1974年，他提出RISC的概念。许多当前的微芯片都使用RISC概念。</p>
+<p>这种CPU设计中，指令集较为精简，每个指令的运行时间都很短，完成的操作也很简单，指令的执行性能较佳；但是若要做复杂的事情，就要由多个指令来完成。<br>目前世界上使用范围最广的CPU可能就是ARM这种架构。</p>
+<h3 id="2-CISC和RISC区别"><a href="#2-CISC和RISC区别" class="headerlink" title="2 CISC和RISC区别"></a>2 CISC和RISC区别</h3><p>从硬件角度来看CISC处理的是不等长指令集，它必须对不等长指令进行分割，因此在执行单一指令的时候需要进行较多的处理工作。</p>
+<p>而RISC执行的是等长精简指令集CPU在执行指的时候度较快目性能稳定。因此在并行外理方面RISC明显优CISCRISC可同时执行多条指令，它可将一条指令分割成若干个进程或线程，交由多个处理器同时执行。由于RISC执行的是精简指令集，所以它的制造工艺简单且成本低廉。</p>
+<h4 id="2-1-CISC"><a href="#2-1-CISC" class="headerlink" title="2.1 CISC"></a>2.1 CISC</h4><h5 id="1-CISC体系的指令特征"><a href="#1-CISC体系的指令特征" class="headerlink" title="1 CISC体系的指令特征"></a>1 CISC体系的指令特征</h5><ol>
+<li><p>使用微代码。指令集可以直接在微代码存储器（比主存储器的速度快很多）里执行，新设计的处理器，只需增加较少的电晶体就可以执行同样的指令集，也可以很快地编写新的指令集程序。</p>
+</li>
+<li><p>庞大的指令集。可以减少编程所需要的代码行数，减轻程序员的负担。高级语言对应的指令集：包括双运算元格式、寄存器到寄存器、寄存器到存储器以及存储器到寄存器的指令。</p>
+</li>
+</ol>
+<h5 id="2-CISC体系的优缺点"><a href="#2-CISC体系的优缺点" class="headerlink" title="2 CISC体系的优缺点"></a>2 CISC体系的优缺点</h5><ol>
+<li><p>优点：能够有效缩短新指令的微代码设计时间，允许设计师实现 CISC 体系机器的向上兼容。新的系统可以使用一个包含早期系统的指令超集合，也就可以使用较早电脑上使用的相同软件。另外微程序指令的格式与高级语言相匹配，因而编译器并不一定要重新编写。</p>
+</li>
+<li><p>缺点：指令集以及芯片的设计比上一代产品更复杂，不同的指令，需要不同的时钟周期来完成，执行较慢的指令，将影响整台机器的执行效率。</p>
+</li>
+</ol>
+<h4 id="2-2-RISC"><a href="#2-2-RISC" class="headerlink" title="2.2 RISC"></a>2.2 RISC</h4><h5 id="1-RISC体系的指令特征"><a href="#1-RISC体系的指令特征" class="headerlink" title="1 RISC体系的指令特征"></a>1 RISC体系的指令特征</h5><ol>
+<li><p>精简指令集：包含了简单、基本的指令，通过这些简单、基本的指令，就可以组合成复杂指令。</p>
+</li>
+<li><p>同样长度的指令：每条指令的长度都是相同的，可以在一个单独操作里完成。</p>
+</li>
+<li><p>单机器周期指令：大多数的指令都可以在一个机器周期里完成，并且允许处理器在同一时间内执行一系列的指令。</p>
+</li>
+</ol>
+<h5 id="2-RISC体系的优缺点"><a href="#2-RISC体系的优缺点" class="headerlink" title="2 RISC体系的优缺点"></a>2 RISC体系的优缺点</h5><p>优点：在使用相同的芯片技术和相同运行时钟下，RISC 系统的运行速度将是 CISC 的2～4倍。由于RISC处理器的指令集是精简的，它的内存管理单元、浮点单元等都能设计在同一块芯片上。RISC 处理器比相对应的 CISC 处理器设计更简单，所需要的时间将变得更短，并可以比CISC处理器应用更多先进的技术，开发更快的下一代处理器。</p>
+<p>缺点：多指令的操作使得程序开发者必须小心地选用合适的编译器，而且编写的代码量会变得非常大。另外就是RISC体系的处理器需要更快的存储器，这通常都集成于处理器内部，就是L1 Cache（一级缓存）。</p>
+<p> 综合上面所述，若要再进一步比较CISC与RISC之差异，可以由以下几点来进行分析：</p>
+<ol>
+<li><p>指令的形成：CISC 因指令复杂，故采用微指令码控制单元的设计，而RISC的指令90%是由硬件直接完成，只有10%的指令是由软件以组合的方式完成，因此指令执行时间上RISC较短，但RISC所须ROM空间相对的比较大，至于RAM使用大小应该与程序的应用比较有关系。</p>
+</li>
+<li><p>寻址模式：CISC的需要较多的寻址模式，而RISC只有少数的寻址模式，因此CPU在计算存储器有效位址时，CISC占用的汇流排周期较多。</p>
+</li>
+<li><p>指令的执行：CISC指令的格式长短不一，执行时的周期次数也不统一，而RISC结构刚好相反，故适合采用流水线处理架构的设计，进而可以达到平均一周期完成一指令的方向努力。显然的，在设计上RISC较CISC简单，同时因为CISC的执行步骤过多，闲置的单元电路等待时间增长，不利于平行处理的设计，所以就效能而言RISC较CISC还是占了上风，但RISC因指令精简化后造成应用程式码变大，需要较大的存储器空间，且存在指令种类较多等等的缺点。</p>
+</li>
+</ol>
+<p><strong>补充：</strong></p>
+<p>所谓的位（bit），指的是CPU一次读取数据的最大量。64位CPU代表CPU一次可以读写64位的数据，32位CPU则是CPU一次能读取32位的意思。因为CPU读取数据量有限制，因此能够从内存中读写的数据也就有所限制。所以一般32位的CPU能读写最大数据量，大概就是4GB。</p>
+<h2 id="二、主流操作系统"><a href="#二、主流操作系统" class="headerlink" title="二、主流操作系统"></a>二、主流操作系统</h2><h3 id="1-银河麒麟桌面操作系统V4"><a href="#1-银河麒麟桌面操作系统V4" class="headerlink" title="1 银河麒麟桌面操作系统V4"></a>1 银河麒麟桌面操作系统V4</h3><p>银河麒麟桌面操作系统具有良好的软硬件兼容性，支持飞腾、鲲鹏等自主CPU及x86平台。银河麒麟桌面操作系统主要面向电子办公、家庭生活、个人娱乐。</p>
+<h3 id="2-银河麒麟桌面操作系统V10"><a href="#2-银河麒麟桌面操作系统V10" class="headerlink" title="2 银河麒麟桌面操作系统V10"></a>2 银河麒麟桌面操作系统V10</h3><p>银河麒麟桌面操作系统V10是图形化桌面操作系统产品。现已适配国产主流软硬件产品，同源支持飞腾、鲲鹏、海思麒麟、龙芯、申威、海光、兆芯等国产CPU和Intel、AMD平台，通过功耗管理、内核锁及页拷贝、网络、VFS、NVME等针对性的深入优化。软件商店内包括自研应用和第三方商业软件在内的各类应用，同时提供Android兼容环境和Windows兼容环境。支持多CPU平台的统一软件升级仓库、版本在线更新功能。</p>
+<h3 id="3-统信操作系统"><a href="#3-统信操作系统" class="headerlink" title="3 统信操作系统"></a>3 统信操作系统</h3><p>统信操作系统（UOS）是由统信软件开发的一款基于Linux内核的操作系统，分为统信桌面操作系统、统信操作系统服务器版和统信操作系统专用设备版。统信桌面操作系统V20以桌面应用场景为主，支持主流国产芯片平台的笔记本、台式机、一体机和工作站。系统包含原创专属的桌面环境、多款自研应用，以及众多来自开源社区的原生应用软件。通过系统预装的应用商店和互联网中的软件仓库，用户能够获得近千款应用软件的支持，可够满足日常办公和娱乐需求。</p>
+<p>统信桌面操作系统V20具备极好的软硬件及外设兼容性。在硬件方面能够兼容联想、华为、清华同方、长城、曙光、航天科工、浪潮等整机厂商发布的主流型号终端设备；在软件方面，能够兼容流式、版式、电子签章等厂商发布的常用办公应用软件；在外设方面，能够兼容主流的打印机、扫描仪、高拍仪、读卡器等硬件设备。</p>
+<p>统信桌面操作系统V20通过对整机、终端办公应用、服务端应用和硬件外设的适配支持，对桌面应用的开发、移植和优化，以及对应用场景解决方案的构建，完全满足项目支撑、平台应用、软件开发和系统定制的需求，体现了当今操作系统发展的最新水平；同时，也为党、政、军、能源、金融、军队军工等关键行业提供了符合当前业务需求和满足未来发展的平台支撑。</p>
+<h3 id="4-CentOS7"><a href="#4-CentOS7" class="headerlink" title="4 CentOS7"></a>4 CentOS7</h3><p>CentOS 7是一个企业级的Linux发行版本，它源于RedHat免费公开的源代码进行再发行。CentOS 7内核更新至3.10.0、支持Linux容器、支持Open VMware Tools及3D图像即装即用、支持OpenJDK-7作为缺省JDK、支持内核空间内的iSCSI及FCoE、支持PTPv2等功能。</p>
+<h4 id="4-1-发展历程"><a href="#4-1-发展历程" class="headerlink" title="4.1 发展历程"></a>4.1 发展历程</h4><p>2014年7月7日，CentOS 7第一个发行版发布，版本号为7.0.1406。<br>2015年3月31日至2020年4月27日，发布了CentOS 7.1.1503等八个版本。<br>2020年11月12日，CentOS 7最终版本CentOS 7.9.2009发布。<br>2020年12月8日，CentOS发布公告称CentOS Linux系列将不再更新维护，CentOS 7生命周期将于2024年6月30日终止。</p>
+<h4 id="4-2-系统功能（部分）"><a href="#4-2-系统功能（部分）" class="headerlink" title="4.2 系统功能（部分）"></a>4.2 系统功能（部分）</h4><p><strong>内核</strong></p>
+<table>
+<thead>
+<tr>
+<th>crashkernel</th>
+<th>CentOS 7支持在有大内存（最大为3TB）的系统中使用kdump崩溃转储机制，启用在一个以上 CPU 中引导crashnernel的功能。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Swap内存压缩</td>
+<td>CentOS 7引进了一个新功能，即swap内存压缩。Swap压缩由zswap执行，这是一个用于frontswap的精简后端。采用swap内存压缩技术可保证显著减少I&#x2F;O，并提高性能。</td>
+</tr>
+<tr>
+<td>采用NUMA的调度和内存分配</td>
+<td>在CentOS 7中，内核会在同一系统的不同NUMA节点间自动重置进程和内存以提高没有统一内存访问（NUMA）系统的性能。</td>
+</tr>
+<tr>
+<td>APIC虚拟化</td>
+<td>CentOS 7通过利用新处理器的硬件功能支持高级程序中断控制器（APIC）注册的虚拟化以便提高虚拟机监视器（VMM）中断处理能力。</td>
+</tr>
+<tr>
+<td>vmcp内嵌在内核中</td>
+<td>在CentOS 7中，vmcp内核模块内嵌在内核中。这可保证vmcp设备节点总会出现，同时用户可在不首先载入vmcp内核模块的情况下发送IBM z&#x2F;VM hypervisor控制程序命令。</td>
+</tr>
+<tr>
+<td>全面DynTick支持</td>
+<td>在CentOS 7中，<em>nohz_full</em>引导参数将最初的无缝内核功能延伸到额外的情况，比如可以停止tick的时候、可以使用per-cpu <em>nr_running&#x3D;1</em>设置的时候。即在CPU的运行队列中只有一个可运行的任务。</td>
+</tr>
+<tr>
+<td>将内核模块列入黑名单</td>
+<td>提供modprobe程序可让用户在安装时将内核模块放入黑名单。可通过运行命令：modprobe.blacklist&#x3D;<em>module</em>，禁用自动载入一个模块。</td>
+</tr>
+</tbody></table>
+<p><strong>虚拟化</strong></p>
+<table>
+<thead>
+<tr>
+<th>PCI桥接</th>
+<th>CentOS 7采用PCI桥接技术，可让用户配置32个以上的PCI设备（不支持桥接后的设备热插拔）。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>QEMU沙箱</td>
+<td>CentOS 7使用内核系统调用过滤加强KVM虚拟化安全性，这提高了主机系统与虚拟机之间的独立性。</td>
+</tr>
+<tr>
+<td>支持QEMU虚拟CPU热添加</td>
+<td>CentOS 7中的QEMU提供虚拟CPU（vCPU）热添加支持。可在运行的虚拟机中添加虚拟CPU（vCPUS）以满足与负载关联的负载要求或者保持服务等级协议（SLA）。</td>
+</tr>
+<tr>
+<td>多队列NIC</td>
+<td>多队列virtio_net提供更好的可延伸性，每个虚拟CPU都有独立的传输或者接收队列以及可在不影响其他虚拟CPU的情况下使用的独立中断。</td>
+</tr>
+<tr>
+<td>多队列virtio_scsi</td>
+<td>多队列virtio_net提供更好的可延伸性。每个虚拟CPU都有独立的队列以及可在不影响其他虚拟CPU的情况下使用的独立中断。</td>
+</tr>
+<tr>
+<td>KVM中的HyperV启示</td>
+<td>CentOS 7已使用多个微软Hyper-V功能更新了KVM，例如：支持内存管理单元（MMU）和虚拟中断控制程序。微软在虚拟机和主机之间提供半虚拟API，通过在主机中使用这个功能的一部分，并根据微软的说明对其进行控制，微软Windows虚拟机就可以提高其性能。</td>
+</tr>
+<tr>
+<td>QEMU虚拟机的I&#x2F;O节流</td>
+<td>这个功能为QEMU虚拟机块设备提供I&#x2F;O节流。I&#x2F;O节流会延缓I&#x2F;O内存请求的处理。这样会延迟系统但可防止其死机。（注：不能节流数据层。）</td>
+</tr>
+<tr>
+<td>基于VFIO的PCI设备分配</td>
+<td>虚拟功能I&#x2F;O（VFIO）用户空间驱动程序界面为KVM虚拟机提供改进的PCI设备分配解决方案。VFIO提供内核级设备分离强化，提高设备访问的安全性，并与安全引导等功兼容。VFIO替换了前任系统中使用的KVM设备分配机制。</td>
+</tr>
+</tbody></table>
+<p><strong>集群</strong></p>
+<p>集群是多台计算机（节点）一同工作以便提高重要产品服务的可靠性、可扩展性和可用性。可利用CentOS 7的高可用性来根据性能、高可用性、负载平衡以及文件共享的不同需要采用各种不同的配置进行部署，具有以下功能特性：</p>
+<table>
+<thead>
+<tr>
+<th>Pacemaker集群管理器</th>
+<th>CentOS 7使用Pacemaker替换rgmanager进行集群资源管理以及从节点失败中恢复。包括以下优点：资源配置的自动同步和版本管理；灵活的资源和fencing模式可与用户环境更紧密地对应；可使用fencing恢复资源层失败；在多节点中运行同一资源的能力；在两个不同模式之一的多个节点中运行同一资源的能力；Pacemaker不需要分布式锁管理程序；仲裁丢失或者形成多个分区时的可配置行为。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>keepalived和HAProxy</td>
+<td>CentOS 7使用keepalived和HAProxy替换了负载平衡程序Piranha。keepalived软件包提供简单且强大的负载平衡和高可用功能，HAProxy为TCP和HTTP应用程序提供一个可靠的高性能网络负载平衡程序，特别适用于在需要持久性或者Layer7处理时有非常高负载的网页。</td>
+</tr>
+<tr>
+<td>Pacemaker</td>
+<td>Pacemaker 配置系统，也称pcs，替换了ccs、ricci和luci作为统一的集群配置和管理工具。其优点包括：命令行工具；可轻松自我启动集群，即初始化集群并使其开始运行；可配置集群选项；可添加、删除或者修改资源及其之间的关系。</td>
+</tr>
+<tr>
+<td>新的资源代理</td>
+<td>CentOS 7提供大量资源代理。资源代理时集群资源的标准化接口。资源代理可将一组标准操作转换为具体资源或者应用程序的步骤，并将其结果解读为成功或者失败。</td>
+</tr>
+</tbody></table>
+<p><strong>文件系统</strong></p>
+<table>
+<thead>
+<tr>
+<th>支持 XFS 文件系统</th>
+<th>CentOS 7中使用的默认文件系统是 XFS，它替换了前任系统中使用的第四代扩展的文件系统（ext4）。XFS是高度可扩展、高性能文件系统，支持高达16艾字节（约 1600万TB）的文件系统，多达8艾字节（约 800万TB）以及包含数千万条目的目录结构。XFS支持元数据日志，它可加快崩溃的恢复。XFS文件系统还可在挂载且活跃的情况下进行清理碎片和扩展操作。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>支持 IBM System z 中的 libhugetlbfs</td>
+<td>CentOS 7支持IBM System z架构中的libhugetlbfs库，该库允许C和C++程序中的大页面透明开发，应用程序及中间件程序可从其性能优点或者大页面中受益而无需进行更改或者重新编译。</td>
+</tr>
+</tbody></table>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Cpu/" class="category-chain-item">Cpu</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/CPU%E6%9E%B6%E6%9E%84%E4%B8%8E%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="print-no-link">#CPU架构与操作系统</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>CPU架构与操作系统</div>
+      <div>https://liruilong9999.github.io/2023/02/12/Cpu架构与操作系统知识/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>liruilong</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年2月12日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/03/11/%E8%BD%AF%E4%BB%B6%E4%B8%AD%E7%BA%A7%E8%80%83%E8%AF%95%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" title="软件中级考试笔记">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">软件中级考试笔记</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/02/12/QtCreator%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8%E4%BB%8B%E7%BB%8D/" title="QtCreator">
+                        <span class="hidden-mobile">QtCreator</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,870 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="liruilong">
+  <meta name="keywords" content="study">
+  
+    <meta name="description" content="内存映射文件操作">
+<meta property="og:type" content="article">
+<meta property="og:title" content="内存映射文件操作">
+<meta property="og:url" content="https://liruilong9999.github.io/2022/05/05/%E9%80%9A%E8%BF%87%E5%86%85%E5%AD%98%E6%98%A0%E5%B0%84%E5%A4%8D%E5%88%B6%E6%96%87%E4%BB%B6/index.html">
+<meta property="og:site_name" content="非酋的博客">
+<meta property="og:description" content="内存映射文件操作">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-05T14:15:16.000Z">
+<meta property="article:modified_time" content="2025-08-01T15:54:52.749Z">
+<meta property="article:author" content="liruilong">
+<meta property="article:tag" content="语言 内存映射 文件操作">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>内存映射文件操作 - 非酋的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"liruilong9999.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>别看这里</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="内存映射文件操作"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-05-05 22:15" pubdate>
+          星期四, 五月 5日 2022, 10:15 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          2.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          21 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">内存映射文件操作</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h3 id="1、CreateFile-函数"><a href="#1、CreateFile-函数" class="headerlink" title="1、CreateFile 函数"></a>1、CreateFile 函数</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-function">HANDLE <span class="hljs-title">CreateFile</span><span class="hljs-params">(</span></span><br><span class="hljs-params"><span class="hljs-function"> 	_In_ LPCSTR lpFileName,<span class="hljs-comment">//指向文件名的指针</span></span></span><br><span class="hljs-params"><span class="hljs-function">    _In_ DWORD dwDesiredAccess,<span class="hljs-comment">// 访问模式（写 / 读）</span></span></span><br><span class="hljs-params"><span class="hljs-function">    _In_ DWORD dwShareMode,<span class="hljs-comment">// 共享模式 </span></span></span><br><span class="hljs-params"><span class="hljs-function">    _In_opt_ LPSECURITY_ATTRIBUTES lpSecurityAttributes,<span class="hljs-comment">// 指向安全属性的指针</span></span></span><br><span class="hljs-params"><span class="hljs-function">    _In_ DWORD dwCreationDisposition,<span class="hljs-comment">// 如何创建</span></span></span><br><span class="hljs-params"><span class="hljs-function">    _In_ DWORD dwFlagsAndAttributes, <span class="hljs-comment">// 文件属性 </span></span></span><br><span class="hljs-params"><span class="hljs-function">    _In_opt_ HANDLE hTemplateFile<span class="hljs-comment">// 用于复制文件句柄 </span></span></span><br><span class="hljs-params"><span class="hljs-function">)</span></span>;<br><br></code></pre></td></tr></table></figure>
+
+<p>参数说明</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型及说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>lpFileName</td>
+<td>String ，要打开的文件的名字</td>
+</tr>
+<tr>
+<td>dwDesiredAccess</td>
+<td>Long ，如果为 GENERIC_READ 表示允许对设备进行读访问；如果为 GENERIC_WRITE 表示允许对设备进行写访问（可组合使用）；如果为零，表示只允许获取与一个设备有关的信息</td>
+</tr>
+<tr>
+<td>dwShareMode</td>
+<td>Long ，零表示不共享； FILE_SHARE_READ 和 &#x2F; 或 FILE_SHARE_WRITE 表示允许对文件进行共享访问</td>
+</tr>
+<tr>
+<td>lpSecurityAttributes</td>
+<td>SECURITY_ATTRIBUTES ，指向一个 SECURITY_ATTRIBUTES 结构的指针，定义了文件的安全特性（如果操作系统支持的话）</td>
+</tr>
+<tr>
+<td>dwCreationDisposition</td>
+<td>Long ，下述常数之一:</td>
+</tr>
+<tr>
+<td></td>
+<td>CREATE_NEW 创建文件；如文件存在则会出错。</td>
+</tr>
+<tr>
+<td></td>
+<td>CREATE_ALWAYS创建文件，会改写前一个文件</td>
+</tr>
+<tr>
+<td></td>
+<td>OPEN_ALWAYS如文件不存在则创建它</td>
+</tr>
+<tr>
+<td></td>
+<td>OPEN_EXISTING文件必须已经存在。</td>
+</tr>
+<tr>
+<td></td>
+<td>TRUNCATE_EXISTINGj将现有文件缩短为零长度</td>
+</tr>
+<tr>
+<td>dwFlagsAndAttributes</td>
+<td>Long ，一个或多个下述常数</td>
+</tr>
+<tr>
+<td></td>
+<td>FILE_ATTRIBUTE_ARCHIVE标记归档属性</td>
+</tr>
+<tr>
+<td></td>
+<td>FILE_ATTRIBUTE_COMPRESSED将文件标记为已压缩，或者标记为文件在目录中的默认压缩方式</td>
+</tr>
+<tr>
+<td></td>
+<td>FILE_ATTRIBUTE_NORMAL默认属性</td>
+</tr>
+<tr>
+<td></td>
+<td>FILE_ATTRIBUTE_HIDDEN隐藏文件或目录</td>
+</tr>
+<tr>
+<td></td>
+<td>FILE_ATTRIBUTE_READONLY文件为只读</td>
+</tr>
+<tr>
+<td></td>
+<td>FILE_ATTRIBUTE_SYSTEM文件为系统文件</td>
+</tr>
+<tr>
+<td></td>
+<td>FILE_FLAG_WRITE_THROUGH操作系统不得推迟对文件的写操作</td>
+</tr>
+<tr>
+<td></td>
+<td>FILE_FLAG_OVERLAPPED允许对文件进行重叠操作</td>
+</tr>
+<tr>
+<td></td>
+<td>FILE_FLAG_NO_BUFFERING禁止对文件进行缓冲处理。文件只能写入磁盘卷的扇区块</td>
+</tr>
+<tr>
+<td></td>
+<td>FILE_FLAG_RANDOM_ACCESS针对随机访问对文件缓冲进行优化</td>
+</tr>
+<tr>
+<td></td>
+<td>FILE_FLAG_SEQUENTIAL_SCAN针对连续访问对文件缓冲进行优化</td>
+</tr>
+<tr>
+<td></td>
+<td>FILE_FLAG_DELETE_ON_CLOSE关闭了上一次打开的句柄后，将文件删除。特别适合临时文件</td>
+</tr>
+<tr>
+<td></td>
+<td>也可在 Windows NT 下组合使用下述常数标记：</td>
+</tr>
+<tr>
+<td></td>
+<td>SECURITY_ANONYMOUS ， SECURITY_IDENTIFICATION ， SECURITY_IMPERSONATION ，SECURITY_DELEGATION ， SECURITY_CONTEXT_TRACKING ， SECURITY_EFFECTIVE_ONLY</td>
+</tr>
+<tr>
+<td>hTemplateFile</td>
+<td>Long ，如果不为零，则指定一个文件句柄。新文件将从这个文件中复制扩展属性</td>
+</tr>
+</tbody></table>
+<h3 id="2、CreateFileMapping函数"><a href="#2、CreateFileMapping函数" class="headerlink" title="2、CreateFileMapping函数"></a>2、CreateFileMapping函数</h3><p>为指定文件创建或打开命名或未命名的文件映射对象。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs C++">HANDLE WINAPI CreateFileMapping（<br>  _In_ HANDLE hFile，<br>  _In_opt_ LPSECURITY_ATTRIBUTES lpAttributes，<br>  _In_ DWORD flProtect，<br>  _In_ DWORD dwMaximumSizeHigh，<br>  _In_ DWORD dwMaximumSizeLow，<br>  _In_opt_ LPCTSTR lpName<br>）;<br></code></pre></td></tr></table></figure>
+
+<p><strong>参数说明：</strong></p>
+<ol>
+<li>hFile [in]<br>从中创建文件映射对象的文件句柄。</li>
+</ol>
+<p>​       必须使用与flProtect参数指定的保护标志兼容的访问权限打开该文件。它不是必需的，但建议打开要映射的文件以进行独占访问。有关更多信息，请参阅文件安全性和访问权限。</p>
+<p>​       如果hFile为INVALID_HANDLE_VALUE，则调用进程还必须在dwMaximumSizeHigh和dwMaximumSizeLow参数中指定文件映射对象的大小。在此方案中，CreateFileMapping创建指定大小的文件映射对象，该对象由系统页面文件而不是文件系统中的文件支持。</p>
+<ol start="2">
+<li>lpAttributes [in，optional]<br>指向SECURITY_ATTRIBUTES结构的指针，该结构确定子进程是否可以继承返回的句柄。 SECURITY_ATTRIBUTES结构的lpSecurityDescriptor成员为新文件映射对象指定安全描述符。</li>
+</ol>
+<p>​       如果lpAttributes为NULL，则无法继承句柄，文件映射对象将获取默认安全描述符。文件映射对象的默认安全描述符中的访问控制列表（ACL）来自创建者的   	  主要或模拟令牌。有关更多信息，请参阅文件映射安全性和访问权限。</p>
+<ol start="3">
+<li>flProtect [in]<br>指定文件映射对象的页面保护。对象的所有映射视图必须与此保护兼容。</li>
+</ol>
+<p>​       此参数可以是以下值之一。</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>PAGE_EXECUTE_READ</strong>  		 0x20</td>
+<td>允许将视图映射为只读，写时复制或执行访问。<br/>必须使用GENERIC_READ和GENERIC_EXECUTE访问权限创建hFile参数指定的文件句柄。<br/>Windows Server 2003和Windows XP：<br/>在带有SP1的Windows XP和带有SP1的Windows Server 2003之前，此值不可用。</td>
+</tr>
+<tr>
+<td><strong>PAGE_EXECUTE_READWRITE</strong>     0x40</td>
+<td>允许将视图映射为只读，写时复制，读&#x2F;写或执行访问。<br/>必须使用GENERIC_READ，GENERIC_WRITE和GENERIC_EXECUTE访问权限创建hFile参数指定的文件句柄。<br/>Windows Server 2003和Windows XP：在带有SP1的Windows XP和带有SP1的Windows Server 2003之前，此值不可用。</td>
+</tr>
+<tr>
+<td><strong>PAGE_EXECUTE_WRITECOPY</strong>    0x80</td>
+<td>允许将视图映射为只读，写时复制或执行访问。该值等于PAGE_EXECUTE_READ。<br/>必须使用GENERIC_READ和GENERIC_EXECUTE访问权限创建hFile参数指定的文件句柄。<br/>Windows Vista：在Windows Vista SP1之前，此值不可用。<br/>Windows Server 2003和Windows XP：不支持此值。</td>
+</tr>
+<tr>
+<td>PAGE_READONLY                      0x02</td>
+<td>允许映射视图以进行只读或写时复制访问。尝试写入特定区域会导致访问冲突。<br/>必须使用GENERIC_READ访问权限创建hFile参数指定的文件句柄。<br/></td>
+</tr>
+<tr>
+<td>PAGE_READWRITE                     0x04</td>
+<td>允许映射视图以进行只读，写时复制或读&#x2F;写访问。<br/>必须使用GENERIC_READ和GENERIC_WRITE访问权限创建hFile参数指定的文件句柄。</td>
+</tr>
+<tr>
+<td>PAGE_WRITECOPY                    0x08</td>
+<td>允许映射视图以进行只读或写时复制访问。该值相当于PAGE_READONLY。<br/>必须使用GENERIC_READ访问权限创建hFile参数指定的文件句柄。<br/>应用程序可以通过将它们与前面的页面保护值之一组合来为文件映射对象指定以下一个或多个属性。</td>
+</tr>
+<tr>
+<td>SEC_COMMIT                0x8000000</td>
+<td>如果文件映射对象由操作系统页面文件（hfile参数为INVALID_HANDLE_VALUE）支持，则指定当文件视图映射到进程地址空间时，将提交整个页面范围而不是保留。系统必须具有足够的可提交页面来保存整个映射。否则，CreateFileMapping失败。<br/>此属性对可执行映像文件或数据文件支持的文件映射对象没有影响（hfile参数是文件的句柄）。<br/>SEC_COMMIT不能与SEC_RESERVE结合使用。<br/>如果未指定任何属性，则假定为SEC_COMMIT。</td>
+</tr>
+<tr>
+<td>SEC_IMAGE                  0x1000000</td>
+<td>指定hFile参数指定的文件是可执行映像文件。<br/>SEC_IMAGE属性必须与页面保护值（如PAGE_READONLY）结合使用。但是，此页面保护值对可执行映像文件的视图没有影响。可执行文件视图的页面保护由可执行文件本身决定。<br/>SEC_IMAGE没有其他属性有效。</td>
+</tr>
+<tr>
+<td>SEC_IMAGE_NO_EXECUTE           0x11000000</td>
+<td>指定hFile参数指定的文件是不会执行的可执行映像文件，并且加载的映像文件将不会运行强制完整性检查。此外，映射使用SEC_IMAGE_NO_EXECUTE属性创建的文件映射对象的视图不会调用使用PsSetLoadImageNotifyRoutine内核API注册的驱动程序回调。<br/>SEC_IMAGE_NO_EXECUTE属性必须与PAGE_READONLY页面保护值组合使用。 SEC_IMAGE_NO_EXECUTE没有其他属性有效。<br/>Windows Server 2008 R2，Windows 7，Windows Server 2008，Windows Vista，Windows Server 2003和Windows XP：Windows Server 2012和Windows 8之前不支持此值。</td>
+</tr>
+<tr>
+<td>SEC_LARGE_PAGES                  0x80000000</td>
+<td>允许大页面用于由操作系统页面文件支持的文件映射对象（hfile参数为INVALID_HANDLE_VALUE）。由可执行映像文件或数据文件支持的文件映射对象不支持此属性（hFile参数是可执行映像或数据文件的句柄）。<br/>文件映射对象的最大大小必须是GetLargePageMinimum函数返回的大页面的最小大小的倍数。如果不是，则CreateFileMapping失败。映射使用SEC_LARGE_PAGES创建的文件映射对象的视图时，基址和视图大小也必须是最小大页面大小的倍数。<br/>SEC_LARGE_PAGES需要在调用者令牌中启用SeLockMemoryPrivilege特权。<br/>如果指定了SEC_LARGE_PAGES，则还必须指定SEC_COMMIT。<br/>Windows Server 2003：Windows Server 2003 SP1之前不支持此值。<br/>Windows XP：不支持此值。</td>
+</tr>
+<tr>
+<td>SEC_NOCACHE                           0x10000000</td>
+<td>将所有页面设置为不可缓存。<br/>应用程序不应使用此属性，除非设备明确要求。使用带有SEC_NOCACHE映射的内存的互锁函数可能会导致EXCEPTION_ILLEGAL_INSTRUCTION异常。<br/>SEC_NOCACHE要求设置SEC_RESERVE或SEC_COMMIT属性。</td>
+</tr>
+<tr>
+<td>SEC_RESERVE                             0x4000000</td>
+<td>如果文件映射对象由操作系统页面文件（hfile参数为INVALID_HANDLE_VALUE）支持，则指定当文件视图映射到进程地址空间时，整个页面范围保留供进程以后使用而非承诺。<br/>可以在后续调用VirtualAlloc函数时提交保留页面。提交页面后，无法使用VirtualFree函数释放或取消它们。<br/>此属性对可执行映像文件或数据文件支持的文件映射对象没有影响（hfile参数是文件的句柄）。<br/>SEC_RESERVE不能与SEC_COMMIT结合使用。</td>
+</tr>
+<tr>
+<td>SEC_WRITECOMBINE                          0x40000000</td>
+<td>将所有页面设置为写入组合。<br/>应用程序不应使用此属性，除非设备明确要求。使用带有SEC_WRITECOMBINE映射的内存的互锁函数可能会导致EXCEPTION_ILLEGAL_INSTRUCTION异常。<br/>SEC_WRITECOMBINE需要设置SEC_RESERVE或SEC_COMMIT属性。<br/>Windows Server 2003和Windows XP：Windows Vista之前不支持此标志。</td>
+</tr>
+</tbody></table>
+<ol start="4">
+<li><p>dwMaximumSizeHigh [in]<br>文件映射对象最大大小的高阶DWORD。</p>
+</li>
+<li><p>dwMaximumSizeLow [in]<br>文件映射对象的最大大小的低位DWORD。</p>
+<pre><code class="hljs">如果此参数和dwMaximumSizeHigh为0（零），则文件映射对象的最大大小等于hFile标识的文件的当前大         小。
+</code></pre>
+</li>
+</ol>
+<p>​	   尝试映射长度为0（零）的文件失败，错误代码为ERROR_FILE_INVALID。应用程序应测试长度为0（零）的文   	   件并拒绝这些文件。</p>
+<ol start="6">
+<li>lpName [in，optional]<br>文件映射对象的名称。</li>
+</ol>
+<p>​	   如果此参数与现有映射对象的名称匹配，则该函数请求具有flProtect指定的保护的对象的访问权限。</p>
+<p>​	   如果此参数为NULL，则创建没有名称的文件映射对象。</p>
+<p>​	   如果lpName与现有事件，信号量，互斥锁，等待计时器或作业对象的名称匹配，则该函数将失败，并且	      	   GetLastError函数将返回ERROR_INVALID_HANDLE。这是因为这些对象共享相同的命名空间。</p>
+<p>​		该名称可以具有“Global”或“Local”前缀，以在全局或会话命名空间中显式创建对象。名称的其余部分可以包含		除反斜杠字符（\）之外的任何字符。从会话零以外的会话在全局命名空间中创建文件映射对象需要		   		SeCreateGlobalPrivilege特权。有关更多信息，请参阅内核对象命名空间。</p>
+<p>​		通过使用终端服务会话实现快速用户切换。第一个登录用户使用会话0（零），下一个登录用户使用会话1	   	 （一），依此类推。内核对象名称必须遵循为终端服务概述的准则，以便应用程序可以支持多个用户。</p>
+<h5 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h5><p>如果函数成功，则返回值是新创建的文件映射对象的句柄。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/C/" class="category-chain-item">C++</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%AF%AD%E8%A8%80-%E5%86%85%E5%AD%98%E6%98%A0%E5%B0%84-%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" class="print-no-link">#语言 内存映射 文件操作</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>内存映射文件操作</div>
+      <div>https://liruilong9999.github.io/2022/05/05/通过内存映射复制文件/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>liruilong</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年5月5日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/05/09/%E5%9F%BA%E7%A1%80%E4%B9%90%E7%90%86%E5%AD%A6%E4%B9%A0/" title="基础乐理学习笔记（部分）">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">基础乐理学习笔记（部分）</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/05/04/%E9%81%8D%E5%8E%86%E3%80%81%E5%A4%8D%E5%88%B6%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" title="遍历、复制文件">
+                        <span class="hidden-mobile">遍历、复制文件</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

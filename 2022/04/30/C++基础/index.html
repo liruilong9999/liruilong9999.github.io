@@ -1,0 +1,1264 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="liruilong">
+  <meta name="keywords" content="study">
+  
+    <meta name="description" content="C++基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++基础">
+<meta property="og:url" content="https://liruilong9999.github.io/2022/04/30/C++%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="非酋的博客">
+<meta property="og:description" content="C++基础">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-04-29T19:15:16.000Z">
+<meta property="article:modified_time" content="2025-08-01T15:54:52.744Z">
+<meta property="article:author" content="liruilong">
+<meta property="article:tag" content="语言">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>C++基础 - 非酋的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"liruilong9999.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>别看这里</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="C++基础"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-04-30 03:15" pubdate>
+          星期六, 四月 30日 2022, 3:15 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          8.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          72 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">C++基础</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="一、基础"><a href="#一、基础" class="headerlink" title="一、基础"></a>一、基础</h1><h2 id="1、hello-world"><a href="#1、hello-world" class="headerlink" title="1、hello world"></a>1、hello world</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	cout &lt;&lt; <span class="hljs-string">&quot;hello world&quot;</span> &lt;&lt; endl;<br>	<span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="2、注释"><a href="#2、注释" class="headerlink" title="2、注释"></a>2、注释</h2><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs actionscript">行 <span class="hljs-comment">//</span><br>多行 <span class="hljs-comment">/*  */</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="3、变量"><a href="#3、变量" class="headerlink" title="3、变量"></a>3、变量</h2><figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs abnf">数据类型 变量名 <span class="hljs-operator">=</span> 变量初始值；<br>int a <span class="hljs-operator">=</span> <span class="hljs-number">5</span><span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="4、常量"><a href="#4、常量" class="headerlink" title="4、常量"></a>4、常量</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">// # define宏常量： </span><br><span class="hljs-meta"># <span class="hljs-keyword">define</span> 变量名 变量值</span><br><br><span class="hljs-meta"># <span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-meta"># <span class="hljs-keyword">define</span> Max 10</span><br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<br>	cout &lt;&lt; Max &lt;&lt; endl;<br><br>	<span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-comment">//const修饰变量：</span><br><span class="hljs-comment">//const 数据类型 常量名=常量值</span><br><br><span class="hljs-meta"># <span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-type">const</span> <span class="hljs-type">int</span> a = <span class="hljs-number">10</span>;<br>	cout &lt;&lt; a &lt;&lt; endl;<br>	<span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h2 id="5、标识符（常量、变量）命名规则"><a href="#5、标识符（常量、变量）命名规则" class="headerlink" title="5、标识符（常量、变量）命名规则"></a>5、标识符（常量、变量）命名规则</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs">1、只能由字母、数字、下划线构成<br>2、第一个字符只能是字母或者下划线<br>3、标识符不能是关键字<br>4、标识符区分大小写的<br></code></pre></td></tr></table></figure>
+
+<h2 id="6、数据类型"><a href="#6、数据类型" class="headerlink" title="6、数据类型"></a>6、数据类型</h2><h3 id="6-1-整型"><a href="#6-1-整型" class="headerlink" title="6_1 整型"></a>6_1 整型</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta"># <span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-type">short</span> num1 = <span class="hljs-number">32768</span>;<br>	<span class="hljs-type">int</span> num2 = <span class="hljs-number">2100000000</span>;<br>	<span class="hljs-type">long</span> num3 = <span class="hljs-number">12</span>;<br>	<span class="hljs-type">long</span> <span class="hljs-type">long</span> num4 = <span class="hljs-number">13</span>;<br>	cout &lt;&lt; num1 &lt;&lt; endl;<br>	cout &lt;&lt; num2 &lt;&lt; endl;<br>	cout &lt;&lt; num3 &lt;&lt; endl;<br>	cout &lt;&lt; num4 &lt;&lt; endl;<br>	<span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="6-2-sizeof关键字"><a href="#6-2-sizeof关键字" class="headerlink" title="6_2 sizeof关键字"></a>6_2 sizeof关键字</h3><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">sizeof</span>(<span class="hljs-built_in">short</span> )&lt; <span class="hljs-keyword">sizeof</span>(<span class="hljs-built_in">int</span>) &lt;= <span class="hljs-keyword">sizeof</span>(<span class="hljs-built_in">long</span>) &lt;= <span class="hljs-keyword">sizeof</span>(<span class="hljs-built_in">long</span> <span class="hljs-built_in">long</span>)<br><br><span class="hljs-meta"># include &lt;iostream&gt;</span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-title">std</span>;<br><br><span class="hljs-function"><span class="hljs-built_in">int</span> <span class="hljs-title">main</span>()</span> &#123;<br>	<span class="hljs-built_in">int</span> num1 = <span class="hljs-number">10</span>;<br>	cout &lt;&lt; <span class="hljs-keyword">sizeof</span>(num1); <span class="hljs-comment">//返回字节</span><br>	system(<span class="hljs-string">&quot;pause&quot;</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="6-3-实型（float）"><a href="#6-3-实型（float）" class="headerlink" title="6_3 实型（float）"></a>6_3 实型（float）</h3><p>1、单精度float</p>
+<p>2、双精度double</p>
+<table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>占用空间</th>
+<th>有效数字范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>float</td>
+<td>4字节</td>
+<td>7位有效数字</td>
+</tr>
+<tr>
+<td>double</td>
+<td>8字节</td>
+<td>15到16位有效数字</td>
+</tr>
+</tbody></table>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta"># <span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-type">float</span> Pi = <span class="hljs-number">1234563.1415926f</span>;<span class="hljs-comment">//小数默认显示6位有效数字，再用科学计数法</span><br>	<span class="hljs-type">double</span> Pj = <span class="hljs-number">1234563.1415926</span>;<span class="hljs-comment">//小数默认显示6位有效数字，再用科学计数法</span><br>	cout &lt;&lt; Pi &lt;&lt; endl;<br>	cout &lt;&lt; Pj &lt;&lt; endl;<br>	<span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="taps：-科学计数法"><a href="#taps：-科学计数法" class="headerlink" title="taps： 科学计数法"></a>taps： 科学计数法</h4><figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sqf">double <span class="hljs-literal">Pi</span> = <span class="hljs-number">3</span>e4 + <span class="hljs-number">38</span>;<br>cout &lt;&lt; <span class="hljs-literal">Pi</span> &lt;&lt; <span class="hljs-literal">endl</span>;<span class="hljs-comment">//30038</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="6-4-字符型"><a href="#6-4-字符型" class="headerlink" title="6_4 字符型"></a>6_4 字符型</h3><ol>
+<li><p>并非存储数据本身，而是存储对应的Ascll码</p>
+</li>
+<li><p>C和C++中char只占一个字节</p>
+</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta"># <span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-type">char</span> ch1 = <span class="hljs-string">&#x27;a&#x27;</span>;<br>	cout &lt;&lt; ch1 &lt;&lt; endl;<br>	cout &lt;&lt; <span class="hljs-built_in">sizeof</span>(ch1) &lt;&lt; endl;<br>	cout &lt;&lt; (<span class="hljs-type">int</span>)ch1 &lt;&lt; endl;         <span class="hljs-comment">//输出对应的Ascll码值</span><br>	<span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="taps："><a href="#taps：" class="headerlink" title="taps："></a>taps：</h4><ol>
+<li><p>创建字符型变量只能放一个字符（多的string）</p>
+</li>
+<li><p>只能用单引号</p>
+</li>
+</ol>
+<h3 id="6-5-转义字符"><a href="#6-5-转义字符" class="headerlink" title="6_5 转义字符"></a>6_5 转义字符</h3><table>
+<thead>
+<tr>
+<th>\n</th>
+<th>换行</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>\v</td>
+<td>垂直制表</td>
+</tr>
+<tr>
+<td>\\</td>
+<td>代表反斜线字符“\”</td>
+</tr>
+<tr>
+<td>\t</td>
+<td>水平制表</td>
+</tr>
+</tbody></table>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta"># <span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<br>	cout &lt;&lt; <span class="hljs-string">&quot;aaa\thello&quot;</span> &lt;&lt; endl;<br>	cout &lt;&lt; <span class="hljs-string">&quot;aaaaa\thello&quot;</span> &lt;&lt; endl;<br>	cout &lt;&lt; <span class="hljs-string">&quot;aaaa\thello&quot;</span> &lt;&lt; endl;<br>	<span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="6-6-字符串型"><a href="#6-6-字符串型" class="headerlink" title="6_6  字符串型"></a>6_6  字符串型</h3><p>两种都能用</p>
+<ol>
+<li><p>沿用C的风格</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf">char 变量名[] <span class="hljs-operator">=</span> <span class="hljs-string">&quot;hello world&quot;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>C++风格</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf">string str <span class="hljs-operator">=</span> <span class="hljs-string">&quot;hello world&quot;</span><br></code></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-meta"># <span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-meta"># <span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string&gt;</span></span><br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-type">char</span> ch[] = <span class="hljs-string">&quot;hello world&quot;</span>;<br>	string ch1 = <span class="hljs-string">&quot;hello world&quot;</span>;<br>	cout &lt;&lt; ch &lt;&lt; endl;<br>	cout &lt;&lt; ch1 &lt;&lt; endl;<br>	<span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span><br></code></pre></td></tr></table></figure></li>
+</ol>
+<h4 id="taps"><a href="#taps" class="headerlink" title="taps:"></a>taps:</h4><ol>
+<li>字符串用双引号</li>
+<li>C风格必须要中括号</li>
+</ol>
+<h3 id="6-7-布尔类型"><a href="#6-7-布尔类型" class="headerlink" title="6_7 布尔类型"></a>6_7 布尔类型</h3><p>只有两个值</p>
+<p>true （本质是1）</p>
+<p>false（本质是0）</p>
+<p>占一位</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta"># <span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-type">bool</span> flag = <span class="hljs-literal">true</span>;<br>	cout &lt;&lt; flag &lt;&lt; endl;<br>	<span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<h3 id="6-8-数据的输入"><a href="#6-8-数据的输入" class="headerlink" title="6_8 数据的输入"></a>6_8 数据的输入</h3><figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs sqf"><span class="hljs-meta"># <span class="hljs-keyword">include</span> &lt;iostream&gt;</span><br><br>using namespace std;<br><br>int main() &#123;<br>	int a = <span class="hljs-number">0</span>;<br>	double <span class="hljs-literal">pi</span> = <span class="hljs-number">10.5</span>;<br>	char ch1 = <span class="hljs-string">&#x27;a&#x27;</span>;<br>	string <span class="hljs-built_in">str</span> = <span class="hljs-string">&quot;hello world&quot;</span>;<br>	bool <span class="hljs-built_in">flag</span> = <span class="hljs-literal">true</span>;<br>	<span class="hljs-comment">//整型</span><br>	cout &lt;&lt; <span class="hljs-string">&quot;a&quot;</span> &lt;&lt; <span class="hljs-literal">endl</span>;<br>	cin &gt;&gt; a;<br>	<span class="hljs-comment">//浮点型</span><br>	cout &lt;&lt; <span class="hljs-string">&quot;pi&quot;</span> &lt;&lt; <span class="hljs-literal">endl</span>;<br>	cin &gt;&gt; <span class="hljs-literal">pi</span>;<br>	<span class="hljs-comment">//字符型</span><br>	cout &lt;&lt; <span class="hljs-string">&quot;ch1&quot;</span> &lt;&lt; <span class="hljs-literal">endl</span>;<br>	cin &gt;&gt; ch1;<br>	<span class="hljs-comment">//字符串型</span><br>	cout &lt;&lt; <span class="hljs-string">&quot;str&quot;</span> &lt;&lt; <span class="hljs-literal">endl</span>;<br>	cin &gt;&gt; <span class="hljs-built_in">str</span>;<br>	<span class="hljs-comment">//布尔型</span><br>	cout &lt;&lt; <span class="hljs-string">&quot;flag&quot;</span> &lt;&lt; <span class="hljs-literal">endl</span>;<br>	cin &gt;&gt; <span class="hljs-built_in">flag</span>;<br>	cout &lt;&lt; a &lt;&lt; <span class="hljs-literal">endl</span>;<br>	cout &lt;&lt; <span class="hljs-literal">pi</span> &lt;&lt; <span class="hljs-literal">endl</span>;<br>	cout &lt;&lt; ch1 &lt;&lt; <span class="hljs-literal">endl</span>;<br>	cout &lt;&lt; <span class="hljs-built_in">str</span> &lt;&lt; <span class="hljs-literal">endl</span>;<br>	cout &lt;&lt; <span class="hljs-built_in">flag</span> &lt;&lt; <span class="hljs-literal">endl</span>;<br>	system(<span class="hljs-string">&quot;pause&quot;</span>);<br>	return <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="7-运算符"><a href="#7-运算符" class="headerlink" title="7 运算符"></a>7 运算符</h2><h3 id="7-1-算术运算符"><a href="#7-1-算术运算符" class="headerlink" title="7_1 算术运算符"></a>7_1 算术运算符</h3><table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>术语</th>
+<th>示例</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>+</td>
+<td>正号</td>
+<td>+3</td>
+<td>3</td>
+</tr>
+<tr>
+<td>-</td>
+<td>负号</td>
+<td>-3</td>
+<td>-3</td>
+</tr>
+<tr>
+<td>+</td>
+<td>加</td>
+<td>10+1</td>
+<td>11</td>
+</tr>
+<tr>
+<td>-</td>
+<td>减</td>
+<td>10-1</td>
+<td>9</td>
+</tr>
+<tr>
+<td>*</td>
+<td>乘</td>
+<td>5*6</td>
+<td>30</td>
+</tr>
+<tr>
+<td>&#x2F;</td>
+<td>除</td>
+<td>10&#x2F;3</td>
+<td>3</td>
+</tr>
+<tr>
+<td>%</td>
+<td>取模（取余）</td>
+<td>10%3</td>
+<td>1</td>
+</tr>
+<tr>
+<td>++</td>
+<td>前置递增</td>
+<td>a&#x3D;2;b&#x3D;++a;</td>
+<td>a&#x3D;3;b&#x3D;3;</td>
+</tr>
+<tr>
+<td>++</td>
+<td>后置递增</td>
+<td>a&#x3D;2;b&#x3D;a++;</td>
+<td>a&#x3D;3;b&#x3D;2;</td>
+</tr>
+<tr>
+<td>–</td>
+<td>前置递减</td>
+<td>a&#x3D;2;b&#x3D;–a;</td>
+<td>a&#x3D;1;b&#x3D;1;</td>
+</tr>
+<tr>
+<td>–</td>
+<td>后置递减</td>
+<td>a&#x3D;2;b&#x3D;a–;</td>
+<td>a&#x3D;1;b&#x3D;2;</td>
+</tr>
+</tbody></table>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">//取余、取模</span><br><br><span class="hljs-meta"># <span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-type">int</span> a = <span class="hljs-number">10</span>;<br>	<span class="hljs-type">int</span> b = <span class="hljs-number">3</span>;<br>	<span class="hljs-type">double</span> c = <span class="hljs-number">1.01</span>;<br>	<span class="hljs-type">double</span> d = <span class="hljs-number">0.07</span>;<br>	cout &lt;&lt; a / b &lt;&lt; endl;  <span class="hljs-comment">//3</span><br>	cout &lt;&lt; c / d &lt;&lt; endl;  <span class="hljs-comment">//14.4286可以为小数</span><br>	<span class="hljs-comment">//cout &lt;&lt; c % d &lt;&lt; endl;//无法取模</span><br>	<span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br> <br><br><br><br></code></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">//前置递增和后置递增</span><br><br><span class="hljs-meta"># <span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-type">int</span> a = <span class="hljs-number">0</span>, b = <span class="hljs-number">0</span>;<br>	b = ++a;  <span class="hljs-comment">//前置递增：先让变量+1 ，再进行表达式的运算</span><br>	cout &lt;&lt; b &lt;&lt; <span class="hljs-string">&quot;   &quot;</span> &lt;&lt; a &lt;&lt; endl; <span class="hljs-comment">//  1 1 </span><br>	<span class="hljs-type">int</span> c = <span class="hljs-number">0</span>, d = <span class="hljs-number">0</span>;<br>	d = c++;  <span class="hljs-comment">//后置递增：进行表达式运算，后让变量+1</span><br>	cout &lt;&lt; d &lt;&lt; <span class="hljs-string">&quot;   &quot;</span> &lt;&lt; c &lt;&lt; endl; <span class="hljs-comment">//  0 1  </span><br>	<span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+<p>​	&#x2F;&#x2F;前置递减和后置递减<br>​	<br>​	# include <iostream><br>​	<br>​	using namespace std;<br>​	</p>
+<pre><code class="hljs">int main() {
+	int a = 0, b = 0;
+	b = --a;  //前置递减：先让变量-1 ，再进行表达式的运算
+	cout &lt;&lt; b &lt;&lt; &quot;   &quot; &lt;&lt; a &lt;&lt; endl; //-1 -1
+	int c = 0, d = 0;
+	d = c--;  //后置递减：进行表达式运算，后让变量-1
+	cout &lt;&lt; d &lt;&lt; &quot;   &quot; &lt;&lt; c &lt;&lt; endl; //0 -1
+	system(&quot;pause&quot;);
+	return 0;
+	}
+</code></pre>
+<h4 id="taps-1"><a href="#taps-1" class="headerlink" title="taps:"></a>taps:</h4><ol>
+<li>取余，取模除数不能为0</li>
+<li>小数无法取模</li>
+<li>小数之间除不尽 相除为小数</li>
+</ol>
+<h3 id="7-2-赋值运算符"><a href="#7-2-赋值运算符" class="headerlink" title="7_2 赋值运算符"></a>7_2 赋值运算符</h3><table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>术语</th>
+<th>示例</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&#x3D;</td>
+<td>赋值</td>
+<td>a&#x3D;2;b&#x3D;3;</td>
+<td>a&#x3D;2;b&#x3D;3;</td>
+</tr>
+<tr>
+<td>+&#x3D;</td>
+<td>加等于</td>
+<td>a&#x3D;0;a+&#x3D; 2;</td>
+<td>a&#x3D;2;</td>
+</tr>
+<tr>
+<td>-&#x3D;</td>
+<td>减等于</td>
+<td>a&#x3D;5;a-&#x3D;3;</td>
+<td>a&#x3D;2;</td>
+</tr>
+<tr>
+<td>*&#x3D;</td>
+<td>乘等于</td>
+<td>a&#x3D;2;a*&#x3D;2;</td>
+<td>a&#x3D;4;</td>
+</tr>
+<tr>
+<td>&#x2F;&#x3D;</td>
+<td>除等于</td>
+<td>a&#x3D;4;a&#x2F;&#x3D;2;</td>
+<td>a&#x3D;2;</td>
+</tr>
+<tr>
+<td>%&#x3D;</td>
+<td>模等于</td>
+<td>a&#x3D;3;a%&#x3D;2;</td>
+<td>a&#x3D;1;</td>
+</tr>
+</tbody></table>
+<h3 id="7-3-比较运算符"><a href="#7-3-比较运算符" class="headerlink" title="7_3 比较运算符"></a>7_3 比较运算符</h3><table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>术语</th>
+<th>示例</th>
+<th>结果0或者1</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&#x3D;&#x3D;</td>
+<td>等于</td>
+<td>4&#x3D;&#x3D;3</td>
+<td>0</td>
+</tr>
+<tr>
+<td>!&#x3D;</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;&#x3D;</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&gt;&#x3D;</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs csharp">include &lt;iostream&gt;<br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-title">std</span>;<br><br><span class="hljs-function"><span class="hljs-built_in">int</span> <span class="hljs-title">main</span>()</span> &#123;<br>	<span class="hljs-built_in">int</span> a = <span class="hljs-number">0</span>, b = <span class="hljs-number">0</span>;<br>	cout &lt;&lt; (a==b) &lt;&lt; endl;   <span class="hljs-comment">//加括号，优先级（先运算是否相等，在输出结果，不然报错）</span><br>	system(<span class="hljs-string">&quot;pause&quot;</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br><br></code></pre></td></tr></table></figure>
+<h3 id="7-4-逻辑运算符"><a href="#7-4-逻辑运算符" class="headerlink" title="7_4 逻辑运算符"></a>7_4 逻辑运算符</h3><table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>术语</th>
+<th>示例</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>！</td>
+<td>非</td>
+<td>!a</td>
+<td>a真为假，a假为真</td>
+</tr>
+<tr>
+<td>&amp;&amp;</td>
+<td>与</td>
+<td>a&amp;&amp;b</td>
+<td>都真为真，否则为假</td>
+</tr>
+<tr>
+<td>||</td>
+<td>或</td>
+<td>a||b</td>
+<td>至少一真为真，都不真为假</td>
+</tr>
+</tbody></table>
+<h2 id="8-程序流程结构"><a href="#8-程序流程结构" class="headerlink" title="8 程序流程结构"></a>8 程序流程结构</h2><p>顺序结构，选择结构，循环结构</p>
+<h3 id="8-1-选择结构"><a href="#8-1-选择结构" class="headerlink" title="8_1 选择结构"></a>8_1 选择结构</h3><h4 id="8-1-1多行if"><a href="#8-1-1多行if" class="headerlink" title="8_1_1多行if"></a>8_1_1多行if</h4><figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs sqf"><br><span class="hljs-meta"># <span class="hljs-keyword">include</span> &lt;iostream&gt;</span><br><br>using namespace std;<br><br>int main() &#123;<br>	<span class="hljs-comment">//选择结构，单行if语句</span><br>	int <span class="hljs-built_in">score</span> = <span class="hljs-number">0</span>;<br>	cout &lt;&lt; <span class="hljs-string">&quot;请输入你的分数: &quot;</span> &lt;&lt; <span class="hljs-literal">endl</span>;<br>	cin &gt;&gt; <span class="hljs-built_in">score</span>;<br>	cout &lt;&lt; <span class="hljs-string">&quot;你的分数为：&quot;</span> &lt;&lt; <span class="hljs-built_in">score</span> &lt;&lt; <span class="hljs-literal">endl</span>;<br>	<span class="hljs-keyword">if</span> ((<span class="hljs-built_in">score</span> &lt;= <span class="hljs-number">0</span>) || (<span class="hljs-built_in">score</span> &gt;= <span class="hljs-number">750</span>))<br>		cout &lt;&lt; <span class="hljs-string">&quot;warning!!!!请输入0到750分&quot;</span> &lt;&lt; <span class="hljs-literal">endl</span>;<br>	<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-built_in">score</span> &gt; <span class="hljs-number">600</span>)<br>		cout &lt;&lt; <span class="hljs-string">&quot;恭喜你考入了一本&quot;</span> &lt;&lt; <span class="hljs-literal">endl</span>;<br>	<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-built_in">score</span> &gt; <span class="hljs-number">500</span>)<br>		cout &lt;&lt; <span class="hljs-string">&quot;恭喜你考入了二本&quot;</span> &lt;&lt; <span class="hljs-literal">endl</span>;<br>	<span class="hljs-keyword">else</span><br>		cout &lt;&lt; <span class="hljs-string">&quot;你没考上大学&quot;</span> &lt;&lt; <span class="hljs-literal">endl</span>;<br>	system(<span class="hljs-string">&quot;pause&quot;</span>);<br>	return <span class="hljs-number">0</span>;<br>&#125;<br><br><br><br></code></pre></td></tr></table></figure>
+<h5 id="taps-单行可以不加花括号"><a href="#taps-单行可以不加花括号" class="headerlink" title="taps:单行可以不加花括号"></a>taps:单行可以不加花括号</h5><p>嵌套if语句</p>
+<h4 id="8-1-2-三目运算符"><a href="#8-1-2-三目运算符" class="headerlink" title="8_1_2 三目运算符"></a>8_1_2 三目运算符</h4><p>(a&gt;b? a:b)</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta"># <span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-type">int</span> a = <span class="hljs-number">10</span>, b = <span class="hljs-number">12</span>, c = <span class="hljs-number">5</span>, d = <span class="hljs-number">88</span>, e ;<br>	e = a &gt; b ? c : d;<br>	cout &lt;&lt; e &lt;&lt; endl;<br>	<span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<h4 id="8-1-3-switch结构"><a href="#8-1-3-switch结构" class="headerlink" title="8_1_3 switch结构"></a>8_1_3 switch结构</h4><p>只能是具体的数字或者字符，不能是区间</p>
+<figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs sqf"><span class="hljs-meta"># <span class="hljs-keyword">include</span> &lt;iostream&gt;</span><br><br>using namespace std;<br><br>int main() &#123;<br>	int <span class="hljs-built_in">score</span> = <span class="hljs-number">0</span>;<br>	cout &lt;&lt; <span class="hljs-string">&quot;输入你的评分(0-10): &quot;</span> ;<br>	cin &gt;&gt; <span class="hljs-built_in">score</span>;<br>	cout &lt;&lt; <span class="hljs-string">&quot;你输入的分数为：&quot;</span> &lt;&lt; <span class="hljs-built_in">score</span> &lt;&lt; <span class="hljs-literal">endl</span>;<br>    <span class="hljs-keyword">switch</span> (<span class="hljs-built_in">score</span>) &#123;<br>    <span class="hljs-keyword">case</span> <span class="hljs-number">10</span>:<br>        cout &lt;&lt; <span class="hljs-string">&quot;你认为它是好电影&quot;</span> &lt;&lt; <span class="hljs-literal">endl</span>;<br>        <span class="hljs-keyword">break</span>;<br>    <span class="hljs-keyword">case</span> <span class="hljs-number">9</span>:<br>        cout &lt;&lt; <span class="hljs-string">&quot;你认为它是好电影&quot;</span> &lt;&lt; <span class="hljs-literal">endl</span>;<br>        <span class="hljs-keyword">break</span>;<br>    <span class="hljs-keyword">case</span> <span class="hljs-number">8</span>:<br>        cout &lt;&lt; <span class="hljs-string">&quot;你认为它是好电影&quot;</span> &lt;&lt; <span class="hljs-literal">endl</span>;<br>        <span class="hljs-keyword">break</span>;<br>    <span class="hljs-keyword">case</span> <span class="hljs-number">7</span>:<br>        cout &lt;&lt; <span class="hljs-string">&quot;你认为它是一般好电影&quot;</span> &lt;&lt; <span class="hljs-literal">endl</span>;<br>        <span class="hljs-keyword">break</span>;<br>    <span class="hljs-keyword">case</span> <span class="hljs-number">6</span>:<br>        cout &lt;&lt; <span class="hljs-string">&quot;你认为它是一般好电影&quot;</span> &lt;&lt; <span class="hljs-literal">endl</span>;<br>        <span class="hljs-keyword">break</span>;<br>    <span class="hljs-keyword">default</span>:<br>        cout &lt;&lt; <span class="hljs-string">&quot;烂片 &quot;</span> &lt;&lt; <span class="hljs-literal">endl</span>;<br>    &#125;<br>    system(<span class="hljs-string">&quot;pause&quot;</span>);<br>    return <span class="hljs-number">0</span>;<br>    &#125;<br></code></pre></td></tr></table></figure>
+<h3 id="8-2-循环结构"><a href="#8-2-循环结构" class="headerlink" title="8_2 循环结构"></a>8_2 循环结构</h3><h4 id="8-2-1-while循环"><a href="#8-2-1-while循环" class="headerlink" title="8_2_1 while循环"></a>8_2_1 while循环</h4><p>while(循环条件){<br>	循环语句<br>}</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta"># <span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-type">int</span> num = <span class="hljs-number">0</span>, sum = <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">while</span> (num &lt; <span class="hljs-number">10</span>) &#123;<br>		++num;<br>		cout &lt;&lt; num &lt;&lt; endl;<br>	&#125;<br>	<span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h5 id="while循环案例"><a href="#while循环案例" class="headerlink" title="while循环案例"></a>while循环案例</h5><p>猜数字，随机产生一个0到100的数字，让玩家猜测，返回猜大了或者猜小了，直到猜测正确 </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta"># <span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;time.h&gt;</span> </span><br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-built_in">srand</span>((<span class="hljs-type">unsigned</span>)<span class="hljs-built_in">time</span>(<span class="hljs-literal">NULL</span>));<br>	<span class="hljs-type">int</span> num_suiji, num_caice = <span class="hljs-number">0</span>;<br>	num_suiji = <span class="hljs-built_in">rand</span>() % <span class="hljs-number">100</span> + <span class="hljs-number">1</span>;<br>	cout &lt;&lt; <span class="hljs-string">&quot;请输入猜测值：&quot;</span>;<br>	<span class="hljs-keyword">while</span> (<span class="hljs-number">1</span>) &#123;<br>		cin &gt;&gt; num_caice;<br>		<span class="hljs-keyword">if</span> (num_caice &gt; num_suiji)<br>			cout &lt;&lt; <span class="hljs-string">&quot;猜大了&quot;</span> &lt;&lt; endl;<br>		<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (num_caice &lt; num_suiji)<br>			cout &lt;&lt; <span class="hljs-string">&quot;猜小了&quot;</span> &lt;&lt; endl;<br>		<span class="hljs-keyword">else</span> &#123;<br>			cout &lt;&lt; <span class="hljs-string">&quot;猜对了&quot;</span> &lt;&lt; endl;<br>			<span class="hljs-keyword">break</span>;<br>		&#125;	<br>	&#125;<br>    <span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<h4 id="8-2-2-do…while"><a href="#8-2-2-do…while" class="headerlink" title="8_2_2 do…while"></a>8_2_2 do…while</h4><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs actionscript"><span class="hljs-keyword">do</span>&#123;循环语句&#125;<span class="hljs-keyword">while</span>(循环条件);<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs C++">include &lt;iostream&gt;<br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-type">int</span> num = <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">do</span>&#123;<br>		num++;<br>		cout &lt;&lt; num &lt;&lt; endl;<br>	&#125; <span class="hljs-keyword">while</span> (num&lt;<span class="hljs-number">10</span>);<br>	<span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<h5 id="案例：水仙花数"><a href="#案例：水仙花数" class="headerlink" title="案例：水仙花数"></a>案例：水仙花数</h5><p>水仙花数是指一个3的倍数，它的每个各位上的数字的三次幂等于它本身，</p>
+<p>例如：1^3+5^3+3^3 &#x3D; 153</p>
+<p>用do…while语句求出三位数中所有的水仙花数</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs maxima"># include &lt;iostream&gt;<br><br>using namespace <span class="hljs-built_in">std</span>;<br><br>int main() &#123;<br>	int <span class="hljs-built_in">num</span> = <span class="hljs-number">100</span>;<br>	int ge, shi, bai,<span class="hljs-built_in">sum</span>;<br>	<span class="hljs-keyword">do</span>&#123;<br>		<span class="hljs-built_in">num</span>++;<br>		ge = <span class="hljs-built_in">num</span> <span class="hljs-symbol">%</span> <span class="hljs-number">10</span>;<br>		shi = <span class="hljs-built_in">num</span>/<span class="hljs-number">10</span><span class="hljs-symbol">%</span><span class="hljs-number">10</span>;<br>		bai = <span class="hljs-built_in">num</span>/<span class="hljs-number">100</span>;<br>		<span class="hljs-built_in">sum</span> = ge*ge*ge + shi*shi*shi + bai*bai*bai;<br>		<span class="hljs-keyword">if</span> (<span class="hljs-built_in">num</span> == <span class="hljs-built_in">sum</span>)<br>			cout &lt;&lt; <span class="hljs-built_in">sum</span> &lt;&lt; endl;<br>	&#125; <span class="hljs-keyword">while</span> (<span class="hljs-built_in">num</span>&lt;<span class="hljs-number">999</span>);<br>	<span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br>	<span class="hljs-built_in">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="求圆周率"><a href="#求圆周率" class="headerlink" title="求圆周率"></a>求圆周率</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;math.h&gt;</span></span><br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">test01</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-type">double</span> PI = <span class="hljs-number">0</span>; <br>    <span class="hljs-type">int</span> a=<span class="hljs-number">1.0</span>;<br>    <span class="hljs-type">double</span> fenmu = <span class="hljs-number">1.0</span>;<br>    <span class="hljs-keyword">while</span>(<span class="hljs-built_in">fabs</span>(<span class="hljs-number">1.0</span>/fenmu)&gt;=<span class="hljs-number">1e-6</span>)<br>    &#123;<br>        PI = a * (<span class="hljs-number">1</span> / fenmu) + PI;<br>        fenmu += <span class="hljs-number">2</span>;<br>        a = -a;<br>    &#125;<br>    PI = PI * <span class="hljs-number">4</span>;<br>    cout &lt;&lt; PI &lt;&lt; endl;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-built_in">test01</span>();<br><br>    <span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="8-2-3-for-循环语句"><a href="#8-2-3-for-循环语句" class="headerlink" title="8_2_3 for 循环语句"></a>8_2_3 for 循环语句</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><span class="hljs-function"><span class="hljs-title">for</span><span class="hljs-params">(起始表达式（<span class="hljs-number">1</span>）;条件表达式（<span class="hljs-number">2</span>）;末尾循环体（<span class="hljs-number">4</span>）)</span></span>&#123;<br>循环语句（<span class="hljs-number">3</span>）；<br>&#125;<br><span class="hljs-comment">//括号里面数字表示优先级</span><br><br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs axapta"><span class="hljs-meta"># include &lt;iostream&gt;</span><br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-built_in">int</span> main() &#123;<br>	<span class="hljs-built_in">int</span> <span class="hljs-keyword">sum</span> = <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>; i &lt;= <span class="hljs-number">100</span>; i++) &#123;<br>		<span class="hljs-keyword">sum</span> = <span class="hljs-keyword">sum</span> + i;<br>	&#125;<br>	cout &lt;&lt; <span class="hljs-keyword">sum</span> &lt;&lt; endl;<br>	system(<span class="hljs-string">&quot;pause&quot;</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-comment">//变种，最好不这么用，方便理解</span><br><span class="hljs-meta"># include &lt;iostream&gt;</span><br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-built_in">int</span> main() &#123;<br>	<span class="hljs-built_in">int</span> <span class="hljs-keyword">sum</span> = <span class="hljs-number">0</span>;<br>	<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">for</span> (; ; ) &#123;<br>		i++;<br>		<span class="hljs-keyword">if</span> (i == <span class="hljs-number">101</span>) &#123;<br>			<span class="hljs-keyword">break</span>;<br>		&#125;<br>		<span class="hljs-keyword">sum</span> = <span class="hljs-keyword">sum</span> + i;<br>    &#125;	<br>    cout &lt;&lt; <span class="hljs-keyword">sum</span> &lt;&lt; endl;<br>    system(<span class="hljs-string">&quot;pause&quot;</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h5 id="案例：敲桌子"><a href="#案例：敲桌子" class="headerlink" title="案例：敲桌子"></a>案例：敲桌子</h5><p>案例描述：从1数到100，如果数字个位含有7，或者十位含有7，或者是7的倍数我们打印敲桌子，其余数字直接打印输出。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta"># <span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>;i&lt;=<span class="hljs-number">100</span> ;i++ ) &#123;<br>        <span class="hljs-keyword">if</span> ((i % <span class="hljs-number">7</span> == <span class="hljs-number">0</span>) || (i % <span class="hljs-number">10</span> == <span class="hljs-number">7</span>) || (i / <span class="hljs-number">10</span> == <span class="hljs-number">7</span>))<br>            cout &lt;&lt; <span class="hljs-string">&quot;敲桌子&quot;</span> &lt;&lt; endl;<br>        <span class="hljs-keyword">else</span><br>            cout &lt;&lt; i &lt;&lt; endl;<br>    &#125;<br>    <span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;	<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<h4 id="8-2-4-嵌套循环"><a href="#8-2-4-嵌套循环" class="headerlink" title="8_2_4 嵌套循环"></a>8_2_4 嵌套循环</h4><p>再循环体内再嵌套一层循环</p>
+<p>九九乘法表：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><br><span class="hljs-meta"># <span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt; <span class="hljs-number">10</span>; j++) &#123;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= j; i++) &#123;<br>			cout &lt;&lt; i &lt;&lt; <span class="hljs-string">&quot; * &quot;</span> &lt;&lt; j &lt;&lt; <span class="hljs-string">&quot;= &quot;</span> &lt;&lt; i * j&lt;&lt;<span class="hljs-string">&quot;\t&quot;</span>;<br>			<br>		&#125;<br>		cout &lt;&lt; endl;<br>	&#125;<br>    <span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="8-3-跳转语句"><a href="#8-3-跳转语句" class="headerlink" title="8_3 跳转语句"></a>8_3 跳转语句</h3><h4 id="8-3-1-break"><a href="#8-3-1-break" class="headerlink" title="8_3_1 break"></a>8_3_1 break</h4><ol>
+<li>出现在switch语句中，作用是终止case并跳出switch；</li>
+<li>出现在循环语句中，作用是跳出当前的循环语句；</li>
+<li>出现在嵌套循环中，跳出最近的内层循环语句。</li>
+</ol>
+<h4 id="8-3-2-continue语句"><a href="#8-3-2-continue语句" class="headerlink" title="8_3_2 continue语句"></a>8_3_2 continue语句</h4><p>在循环语句中，跳过本次循环中尚未执行的语句，进入下一次循环</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta"># <span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt; <span class="hljs-number">10</span>; j++) &#123;<br>		<span class="hljs-keyword">if</span> (j % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>) <span class="hljs-keyword">continue</span>;<br>		cout &lt;&lt; j&lt;&lt;endl;<br>	&#125;<br>	<span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="8-3-3-goto语句"><a href="#8-3-3-goto语句" class="headerlink" title="8_3_3 goto语句"></a>8_3_3 goto语句</h4><figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf">goto 标记<span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta"># <span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-type">int</span> a;<br>AGI:cin &gt;&gt; a;<br>	<span class="hljs-keyword">if</span> (a &gt; <span class="hljs-number">10</span>) &#123;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt; <span class="hljs-number">10</span>; j++) &#123;<br>			<span class="hljs-keyword">if</span> (j % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>) <span class="hljs-keyword">continue</span>;<br>			cout &lt;&lt; j &lt;&lt; endl;<br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">else</span><br>	&#123;<br>		cout &lt;&lt; <span class="hljs-string">&quot;必须大于10哦&quot;</span> &lt;&lt; endl;<br>		<span class="hljs-keyword">goto</span> AGI;<br>	&#125;<br>	<span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="9-数组"><a href="#9-数组" class="headerlink" title="9 数组"></a>9 数组</h2><h3 id="9-1一维数组"><a href="#9-1一维数组" class="headerlink" title="9_1一维数组"></a>9_1一维数组</h3><p>特点：放在一块连续的内存空间中</p>
+<pre><code class="hljs">		数组中每个元素都是相同的数据类型
+</code></pre>
+<p>用途：可以统计整个数组在内存中的长度</p>
+<pre><code class="hljs">		可以获取数组在内存中的首地址
+</code></pre>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><br><span class="hljs-meta"># include &lt;iostream&gt;</span><br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-title">std</span>;<br><br><span class="hljs-function"><span class="hljs-built_in">int</span> <span class="hljs-title">main</span>()</span> &#123;<br>	<span class="hljs-built_in">int</span> a[<span class="hljs-number">5</span>] = &#123;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>&#125;;<br>	cout &lt;&lt; <span class="hljs-keyword">sizeof</span>(a[<span class="hljs-number">1</span>]) &lt;&lt; endl;  <span class="hljs-comment">//4</span><br>	cout &lt;&lt; <span class="hljs-keyword">sizeof</span>(a) &lt;&lt; endl;     <span class="hljs-comment">//20</span><br>	cout &lt;&lt; a &lt;&lt; endl;             <span class="hljs-comment">//00DAFB90 数组的首地址</span><br>	cout &lt;&lt; &amp;a[<span class="hljs-number">0</span>] &lt;&lt; endl;         <span class="hljs-comment">//00DAFB90 数组第一个元素地址</span><br>	cout &lt;&lt; &amp;a[<span class="hljs-number">1</span>] &lt;&lt; endl;         <span class="hljs-comment">//00DAFB94 素组第二个元素地址</span><br>	system(<span class="hljs-string">&quot;pause&quot;</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<h4 id="案例1：五只小猪称体重"><a href="#案例1：五只小猪称体重" class="headerlink" title="案例1：五只小猪称体重"></a>案例1：五只小猪称体重</h4><p>int arr[5] &#x3D; {300,350,200,400,250} , 打印出最重小猪的体重</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-meta"># <span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-type">int</span> max = <span class="hljs-number">0</span>;<br>	<span class="hljs-type">int</span> arr[<span class="hljs-number">5</span>] = &#123; <span class="hljs-number">300</span>,<span class="hljs-number">350</span>,<span class="hljs-number">200</span>,<span class="hljs-number">400</span>,<span class="hljs-number">250</span> &#125;;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++) &#123;<br>		<span class="hljs-keyword">if</span> (arr[i] &gt; max)<br>			max = arr[i];<br>	&#125;<br>	cout &lt;&lt; max &lt;&lt; endl;<br>	<span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br><br></code></pre></td></tr></table></figure>
+<h4 id="案例2：数组元素逆置"><a href="#案例2：数组元素逆置" class="headerlink" title="案例2：数组元素逆置"></a>案例2：数组元素逆置</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">// 我的算法是直接逆向输出到新数组，别人是首尾置换，我的时间复杂度比他高一倍</span><br><span class="hljs-meta"># <span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-type">int</span> arr[<span class="hljs-number">5</span>] = &#123; <span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">5</span>,<span class="hljs-number">4</span> &#125;;<br>	<span class="hljs-type">int</span> start, end;<br>	start = <span class="hljs-number">0</span>;<br>	end = <span class="hljs-built_in">sizeof</span>(arr) / <span class="hljs-built_in">sizeof</span>(arr[<span class="hljs-number">0</span>]) - <span class="hljs-number">1</span>;<br>	<span class="hljs-type">int</span> len = <span class="hljs-built_in">sizeof</span>(arr) / <span class="hljs-built_in">sizeof</span>(arr[<span class="hljs-number">0</span>]);<br>	<span class="hljs-keyword">while</span> (start &lt; end) &#123;<br>		<span class="hljs-type">int</span> temp;<br>		temp = arr[start];<br>		arr[start] = arr[end];<br>		arr[end] = temp;<br>		start++;<br>		end--;<br>	&#125;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; len; i++)<br>		cout &lt;&lt; arr[i] &lt;&lt; endl;<br>	<br>	<span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="9-2-冒泡排序"><a href="#9-2-冒泡排序" class="headerlink" title="9_2 冒泡排序"></a>9_2 冒泡排序</h3><p>比较相邻的两个元素，如果第一个比第二个大，就交换他们两个</p>
+<p>对每一组相邻元素做同样的工作，执行完毕后，找到一个最大值</p>
+<p>重复以上的步骤，每次比较数-1，直到不需要比较</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs c++">第一次冒泡得到一个最大数，第二次冒泡得到第二大的数，直到不需要比较，即只剩一个数不需要比较，就是数组长度<span class="hljs-number">-1</span>，每次比较完会产生一个不会在比较的数，下次不用比较，即内层循环要减去轮数，时间复杂度为 <span class="hljs-built_in">O</span>(<span class="hljs-number">1</span><span class="hljs-number">+2</span><span class="hljs-number">+3</span>+...+(n<span class="hljs-number">-1</span>))<br><br><span class="hljs-meta"># <span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-type">int</span> arr[] = &#123; <span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">7</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">2</span>,<span class="hljs-number">9</span> &#125;;<br>	<span class="hljs-type">int</span> len;<br>	len = <span class="hljs-built_in">sizeof</span>(arr)/<span class="hljs-built_in">sizeof</span>(arr[<span class="hljs-number">1</span>]);<br>	<span class="hljs-type">int</span> num = <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">while</span> (num &lt; len<span class="hljs-number">-1</span>) &#123;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; len - <span class="hljs-number">1</span> - num; i++) &#123;<br>			<span class="hljs-keyword">if</span> (arr[i] &gt; arr[i + <span class="hljs-number">1</span>])<br>			&#123;<br>				<span class="hljs-type">int</span> temp;<br>				temp = arr[i];<br>				arr[i] = arr[i + <span class="hljs-number">1</span>];<br>				arr[i + <span class="hljs-number">1</span>] = temp;<br>			&#125;<br>		&#125;<br>		num++;<br>	&#125;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; len; j++) &#123;<br>		cout &lt;&lt; arr[j] &lt;&lt; endl;<br>	&#125;<br>	<span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="杨辉三角"><a href="#杨辉三角" class="headerlink" title="杨辉三角"></a>杨辉三角</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-meta">#<span class="hljs-keyword">define</span> n 11</span><br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">test01</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-type">int</span> i;<br>    <span class="hljs-type">int</span> j;<br>    <span class="hljs-type">int</span> a[n][n];<br><br>    <span class="hljs-comment">//左右边界</span><br>    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">1</span>; i &lt; n; i++) &#123;<br>        a[i][i] = <span class="hljs-number">1</span>;<br>        a[i][<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;<br>    &#125;<br>    <span class="hljs-comment">//3开始的行数</span><br>    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">3</span>; i &lt; n; i++) &#123;<br>        <span class="hljs-keyword">for</span> (j = <span class="hljs-number">2</span>; j &lt; i; j++) &#123;<br>            a[i][j] = a[i - <span class="hljs-number">1</span>][j - <span class="hljs-number">1</span>] + a[i - <span class="hljs-number">1</span>][j];<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">//打印</span><br>    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">1</span>; i &lt; n; i++) &#123;<br>        <span class="hljs-keyword">for</span> (j = <span class="hljs-number">1</span>; j &lt;= i; j++) &#123;<br>            cout &lt;&lt; a[i][j] &lt;&lt; <span class="hljs-string">&quot;\t&quot;</span>;<br>        &#125;<br>        cout &lt;&lt; endl;<br>    &#125;<br>    cout &lt;&lt; endl;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-built_in">test01</span>();<br><br>    <span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="9-3-二维数组"><a href="#9-3-二维数组" class="headerlink" title="9_3 二维数组"></a>9_3 二维数组</h3><p>四种定义方式：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs c++">数据类型 数组名[行数][列数]；<br><span class="hljs-type">int</span> arr[<span class="hljs-number">2</span>][<span class="hljs-number">3</span>];<br>arr[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;<br>arr[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>] = <span class="hljs-number">2</span>;<br>arr[<span class="hljs-number">0</span>][<span class="hljs-number">2</span>] = <span class="hljs-number">3</span>;<br>arr[<span class="hljs-number">0</span>][<span class="hljs-number">3</span>] = <span class="hljs-number">4</span>;<br>arr[<span class="hljs-number">0</span>][<span class="hljs-number">4</span>] = <span class="hljs-number">5</span>;<br>arr[<span class="hljs-number">0</span>][<span class="hljs-number">5</span>] = <span class="hljs-number">6</span>;<br><br>数据类型 数组名[行数][列数] = &#123;&#123;数据<span class="hljs-number">1</span>，数据<span class="hljs-number">2</span>&#125;,&#123;数据<span class="hljs-number">3</span>，数据<span class="hljs-number">4</span>&#125;&#125;；<br>arr2[<span class="hljs-number">2</span>][<span class="hljs-number">3</span>] = <br>&#123;<br>	&#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>&#125;,<br>	&#123;<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>&#125;<br>&#125;;<br><br>数据类型 数组名[行数][列数] = &#123;数据<span class="hljs-number">1</span>，数据<span class="hljs-number">2</span>，数据<span class="hljs-number">3</span>，数据<span class="hljs-number">4</span>&#125;；<br>arr3[<span class="hljs-number">2</span>][<span class="hljs-number">3</span>] = &#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>&#125;;<br><br>数据类型 数组名[   ][列数] = &#123;数据<span class="hljs-number">1</span>，数据<span class="hljs-number">2</span>，数据<span class="hljs-number">3</span>，数据<span class="hljs-number">4</span>&#125;；<br>arr4[][<span class="hljs-number">3</span>] = &#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>&#125;;<br><br>输出:<br><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">2</span>; i++)&#123;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j =<span class="hljs-number">0</span>; j &lt; <span class="hljs-number">3</span>; j++)<br>	cout &lt;&lt; arr[i][j] &lt;&lt; <span class="hljs-string">&quot; &quot;</span> ;<br>	cout &lt;&lt; endl;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="二维数组案例：总成绩"><a href="#二维数组案例：总成绩" class="headerlink" title="二维数组案例：总成绩"></a>二维数组案例：总成绩</h4><figure class="highlight nim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs nim"><span class="hljs-comment"># include &lt;iostream&gt;</span><br><span class="hljs-keyword">using</span> namespace std;<br><br><span class="hljs-type">int</span> main() &#123;<br>	<span class="hljs-type">int</span> score[<span class="hljs-number">3</span>][<span class="hljs-number">3</span>] = &#123; <span class="hljs-number">100</span>,<span class="hljs-number">100</span>,<span class="hljs-number">100</span>,<span class="hljs-number">90</span>,<span class="hljs-number">50</span>,<span class="hljs-number">100</span>,<span class="hljs-number">60</span>,<span class="hljs-number">70</span>,<span class="hljs-number">80</span> &#125;;<br>	<span class="hljs-type">string</span> names[<span class="hljs-number">3</span>] = &#123; <span class="hljs-string">&quot;张三&quot;</span>,<span class="hljs-string">&quot;李四&quot;</span>,<span class="hljs-string">&quot;王五&quot;</span> &#125;;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">3</span>; i++) &#123;<br>		<span class="hljs-type">int</span> score_sum = <span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">3</span>; j++) &#123;<br>			score_sum = score_sum + score[i][j];<br>		&#125;<br>		<br>		/*switch (i) &#123;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">0</span>:<br>			cout &lt;&lt; <span class="hljs-string">&quot;张三：&quot;</span> &lt;&lt; score_sum &lt;&lt; endl; <span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:<br>			cout &lt;&lt; <span class="hljs-string">&quot;李四：&quot;</span> &lt;&lt; score_sum &lt;&lt; endl; <span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:<br>			cout &lt;&lt; <span class="hljs-string">&quot;王五：&quot;</span> &lt;&lt; score_sum &lt;&lt; endl; <span class="hljs-keyword">break</span>;<br>		&#125;*/<br>		cout &lt;&lt; names[i] &lt;&lt; <span class="hljs-string">&quot;的总成绩是&quot;</span> &lt;&lt; score_sum &lt;&lt; endl;<br>	&#125;<br>	<br>	system(<span class="hljs-string">&quot;pause&quot;</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="10-函数"><a href="#10-函数" class="headerlink" title="10 函数"></a>10 函数</h2><h3 id="10-1值传递"><a href="#10-1值传递" class="headerlink" title="10_1值传递"></a>10_1值传递</h3><p>值传递过程中，形参发生任何改变，都不影响实参。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta"># <span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">swap</span><span class="hljs-params">(<span class="hljs-type">int</span> num1, <span class="hljs-type">int</span> num2)</span> </span>&#123;<br>	<span class="hljs-type">int</span> temp;<br>	temp = num2;<br>	num2 = num1;<br>	num1 = temp;<br>	<span class="hljs-keyword">return</span> num1, num2;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-type">int</span> a = <span class="hljs-number">1</span>, b = <span class="hljs-number">2</span>;<br>	<span class="hljs-built_in">swap</span>(a, b);<br>	cout &lt;&lt; a &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; b &lt;&lt; endl;<br>	<br>	<span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="10-2-函数的常见样式"><a href="#10-2-函数的常见样式" class="headerlink" title="10_2 函数的常见样式"></a>10_2 函数的常见样式</h3><ol>
+<li><p>无参无返</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta"># <span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">test01</span><span class="hljs-params">()</span> </span>&#123;<br>	cout &lt;&lt; <span class="hljs-string">&quot;this is test01&quot;</span> &lt;&lt; endl;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-built_in">test01</span>();<br>	<span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>有参无返</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta"># <span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">test02</span><span class="hljs-params">(<span class="hljs-type">int</span> a)</span> </span>&#123;<br>	cout &lt;&lt; <span class="hljs-string">&quot;this is test02&quot;</span> &lt;&lt; endl;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-built_in">test02</span>(<span class="hljs-number">100</span>);<br>	<span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>无参有返</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta"># <span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">test03</span><span class="hljs-params">()</span> </span>&#123;<br>	cout &lt;&lt; <span class="hljs-string">&quot;this is test03&quot;</span> &lt;&lt; endl;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">100</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-type">int</span> num1 = <span class="hljs-built_in">test03</span>();<br>	cout &lt;&lt; num1 &lt;&lt; endl;<br>	<span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>有参有返</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta"># <span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">test04</span><span class="hljs-params">(<span class="hljs-type">int</span> a)</span> </span>&#123;<br>	cout &lt;&lt; <span class="hljs-string">&quot;this is test04&quot;</span> &lt;&lt; endl;<br>	cout &lt;&lt; a &lt;&lt; endl;<br>	<span class="hljs-keyword">return</span> a;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-type">int</span> a = <span class="hljs-number">999</span>;<br>	<span class="hljs-type">int</span> num1 = <span class="hljs-built_in">test04</span>(a);<br>	cout &lt;&lt; num1 &lt;&lt; endl;<br>	<span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="10-3-函数的声明"><a href="#10-3-函数的声明" class="headerlink" title="10_3 函数的声明"></a>10_3 函数的声明</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta"># <span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">test04</span><span class="hljs-params">(<span class="hljs-type">int</span> a)</span></span>;   <span class="hljs-comment">//要么在主函数前面定义函数，要么声明函数，定义只能有一次，声明可以多次 </span><br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-type">int</span> a = <span class="hljs-number">999</span>;<br>	<span class="hljs-type">int</span> num1 = <span class="hljs-built_in">test04</span>(a);<br>	cout &lt;&lt; num1 &lt;&lt; endl;<br>	<span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">test04</span><span class="hljs-params">(<span class="hljs-type">int</span> a)</span> </span>&#123;<br>	cout &lt;&lt; <span class="hljs-string">&quot;this is test04&quot;</span> &lt;&lt; endl;<br>	cout &lt;&lt; a &lt;&lt; endl;<br>	<span class="hljs-keyword">return</span> a;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="10-4-函数的分文件"><a href="#10-4-函数的分文件" class="headerlink" title="10_4 函数的分文件"></a>10_4 函数的分文件</h3><p>作用：让代码结构更加清晰</p>
+<p>函数分文件一般有4个步骤</p>
+<p>1.创建后缀名为.h 的头文件</p>
+<p>2.创建后缀名为.cpp的源文件</p>
+<p>3.在头文件中写函数的声明</p>
+<p>4.在源文件中写函数的定义</p>
+<p>以swap交换两个数字的函数为例</p>
+<p>主函数：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;swap.h&quot;</span></span><br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-type">int</span> a = <span class="hljs-number">10</span>, b = <span class="hljs-number">20</span>;<br>	<span class="hljs-built_in">swap</span>(a, b);<br>	<span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>swap.h文件</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta"># <span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std; <br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">swap</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span></span>;<br></code></pre></td></tr></table></figure>
+
+<p>swap.cpp文件</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta"># <span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;swap.h&quot;</span></span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">swap</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span> </span>&#123;<br>	<span class="hljs-type">int</span> temp;<br>	temp = a;<br>	a = b;<br>	b = temp;<br>	cout &lt;&lt; <span class="hljs-string">&quot;a的值是：&quot;</span> &lt;&lt; a &lt;&lt; endl;<br>	cout &lt;&lt; <span class="hljs-string">&quot;b的值是：&quot;</span> &lt;&lt; b &lt;&lt; endl;<br>	<span class="hljs-keyword">return</span> a, b;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="11-指针"><a href="#11-指针" class="headerlink" title="11 指针"></a>11 指针</h2><p>指针就是内存地址</p>
+<p>指针在32位系统占4个字节，在64位系统占8个字节（不管什么数据类型都符合这个规律）</p>
+<ol>
+<li>定义指针：数据类型* 指针变量名</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-type">int</span> a=<span class="hljs-number">10</span>;<br><span class="hljs-type">int</span>* p;<br>p = &amp;a;<br>cout&lt;&lt;<span class="hljs-string">&quot;a的地址为: &quot;</span>&lt;&lt; &amp;a &lt;&lt;endl;<br>cout&lt;&lt;<span class="hljs-string">&quot;指针p为 : &quot;</span>&lt;&lt; p &lt;&lt;endl;<br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>使用指针</p>
+<p>可以通过解引用的方式来找到指针指向的内存</p>
+<p>指针前面加* 代表解引用，找到指针指向的内存中的数据</p>
+<figure class="highlight sas"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs sas">int a=10;<br>int<span class="hljs-comment">* p;</span><br>p = <span class="hljs-variable">&amp;a</span>;<br>cout&lt;&lt;<span class="hljs-string">&quot;a的地址为: &quot;</span>&lt;&lt; <span class="hljs-variable">&amp;a</span> &lt;&lt;endl;<br>cout&lt;&lt;<span class="hljs-string">&quot;指针p为 : &quot;</span>&lt;&lt; p &lt;&lt;endl;<br><br><span class="hljs-comment">*p = 1000;</span>           //修改了内存数据<br>cout &lt;&lt; <span class="hljs-string">&quot;a= &quot;</span> &lt;&lt; a &lt;&lt; endl;<br>cout &lt;&lt; <span class="hljs-string">&quot;*p=&quot;</span> &lt;&lt; <span class="hljs-comment">*p &lt;&lt; endl;</span><br></code></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="空指针和野指针"><a href="#空指针和野指针" class="headerlink" title="空指针和野指针"></a>空指针和野指针</h3><p>空指针：指针变量指向内存中编号为0的空间</p>
+<p>用途：初始化指针变量</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf">int * p <span class="hljs-operator">=</span> NULL<span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure>
+
+
+
+<p>注意：空指针指向的内存是不可以访问的(0到255之间的内存编号是系统占用的，不可访问)</p>
+<p>野指针：指针变量指向非法的内存空间</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs abnf">int * p <span class="hljs-operator">=</span> <span class="hljs-number">0</span>x1100<span class="hljs-comment">;</span><br><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="const修饰指针"><a href="#const修饰指针" class="headerlink" title="const修饰指针"></a>const修饰指针</h3><p>3种情况:</p>
+<ol>
+<li><p>const修饰指针–常量指针</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs 1c">const int * p <span class="hljs-punctuation">=</span> <span class="hljs-meta">&amp;a;</span><br>常量指针<br>特点：指针的指向可以修改，但是指针指向的值不可以改<br><br>*p <span class="hljs-punctuation">=</span> <span class="hljs-number">20</span><span class="hljs-punctuation">;</span>  <span class="hljs-comment">//错误，指针指向的值不能改</span><br>p <span class="hljs-punctuation">=</span> <span class="hljs-meta">&amp;b;   <span class="hljs-comment">//正确，指针的指向可以改</span></span><br></code></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>const修饰常量–指针常量</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs 1c">int * const p <span class="hljs-punctuation">=</span> <span class="hljs-meta">&amp;a;</span><br>指针常量<br>特点：指针的指向不能改，指针的指向的值可以改<br><br>*p <span class="hljs-punctuation">=</span> <span class="hljs-number">20</span><span class="hljs-punctuation">;</span>  <span class="hljs-comment">//正确，指向的值可以改</span><br>p <span class="hljs-punctuation">=</span> <span class="hljs-meta">&amp;b;   <span class="hljs-comment">//错误，指针指向不可以改</span></span><br></code></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>const即修饰指针，又修饰常量 </p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-keyword">const</span> <span class="hljs-built_in">int</span> * <span class="hljs-keyword">const</span> p = &amp;a;<br><br>特点：指针的指向和指针指向的值都不能改<br>*p = <span class="hljs-number">20</span>; <span class="hljs-comment">//错误，指针指向的值不能改</span><br>p =&amp;b;   <span class="hljs-comment">//错误，指针的指向不能改</span><br></code></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="指针和数组"><a href="#指针和数组" class="headerlink" title="指针和数组"></a>指针和数组</h3><p>利用指针来访问数组中的元素</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-type">int</span> arr[<span class="hljs-number">10</span>] = &#123; <span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>,<span class="hljs-number">9</span>,<span class="hljs-number">10</span> &#125;;<br>	<span class="hljs-type">int</span>* p = arr;<br>	cout &lt;&lt; *p &lt;&lt; endl;<br>	p++; <span class="hljs-comment">//指针向后偏移4个地址</span><br><br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) &#123;<br>		cout &lt;&lt; *p &lt;&lt; endl;<br>		p++;<br>	&#125;<br>	<span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="指针和函数"><a href="#指针和函数" class="headerlink" title="指针和函数"></a>指针和函数</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">swap01</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-type">int</span> temp = a;<br>	a = b;<br>	b = temp;<br>	cout &lt;&lt; <span class="hljs-string">&quot;a的值为：&quot;</span> &lt;&lt; a &lt;&lt; endl;<br>	cout &lt;&lt; <span class="hljs-string">&quot;b的值为：&quot;</span> &lt;&lt; b &lt;&lt; endl;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">swap02</span><span class="hljs-params">(<span class="hljs-type">int</span>* p1, <span class="hljs-type">int</span>* p2)</span></span>&#123;<br>	<span class="hljs-type">int</span> temp = *p1;<br>		*p1 = *p2;<br>		*p2 = temp;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-type">int</span> a = <span class="hljs-number">10</span>, b = <span class="hljs-number">20</span>;<br>	<span class="hljs-comment">//值传递，不会修改实参</span><br>	<span class="hljs-comment">//swap01(a, b);</span><br>	<span class="hljs-comment">//地址传递，会修改实参</span><br>	<span class="hljs-built_in">swap02</span>(&amp;a, &amp;b);       <span class="hljs-comment">// 这里是将a和b地址所在的数据交换了</span><br>	cout &lt;&lt; <span class="hljs-string">&quot;a的值为：&quot;</span> &lt;&lt; a &lt;&lt; endl;  <span class="hljs-comment">//20</span><br>	cout &lt;&lt; <span class="hljs-string">&quot;b的值为：&quot;</span> &lt;&lt; b &lt;&lt; endl;  <span class="hljs-comment">//10</span><br><br>	<span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="案例：指针，数组，函数"><a href="#案例：指针，数组，函数" class="headerlink" title="案例：指针，数组，函数"></a>案例：指针，数组，函数</h4><p>利用指针，数组和函数的知识，对一个数组冒泡排序并且封装</p>
+<p>主函数：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;maopao.h&quot;</span></span><br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-type">int</span> arr[<span class="hljs-number">10</span>] = &#123; <span class="hljs-number">3</span>,<span class="hljs-number">1</span>,<span class="hljs-number">5</span>,<span class="hljs-number">7</span>,<span class="hljs-number">3</span>,<span class="hljs-number">1</span>,<span class="hljs-number">8</span>,<span class="hljs-number">9</span>,<span class="hljs-number">6</span>,<span class="hljs-number">5</span> &#125;;<br>	<span class="hljs-type">int</span> len = <span class="hljs-built_in">sizeof</span>(arr) / <span class="hljs-built_in">sizeof</span>(arr[<span class="hljs-number">1</span>]);<br>	<span class="hljs-built_in">maopao</span>(arr, len);<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; len; i++) &#123;<br>		cout &lt;&lt; arr[i] &lt;&lt; <span class="hljs-string">&quot; &quot;</span>;<br>	&#125;<br><br>	<span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>maopao.h：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta"># <span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">maopao</span><span class="hljs-params">(<span class="hljs-type">int</span>* arr, <span class="hljs-type">int</span> len)</span></span>;<br><br></code></pre></td></tr></table></figure>
+
+<p>maopao.cpp：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;maopao.h&quot;</span></span><br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">maopao</span><span class="hljs-params">(<span class="hljs-type">int</span>* arr, <span class="hljs-type">int</span> len)</span> </span>&#123;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; len<span class="hljs-number">-1</span>; i++) &#123;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; len - <span class="hljs-number">1</span> - i; j++) &#123;<br>			<span class="hljs-keyword">if</span> (arr[j] &gt; arr[j + <span class="hljs-number">1</span>]) &#123;<br>				<span class="hljs-type">int</span> temp = arr[j];<br>				arr[j] = arr[j + <span class="hljs-number">1</span>];<br>				arr[j + <span class="hljs-number">1</span>] = temp;<br>			&#125;<br>		&#125;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="12-结构体"><a href="#12-结构体" class="headerlink" title="12 结构体"></a>12 结构体</h2><h3 id="12-1-结构体的概念"><a href="#12-1-结构体的概念" class="headerlink" title="12_1 结构体的概念"></a>12_1 结构体的概念</h3><p>结构体属于用户自定义的数据类型，允许用户存储不同的数据类型</p>
+<h3 id="12-2-结构体的定义和使用"><a href="#12-2-结构体的定义和使用" class="headerlink" title="12_2 结构体的定义和使用"></a>12_2 结构体的定义和使用</h3><figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gauss">语法：  <span class="hljs-keyword">struct</span> 结构体名 &#123;结构体成员列表&#125;；<br></code></pre></td></tr></table></figure>
+
+<p>通过结构体创建变量的方式有三种</p>
+<ol>
+<li><p>struct 结构体名 变量名</p>
+</li>
+<li><p>struct 结构体名 变量名 &#x3D; {成员1值，成员2值…}</p>
+</li>
+<li><p>定义结构体时顺便定义变量</p>
+<figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs sqf"><span class="hljs-meta">#<span class="hljs-keyword">include</span> &lt;iostream&gt;</span><br>using namespace std;<br><br><span class="hljs-comment">//创建学生的数据类型</span><br>struct Students &#123;<br>	string <span class="hljs-built_in">name</span>;<br>	int age;<br>	double <span class="hljs-built_in">score</span>;<br>&#125;s3;<span class="hljs-comment">//第三种方式</span><br>int main() &#123;<br>	<span class="hljs-comment">//创建具体的学生数据</span><br>	<span class="hljs-comment">//1.创建结构体变量，再给变量赋值</span><br>	struct Students student1;<br>	student1.<span class="hljs-built_in">name</span> = <span class="hljs-string">&quot;李瑞龙&quot;</span>;<br>	student1.age = <span class="hljs-number">18</span>;<br>	student1.<span class="hljs-built_in">score</span> = <span class="hljs-number">99.9</span>;<br>	cout &lt;&lt; <span class="hljs-string">&quot;name: &quot;</span> &lt;&lt; student1.<span class="hljs-built_in">name</span> &lt;&lt; <span class="hljs-string">&quot;  age: &quot;</span> &lt;&lt; student1.age &lt;&lt; <span class="hljs-string">&quot;  score: &quot;</span> &lt;&lt; student1.<span class="hljs-built_in">score</span> &lt;&lt; <span class="hljs-literal">endl</span>;<br>	<span class="hljs-comment">//2.创建结构体变量时赋值</span><br>	struct Students s2 = &#123; <span class="hljs-string">&quot;adly&quot;</span>,<span class="hljs-number">18</span>,<span class="hljs-number">95</span> &#125;;<br>	cout &lt;&lt; <span class="hljs-string">&quot;name: &quot;</span> &lt;&lt; s2.<span class="hljs-built_in">name</span> &lt;&lt; <span class="hljs-string">&quot;  age: &quot;</span> &lt;&lt; s2.age &lt;&lt; <span class="hljs-string">&quot;  score: &quot;</span> &lt;&lt; s2.<span class="hljs-built_in">score</span> &lt;&lt; <span class="hljs-literal">endl</span>;<br>	<span class="hljs-comment">//3.在结构体末尾声明，直接创建</span><br>	s3.<span class="hljs-built_in">name</span> = <span class="hljs-string">&quot;李龙&quot;</span>;<br>	s3.age = <span class="hljs-number">18</span>;<br>	s3.<span class="hljs-built_in">score</span> = <span class="hljs-number">99.9</span>;<br>	cout &lt;&lt; <span class="hljs-string">&quot;name: &quot;</span> &lt;&lt; s3.<span class="hljs-built_in">name</span> &lt;&lt; <span class="hljs-string">&quot;  age: &quot;</span> &lt;&lt; s3.age &lt;&lt; <span class="hljs-string">&quot;  score: &quot;</span> &lt;&lt; s3.<span class="hljs-built_in">score</span> &lt;&lt; <span class="hljs-literal">endl</span>;<br>	system(<span class="hljs-string">&quot;pause&quot;</span>);<br>	return <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="12-3-结构体数组"><a href="#12-3-结构体数组" class="headerlink" title="12_3 结构体数组"></a>12_3 结构体数组</h3><p>作用：将自定义的结构体放入到数组中方便维护</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dust"><span class="language-xml">语法：struct 结构体名 数组名[元素个数] = </span><span class="hljs-template-variable">&#123; &#123;&#125;</span><span class="language-xml">, </span><span class="hljs-template-variable">&#123;&#125;</span><span class="language-xml">,...</span><span class="hljs-template-variable">&#123;&#125;</span><span class="language-xml">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-comment">//定义结构体</span><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">student</span> &#123;<br>	string name;<br>	<span class="hljs-type">int</span> age;<br>	<span class="hljs-type">double</span> score;<br>&#125;;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-comment">//创建结构体数组</span><br>	<span class="hljs-keyword">struct</span> <span class="hljs-title class_">student</span> arr[<span class="hljs-number">3</span>] = &#123;<br>		&#123;<span class="hljs-string">&quot;bob&quot;</span>, <span class="hljs-number">18</span>, <span class="hljs-number">95</span>&#125;,<br>		&#123;<span class="hljs-string">&quot;Alice&quot;</span>, <span class="hljs-number">16</span>, <span class="hljs-number">93</span>&#125;,<br>		&#123;<span class="hljs-string">&quot;lrl&quot;</span>, <span class="hljs-number">22</span>, <span class="hljs-number">100</span>&#125;<br>	&#125;;<br>	<span class="hljs-comment">//给结构体变量赋值或者修改</span><br>	arr[<span class="hljs-number">2</span>].name = <span class="hljs-string">&quot;liruilong&quot;</span>;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">3</span>; i++) &#123;<br>		cout &lt;&lt; arr[i].name &lt;&lt; <span class="hljs-string">&quot;  &quot;</span> &lt;&lt; arr[i].age &lt;&lt; <span class="hljs-string">&quot;  &quot;</span> &lt;&lt; arr[i].score &lt;&lt; endl;<br>	&#125;<br>	<span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="12-4-结构体指针"><a href="#12-4-结构体指针" class="headerlink" title="12_4 结构体指针"></a>12_4 结构体指针</h3><p>作用：通过指针访问结构体中的成员</p>
+<p>利用操作符 -&gt;通过结构体指针访问结构体属性</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta"># <span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-comment">//结构体定义</span><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">student</span> &#123;<br>	string name;<br>	<span class="hljs-type">int</span> age;<br>	<span class="hljs-type">double</span> score;<br>&#125;;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-comment">//创建学生结构体变量</span><br>	<span class="hljs-keyword">struct</span> <span class="hljs-title class_">student</span> stu = &#123; <span class="hljs-string">&quot;lrl&quot;</span>, <span class="hljs-number">18</span> ,<span class="hljs-number">100</span> &#125;;<br>	<span class="hljs-comment">//通过指针指向结构体变量</span><br>	<span class="hljs-keyword">struct</span> <span class="hljs-title class_">student</span>* p = &amp;stu;<br>	<span class="hljs-comment">//可以通过指针修改数据</span><br>	p-&gt;name = <span class="hljs-string">&quot;liruilong&quot;</span>;<br>	<span class="hljs-comment">//通过结构体指针访问结构体变量中的数据</span><br>	cout &lt;&lt; <span class="hljs-string">&quot;姓名&quot;</span> &lt;&lt; p-&gt;name &lt;&lt; <span class="hljs-string">&quot;年龄&quot;</span> &lt;&lt; p-&gt;age &lt;&lt; <span class="hljs-string">&quot;分数&quot;</span> &lt;&lt; p-&gt;score &lt;&lt; endl;<br>	<span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="12-5-结构体嵌套结构体"><a href="#12-5-结构体嵌套结构体" class="headerlink" title="12_5 结构体嵌套结构体"></a>12_5 结构体嵌套结构体</h3><p>作用：结构体中的成员可以是另一个结构体</p>
+<p>例如：每个老师辅导一个学员，一个老师结构体中，记录一个学生的结构体</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-meta">#include &lt;iostream&gt;</span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-title">std</span>;<br><br><span class="hljs-comment">//定义结构体</span><br><span class="hljs-keyword">struct</span> student &#123;<br>	<span class="hljs-built_in">string</span> name;<br>	<span class="hljs-built_in">int</span> age;<br>	<span class="hljs-built_in">double</span> score;<br>&#125;;<br><span class="hljs-keyword">struct</span> teacher &#123;<br>	<span class="hljs-built_in">int</span> id;<br>	<span class="hljs-built_in">string</span> name;<br>	<span class="hljs-built_in">int</span> age;<br>	<span class="hljs-keyword">struct</span> student stu;  <span class="hljs-comment">//结构体嵌套结构体</span><br>&#125;;<br><span class="hljs-function"><span class="hljs-built_in">int</span> <span class="hljs-title">main</span>()</span> &#123;<br>	<span class="hljs-comment">//创建老师</span><br>	teacher t;<br>	t.id = <span class="hljs-number">1000</span>;<br>	t.name = <span class="hljs-string">&quot;老王&quot;</span>;<br>	t.age = <span class="hljs-number">40</span>;<br>	t.stu.name = <span class="hljs-string">&quot;小王&quot;</span>;<br>	t.stu.age = <span class="hljs-number">20</span>;<br>	t.stu.score = <span class="hljs-number">99</span>;<br><br>	cout &lt;&lt; t.name &lt;&lt; <span class="hljs-string">&quot;  &quot;</span> &lt;&lt; t.stu.name &lt;&lt; endl;<br><br>	system(<span class="hljs-string">&quot;pause&quot;</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="12-6-结构体做函数参数"><a href="#12-6-结构体做函数参数" class="headerlink" title="12_6 结构体做函数参数"></a>12_6 结构体做函数参数</h3><p>作用：将结构体作为参数向函数中传递</p>
+<p>传递方式有两种：值传递</p>
+<p>​							   地址传递</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-comment">//定义结构体</span><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">student</span> &#123;<br>	string name;<br>	<span class="hljs-type">int</span> age;<br>	<span class="hljs-type">double</span> score;<br>&#125;;<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">PrintStu</span><span class="hljs-params">(student* p)</span> </span>&#123;<br>	cout &lt;&lt; p-&gt;name &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; p-&gt;age &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; p-&gt;score &lt;&lt; endl;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	student stu1;<br>	stu<span class="hljs-number">1.</span>name = <span class="hljs-string">&quot;lrl&quot;</span>;<br>	stu<span class="hljs-number">1.</span>age = <span class="hljs-number">20</span>;<br>	stu<span class="hljs-number">1.</span>score = <span class="hljs-number">90</span>;<br><br>	<span class="hljs-built_in">PrintStu</span>(&amp;stu1);<br>	<span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="12-7-结构体中const使用场景"><a href="#12-7-结构体中const使用场景" class="headerlink" title="12_7 结构体中const使用场景"></a>12_7 结构体中const使用场景</h3><p>使用const防止误操作</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string&gt;</span></span><br><br><span class="hljs-comment">//定义结构体</span><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">student</span> &#123;<br>	string name;<br>	<span class="hljs-type">int</span> age;<br>	<span class="hljs-type">double</span> score;<br>&#125;;<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">PrintStu</span><span class="hljs-params">(<span class="hljs-type">const</span> student *stu1)</span> </span>&#123;<br>	<span class="hljs-comment">//stu1-&gt;age = 30;  不能修改</span><br>	cout &lt;&lt; stu1-&gt;name &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; stu1-&gt;age &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; stu1-&gt;score &lt;&lt; endl;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	student stu1;<br>	stu<span class="hljs-number">1.</span>name = <span class="hljs-string">&quot;lrl&quot;</span>;<br>	stu<span class="hljs-number">1.</span>age = <span class="hljs-number">20</span>;<br>	stu<span class="hljs-number">1.</span>score = <span class="hljs-number">90</span>;<br><br>	<span class="hljs-built_in">PrintStu</span>(&amp;stu1);<br>	<span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="案例1"><a href="#案例1" class="headerlink" title="案例1"></a>案例1</h4><p>学校正做毕设项目，每名老师带领5个学生，总共有3名老师，需求如下</p>
+<p>设计学生和老师的结构体，其中老师在结构体中，有老师姓名和一个存放5名学生的数组作为成员</p>
+<p>学生的成员有姓名、考试分数，创建数组存放3名老师，通过函数给每位老师及所带的学生赋值</p>
+<p>最终打印出老师数据以及老师所带的学生数据。</p>
+<p><strong>一个程序就能解决，我小题大作搞了5个，但是发现了分函数要重新定义结构体，不亏</strong></p>
+<p><strong>main.cpp:</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;fenpeixuesheng.h&quot;</span></span><br><span class="hljs-meta"># <span class="hljs-keyword">include</span><span class="hljs-string">&quot;printStu.h&quot;</span></span><br><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Student</span> &#123;<br>	string s_name;<br>	<span class="hljs-type">double</span> score;<br>&#125;;<br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Teacher</span> &#123;<br>	string t_name;<br>	Student Stu[<span class="hljs-number">5</span>];<br>&#125;;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	Teacher Teach[<span class="hljs-number">3</span>];<br>	<span class="hljs-type">int</span> len = <span class="hljs-built_in">sizeof</span>(Teach) / <span class="hljs-built_in">sizeof</span>(Teach[<span class="hljs-number">1</span>]);<br>	<span class="hljs-built_in">fenpeixuesheng</span>(Teach, len);<br>	<span class="hljs-built_in">printStu</span>(Teach, len);<br>	<span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>fenpeixuesheng.h</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta"># <span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">fenpeixuesheng</span><span class="hljs-params">(<span class="hljs-keyword">struct</span> Teacher Teah[], <span class="hljs-type">int</span> len)</span></span>;<br></code></pre></td></tr></table></figure>
+
+<p><strong>printStu.h</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta"># <span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">printStu</span><span class="hljs-params">(<span class="hljs-keyword">struct</span> Teacher Teach[], <span class="hljs-type">int</span> len)</span></span>;<br></code></pre></td></tr></table></figure>
+
+<p><strong>fenpeixuesheng.cpp</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-meta">#include &quot;fenpeixuesheng.h&quot;</span><br><span class="hljs-keyword">struct</span> Student &#123;<br>	<span class="hljs-built_in">string</span> s_name;<br>	<span class="hljs-built_in">double</span> score;<br>&#125;;<br><span class="hljs-keyword">struct</span> Teacher &#123;<br>	<span class="hljs-built_in">string</span> t_name;<br>	Student Stu[<span class="hljs-number">5</span>];<br>&#125;;<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">fenpeixuesheng</span>(<span class="hljs-params"><span class="hljs-keyword">struct</span> Teacher Teach[],<span class="hljs-built_in">int</span> len</span>)</span> &#123;<br>	<br>	<span class="hljs-built_in">string</span> a_name = <span class="hljs-string">&quot;abcdef&quot;</span>;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>; i &lt; len; i++) &#123;<br>		Teach[i].t_name = <span class="hljs-string">&quot;Teacher_&quot;</span>;<br>		Teach[i].t_name += a_name[i];<br>		<span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">5</span>; j++) &#123;<br>			Teach[i].Stu[j].s_name = <span class="hljs-string">&quot;student_&quot;</span>;<br>			Teach[i].Stu[j].s_name += a_name[j];<br>			Teach[i].Stu[j].score = <span class="hljs-number">60</span>;<br>		&#125;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>printStu.cpp</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta"># <span class="hljs-keyword">include</span> <span class="hljs-string">&quot;printStu.h&quot;</span></span><br><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Student</span> &#123;<br>	string s_name;<br>	<span class="hljs-type">double</span> score;<br>&#125;;<br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Teacher</span> &#123;<br>	string t_name;<br>	Student Stu[<span class="hljs-number">5</span>];<br>&#125;;<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">printStu</span><span class="hljs-params">(<span class="hljs-keyword">struct</span> Teacher Teach[], <span class="hljs-type">int</span> len)</span> </span>&#123;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; len; i++) &#123;<br>		cout &lt;&lt; <span class="hljs-string">&quot;老师：\t&quot;</span> &lt;&lt; Teach[i].t_name &lt;&lt; <span class="hljs-string">&quot;带学生：\t&quot;</span> &lt;&lt; endl;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">5</span>; j++) &#123;<br>			cout &lt;&lt; Teach[i].Stu[j].s_name &lt;&lt; <span class="hljs-string">&quot;\t&quot;</span> &lt;&lt; Teach[i].Stu[j].score &lt;&lt; <span class="hljs-string">&quot;\t&quot;</span>;<br>		&#125;<br>		cout &lt;&lt;<span class="hljs-string">&quot;\t&quot;</span>&lt;&lt; endl;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="案例2"><a href="#案例2" class="headerlink" title="案例2"></a>案例2</h4><p>设计一个英雄结构体，包含姓名，年龄，性别；创建结构体数组，数组中存放5名英雄。</p>
+<p>通过冒泡排序的算法，将数组中的英雄按年龄进行升序排序，最种打印排序后的结果。</p>
+<figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs tap">刘备<span class="hljs-number"> 23 </span>男<br>关羽<span class="hljs-number"> 22 </span>男<br>张飞<span class="hljs-number"> 20 </span>男<br>赵云<span class="hljs-number"> 21 </span>男<br>貂蝉<span class="hljs-number"> 18 </span>女<br></code></pre></td></tr></table></figure>
+
+<p><strong>main.cpp:</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string&gt;</span></span><br><span class="hljs-meta"># <span class="hljs-keyword">include</span> <span class="hljs-string">&quot;hero.h&quot;</span></span><br><span class="hljs-comment">//刘备 23 男</span><br><span class="hljs-comment">//关羽 22 男</span><br><span class="hljs-comment">//张飞 20 男</span><br><span class="hljs-comment">//赵云 21 男</span><br><span class="hljs-comment">//貂蝉 18 女</span><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Hero</span> &#123;<br>	string name;<br>	<span class="hljs-type">int</span> age;<br>	string sex;<br>&#125;;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	Hero s[<span class="hljs-number">5</span>] = &#123;<br>	&#123;<span class="hljs-string">&quot;刘备&quot;</span>, <span class="hljs-number">23</span>,<span class="hljs-string">&quot;男&quot;</span>&#125;,<br>	&#123;<span class="hljs-string">&quot;关羽&quot;</span>, <span class="hljs-number">22</span>, <span class="hljs-string">&quot;男&quot;</span>&#125;,<br>	&#123;<span class="hljs-string">&quot;张飞&quot;</span>, <span class="hljs-number">20</span>, <span class="hljs-string">&quot;男&quot;</span>&#125;,<br>	&#123;<span class="hljs-string">&quot;赵云&quot;</span>, <span class="hljs-number">21</span>, <span class="hljs-string">&quot;男&quot;</span>&#125;,<br>	&#123;<span class="hljs-string">&quot;貂蝉&quot;</span>, <span class="hljs-number">18</span>, <span class="hljs-string">&quot;女&quot;</span>&#125;<br>	&#125;;<br>	<span class="hljs-type">int</span> len = <span class="hljs-built_in">sizeof</span>(s) / <span class="hljs-built_in">sizeof</span>(s[<span class="hljs-number">0</span>]);<br>	<br>	<span class="hljs-built_in">hero</span>(s, len);<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; len; i++) &#123;<br>		cout &lt;&lt; s[i].name &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; s[i].age &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; s[i].sex &lt;&lt; endl;<br>	&#125;<br>	<span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>hero.h:</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">hero</span><span class="hljs-params">(<span class="hljs-keyword">struct</span> Hero s[], <span class="hljs-type">int</span> len)</span></span>;<br></code></pre></td></tr></table></figure>
+
+<p><strong>hero.cpp:</strong></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs go">#include <span class="hljs-string">&quot;hero.h&quot;</span><br><span class="hljs-keyword">struct</span> Hero &#123;<br>	<span class="hljs-type">string</span> name;<br>	<span class="hljs-type">int</span> age;<br>	<span class="hljs-type">string</span> sex;<br>&#125;;<br>void hero(<span class="hljs-keyword">struct</span> Hero s[], <span class="hljs-type">int</span> <span class="hljs-built_in">len</span>) &#123;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">len</span><span class="hljs-number">-1</span>; i++) &#123;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-built_in">len</span> - <span class="hljs-number">1</span> - i; j++) &#123;<br>			<span class="hljs-keyword">if</span> (s[j].age &gt; s[j + <span class="hljs-number">1</span>].age) &#123;<br>				<span class="hljs-keyword">struct</span> Hero temp;        <span class="hljs-comment">//交换结构体可以定义个新的结构体作为临时栈</span><br>				temp = s[j + <span class="hljs-number">1</span>];<br>				s[j + <span class="hljs-number">1</span>] = s[j];<br>				s[j] = temp;<br>			&#125;<br>		&#125;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="13-通讯录管理系统"><a href="#13-通讯录管理系统" class="headerlink" title="13 通讯录管理系统"></a>13 通讯录管理系统</h2><p>需要的功能：</p>
+<p>添加联系人：信息包括（姓名，性别，年龄，联系电话，家庭住址）最多记录1000人</p>
+<p>显示联系人：显示通讯录中所有联系人信息</p>
+<p>删除联系人：按照姓名进行删除指定联系人</p>
+<p>查找联系人：按照姓名查看指定联系人信息</p>
+<p>修改联系人：按照姓名重新修改指定联系人</p>
+<p>清空联系人：清空通讯录中所有信息</p>
+<p>退出通讯录：退出当前使用的通讯录</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">//添加联系人：信息包括（姓名，性别，年龄，联系电话，家庭住址）最多记录1000人</span><br><span class="hljs-comment">//显示联系人：显示通讯录中所有联系人信息</span><br><span class="hljs-comment">//删除联系人：按照姓名进行删除指定联系人</span><br><span class="hljs-comment">//查找联系人：按照姓名查看指定联系人信息</span><br><span class="hljs-comment">//修改联系人：按照姓名重新修改指定联系人</span><br><span class="hljs-comment">//清空联系人：清空通讯录中所有信息</span><br><span class="hljs-comment">//退出通讯录：退出当前使用的通讯录</span><br><br><span class="hljs-meta"># <span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta"># <span class="hljs-keyword">define</span> Max 1000</span><br><span class="hljs-meta"># <span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">person</span> &#123;<br>	string name;<br>	<span class="hljs-type">int</span> gender;<br>	<span class="hljs-type">int</span> age;<br>	string tel;<br>	string address;<br>&#125;;<br><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">books</span> &#123;<br>	<span class="hljs-type">int</span> size;<br>	<span class="hljs-keyword">struct</span> <span class="hljs-title class_">person</span> person_array[Max];<br>&#125;;<br><br><br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">show_menu</span><span class="hljs-params">()</span> </span>&#123;<br>	cout &lt;&lt; <span class="hljs-string">&quot;请选择对应的操作&quot;</span> &lt;&lt; endl;<br>	cout &lt;&lt; <span class="hljs-string">&quot;**************&quot;</span> &lt;&lt; endl;<br>	cout &lt;&lt; <span class="hljs-string">&quot;*1.添加联系人*&quot;</span> &lt;&lt; endl;<br>	cout &lt;&lt; <span class="hljs-string">&quot;*2.显示联系人*&quot;</span> &lt;&lt; endl;<br>	cout &lt;&lt; <span class="hljs-string">&quot;*3.删除联系人*&quot;</span> &lt;&lt; endl;<br>	cout &lt;&lt; <span class="hljs-string">&quot;*4.查找联系人*&quot;</span> &lt;&lt; endl;<br>	cout &lt;&lt; <span class="hljs-string">&quot;*5.修改联系人*&quot;</span> &lt;&lt; endl;<br>	cout &lt;&lt; <span class="hljs-string">&quot;*6.清空联系人*&quot;</span> &lt;&lt; endl;<br>	cout &lt;&lt; <span class="hljs-string">&quot;*7.退出通讯录*&quot;</span> &lt;&lt; endl;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">add_person</span><span class="hljs-params">(books* ads)</span> </span>&#123;<br>	<span class="hljs-comment">//判断通讯录满了吗</span><br>	<span class="hljs-keyword">if</span> (ads-&gt;size == Max) &#123;<br>		cout &lt;&lt; <span class="hljs-string">&quot;通讯录已满&quot;</span> &lt;&lt; endl;<br>	&#125;<br>	<span class="hljs-keyword">else</span><br>	&#123;<br>		cout &lt;&lt; <span class="hljs-string">&quot;请输入姓名： &quot;</span>;<br>		cin &gt;&gt; ads-&gt;person_array[ads-&gt;size].name;<br>		<span class="hljs-keyword">while</span> (<span class="hljs-number">1</span>) &#123;<br>			cout &lt;&lt; <span class="hljs-string">&quot;请输入性别： &quot;</span>;<br>			cin &gt;&gt; ads-&gt;person_array[ads-&gt;size].gender;<br>			<span class="hljs-keyword">if</span> ( ads-&gt;person_array[ads-&gt;size].gender == <span class="hljs-number">1</span>|| ads-&gt;person_array[ads-&gt;size].gender==<span class="hljs-number">2</span>) &#123;<br>				<span class="hljs-keyword">break</span>;<br>			&#125;<br>			<span class="hljs-keyword">else</span> &#123;<br>				cout &lt;&lt; <span class="hljs-string">&quot;输入有误，请重新输入：&quot;</span>;<br>			&#125;<br>		&#125;<br>		cout &lt;&lt; <span class="hljs-string">&quot;请输入年龄： &quot;</span>;<br>		cin &gt;&gt; ads-&gt;person_array[ads-&gt;size].age;<br>		cout &lt;&lt; <span class="hljs-string">&quot;请输入电话： &quot;</span>;<br>		cin &gt;&gt; ads-&gt;person_array[ads-&gt;size].tel;<br>		cout &lt;&lt; <span class="hljs-string">&quot;请输入住址： &quot;</span>;<br>		cin &gt;&gt; ads-&gt;person_array[ads-&gt;size].address;<br>		cout &lt;&lt; <span class="hljs-string">&quot;添加成功： &quot;</span>;<br>		ads-&gt;size++;<br>		<span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br>		<span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;cls&quot;</span>);<br>	&#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">display_person</span><span class="hljs-params">(books* ads)</span> </span>&#123;<br>	<span class="hljs-keyword">if</span> (ads-&gt;size != <span class="hljs-number">0</span>) &#123;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; ads-&gt;size; i++) &#123;<br>			string a;<br>			<span class="hljs-keyword">if</span> (ads-&gt;person_array[i].gender == <span class="hljs-number">1</span>) &#123;<br>				a = <span class="hljs-string">&quot;男&quot;</span>;<br>			&#125;<br>			<span class="hljs-keyword">else</span> &#123;<br>				a = <span class="hljs-string">&quot;女&quot;</span>;<br>			&#125;<br>			cout &lt;&lt; <span class="hljs-string">&quot;姓名：&quot;</span> &lt;&lt; ads-&gt;person_array[i].name &lt;&lt;<span class="hljs-string">&quot;\t&quot;</span>&lt;&lt;<span class="hljs-string">&quot;性别：&quot;</span>&lt;&lt;a&lt;&lt;<span class="hljs-string">&quot;\t&quot;</span>&lt;&lt;<span class="hljs-string">&quot;年龄：&quot;</span>&lt;&lt;ads-&gt;person_array[i].age&lt;&lt; <span class="hljs-string">&quot;\t&quot;</span> &lt;&lt; <span class="hljs-string">&quot;电话：&quot;</span> &lt;&lt; ads-&gt;person_array[i].tel &lt;&lt; <span class="hljs-string">&quot;\t&quot;</span>&lt;&lt;<span class="hljs-string">&quot;住址：&quot;</span>&lt;&lt;ads-&gt;person_array[i].address&lt;&lt;endl;<br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">else</span> &#123;<br>		cout &lt;&lt; <span class="hljs-string">&quot;没有联系人&quot;</span> &lt;&lt; endl;<br>	&#125;<br>	<span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br>	<span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;cls&quot;</span>);<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">delete_person1</span><span class="hljs-params">(<span class="hljs-keyword">struct</span> books* ads)</span> </span>&#123;<br>	string del_name;<br>	cout &lt;&lt; <span class="hljs-string">&quot;请输入你要删除的人：&quot;</span>;<br>	cin &gt;&gt; del_name;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; ads-&gt;size; i++) &#123;<br>		<span class="hljs-keyword">if</span> (del_name == ads-&gt;person_array[i].name) &#123;<br>			<span class="hljs-keyword">return</span> i;<br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">delete_person2</span><span class="hljs-params">(<span class="hljs-keyword">struct</span> books* ads, <span class="hljs-type">int</span> response)</span> </span>&#123;<br>	<span class="hljs-keyword">if</span> (response != <span class="hljs-number">-1</span>) &#123;<br>		<span class="hljs-keyword">for</span> (response; response &lt; ads-&gt;size;response++) &#123;<br>			ads-&gt;person_array[response] = ads-&gt;person_array[response + <span class="hljs-number">1</span>];<br>		&#125;<br>		ads-&gt;size --;<br>		cout &lt;&lt; <span class="hljs-string">&quot;删除成功！&quot;</span> &lt;&lt; endl;<br>	&#125;<br>	<span class="hljs-keyword">else</span> &#123;<br>		cout &lt;&lt; <span class="hljs-string">&quot;查无此人&quot;</span> &lt;&lt; endl;<br>	&#125;<br>	<span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br>	<span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;cls&quot;</span>);<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">search_person1</span><span class="hljs-params">(<span class="hljs-keyword">struct</span> books* ads)</span> </span>&#123;<br>	string del_name;<br>	cout &lt;&lt; <span class="hljs-string">&quot;请输入你要查找的人：&quot;</span>;<br>	cin &gt;&gt; del_name;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; ads-&gt;size; i++) &#123;<br>		<span class="hljs-keyword">if</span> (del_name == ads-&gt;person_array[i].name) &#123;<br>			<span class="hljs-keyword">return</span> i;<br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">search_person2</span><span class="hljs-params">(<span class="hljs-keyword">struct</span> books* ads, <span class="hljs-type">int</span> response)</span> </span>&#123;<br>	<span class="hljs-keyword">if</span> (response != <span class="hljs-number">-1</span>) &#123;<br>		cout &lt;&lt; <span class="hljs-string">&quot;姓名：&quot;</span> &lt;&lt; ads-&gt;person_array[response].name &lt;&lt; <span class="hljs-string">&quot;\t&quot;</span> &lt;&lt; <span class="hljs-string">&quot;性别：&quot;</span> &lt;&lt; ads-&gt;person_array[response]. gender &lt;&lt; <span class="hljs-string">&quot;\t&quot;</span> &lt;&lt; <span class="hljs-string">&quot;年龄：&quot;</span> &lt;&lt; ads-&gt;person_array[response].age &lt;&lt; <span class="hljs-string">&quot;\t&quot;</span> &lt;&lt; <span class="hljs-string">&quot;电话：&quot;</span> &lt;&lt; ads-&gt;person_array[response].tel &lt;&lt; <span class="hljs-string">&quot;\t&quot;</span> &lt;&lt; <span class="hljs-string">&quot;住址：&quot;</span> &lt;&lt; ads-&gt;person_array[response].address &lt;&lt; endl;<br>	&#125;<br>	<span class="hljs-keyword">else</span> &#123;<br>		cout &lt;&lt; <span class="hljs-string">&quot;查无此人&quot;</span> &lt;&lt; endl;<br>	&#125;<br>	<span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br>	<span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;cls&quot;</span>);<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">update_person1</span><span class="hljs-params">(<span class="hljs-keyword">struct</span> books* ads)</span> </span>&#123;<br>	string del_name;<br>	cout &lt;&lt; <span class="hljs-string">&quot;请输入你要修改的人：&quot;</span>;<br>	cin &gt;&gt; del_name;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; ads-&gt;size; i++) &#123;<br>		<span class="hljs-keyword">if</span> (del_name == ads-&gt;person_array[i].name) &#123;<br>			<span class="hljs-keyword">return</span> i;<br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">update_person2</span><span class="hljs-params">(<span class="hljs-keyword">struct</span> books* ads, <span class="hljs-type">int</span> response)</span> </span>&#123;<br>	<span class="hljs-keyword">if</span> (response != <span class="hljs-number">-1</span>) &#123;<br>		cout &lt;&lt; <span class="hljs-string">&quot;你即将修改：&quot;</span> &lt;&lt; endl;<br>		cout &lt;&lt; <span class="hljs-string">&quot;姓名：&quot;</span> &lt;&lt; ads-&gt;person_array[response].name&lt;&lt;endl;<br>		cout &lt;&lt; <span class="hljs-string">&quot;请输入姓名： &quot;</span>;<br>		cin &gt;&gt; ads-&gt;person_array[response].name;<br>		<span class="hljs-keyword">while</span> (<span class="hljs-number">1</span>) &#123;<br>			cout &lt;&lt; <span class="hljs-string">&quot;请输入性别： &quot;</span>;<br>			cin &gt;&gt; ads-&gt;person_array[response].gender;<br>			<span class="hljs-keyword">if</span> (ads-&gt;person_array[response].gender == <span class="hljs-number">1</span> || ads-&gt;person_array[response].gender == <span class="hljs-number">2</span>) &#123;<br>				<span class="hljs-keyword">break</span>;<br>			&#125;<br>			<span class="hljs-keyword">else</span> &#123;<br>				cout &lt;&lt; <span class="hljs-string">&quot;输入有误，请重新输入：&quot;</span>;<br>			&#125;<br>		&#125;<br>		cout &lt;&lt; <span class="hljs-string">&quot;请输入年龄： &quot;</span>;<br>		cin &gt;&gt; ads-&gt;person_array[response].age;<br>		cout &lt;&lt; <span class="hljs-string">&quot;请输入电话： &quot;</span>;<br>		cin &gt;&gt; ads-&gt;person_array[response].tel;<br>		cout &lt;&lt; <span class="hljs-string">&quot;请输入住址： &quot;</span>;<br>		cin &gt;&gt; ads-&gt;person_array[response].address;<br>		cout &lt;&lt; <span class="hljs-string">&quot;添加成功： &quot;</span>;<br>	&#125;<br>	<span class="hljs-keyword">else</span> &#123;<br>		cout &lt;&lt; <span class="hljs-string">&quot;查无此人&quot;</span> &lt;&lt; endl;<br>	&#125;<br>	<span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br>	<span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;cls&quot;</span>);<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-type">int</span> response = <span class="hljs-number">0</span>;<br>	<span class="hljs-type">int</span> select = <span class="hljs-number">0</span>;<br>	books ads;<br>	ads.size = <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">while</span> (<span class="hljs-number">1</span>) &#123;<br>		<span class="hljs-built_in">show_menu</span>();	<br>		cin &gt;&gt; select;<br>		<span class="hljs-keyword">switch</span> (select) &#123;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:<span class="hljs-comment">//1.添加联系人</span><br>			<span class="hljs-built_in">add_person</span>(&amp;ads);<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:<span class="hljs-comment">//显示联系人</span><br>			<span class="hljs-built_in">display_person</span>(&amp;ads);<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">3</span>:<span class="hljs-comment">//删除联系人</span><br>		&#123;<br>			response = <span class="hljs-built_in">delete_person1</span>(&amp;ads);<br>			<span class="hljs-built_in">delete_person2</span>(&amp;ads,response);<br>			<span class="hljs-keyword">break</span>;<br>		&#125;<br>			<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">4</span>:<span class="hljs-comment">//查找联系人</span><br>		&#123;<br>			response = <span class="hljs-built_in">search_person1</span>(&amp;ads);<br>			<span class="hljs-built_in">search_person2</span>(&amp;ads, response);<br>			<span class="hljs-keyword">break</span>;<br>		&#125;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">5</span>:<span class="hljs-comment">//修改联系人</span><br>		&#123;<br>			response = <span class="hljs-built_in">update_person1</span>(&amp;ads);<br>			<span class="hljs-built_in">update_person2</span>(&amp;ads, response);<br>			<span class="hljs-keyword">break</span>;<br>		&#125;<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">6</span>:<span class="hljs-comment">//清空联系人</span><br>		&#123;	ads.size = <span class="hljs-number">0</span>;<br>			cout &lt;&lt; <span class="hljs-string">&quot;联系人已清空&quot;</span> &lt;&lt; endl;<br>			<span class="hljs-keyword">break</span>;<br>		&#125;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">7</span>:<span class="hljs-comment">//退出通讯录</span><br>			cout &lt;&lt; <span class="hljs-string">&quot;谢谢你的使用，祝你生活愉快！&quot;</span> &lt;&lt; endl;<br>			<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">default</span>:<br>			cout &lt;&lt; <span class="hljs-string">&quot;你的输入有误，请输入1到7&quot;</span> &lt;&lt; endl;<br>		&#125;<br>	&#125;<br>	<br>	<span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/C/" class="category-chain-item">C++</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%AF%AD%E8%A8%80/" class="print-no-link">#语言</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>C++基础</div>
+      <div>https://liruilong9999.github.io/2022/04/30/C++基础/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>liruilong</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年4月30日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/04/30/C++parallel/" title="C++ 并发">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">C++ 并发</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/04/30/docker%E5%AD%A6%E4%B9%A0/" title="dockers学习笔记">
+                        <span class="hidden-mobile">dockers学习笔记</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
